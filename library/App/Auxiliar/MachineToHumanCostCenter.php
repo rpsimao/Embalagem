@@ -23,6 +23,17 @@ class App_Auxiliar_MachineToHumanCostCenter
     }
 
     /**
+     * @param $code
+     * @return string encoded in UTF8
+     */
+    public static function translateUTF8($code)
+    {
+        $optimus = new App_User_Service_Optimus();
+        $name = $optimus->machineToHuman($code);
+        return utf8_encode($name['act_name']);
+    }
+
+    /**
      * 
      * @param string $costCenter
      */

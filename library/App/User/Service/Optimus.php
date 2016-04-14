@@ -159,14 +159,12 @@ class App_User_Service_Optimus extends App_Master_DB_Optimus
 
         if (date('l') == 'Friday') {
             $today = new Zend_Date();
-            $dayT = $today->add('3', Zend_Date::DAY);
-            $tomorrow = date('Y') . '-' . App_Auxiliar_ChangeMonth::changeMonth($dayT) . '-' . $dayT;
+            $dayT = $today->add('3', Zend_Date::DAY)->toString("YYYY-MM-dd");
         } else {
             $today = new Zend_Date();
-            $dayT = $today->add('1', Zend_Date::DAY);
-            $tomorrow = date('Y') . '-' . App_Auxiliar_ChangeMonth::changeMonth($dayT) . '-' . $dayT;
+            $dayT = $today->add('1', Zend_Date::DAY)->toString("YYYY-MM-dd");
         }
-        $row = $this->job->getAdapter()->fetchAll("SELECT * FROM  `job` WHERE  `j_datein` >=  '2009-01-01' AND `j_type` like '06%' AND `j_status` != 40 AND `j_deldate` = '$tomorrow' AND `j_qty_ordered` != 1 AND `j_qty_ordered` != 0 order by 'j_number' DESC");
+        $row = $this->job->getAdapter()->fetchAll("SELECT * FROM  `job` WHERE  `j_datein` >=  '2009-01-01' AND `j_type` like '06%' AND `j_status` != 40 AND `j_deldate` = '$dayT' AND `j_qty_ordered` != 1 AND `j_qty_ordered` != 0 order by 'j_number' DESC");
         return $row;
     }
 
@@ -497,4 +495,3 @@ class App_User_Service_Optimus extends App_Master_DB_Optimus
         return $cust;
     }
 }
-?>

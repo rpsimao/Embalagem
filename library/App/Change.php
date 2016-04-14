@@ -29,7 +29,7 @@ class App_Change
         return $fundo;
     }
 
-    private function month ($month)
+    private static function month ($month)
     {
 
         switch ($month) {

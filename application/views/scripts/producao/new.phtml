@@ -1,0 +1,93 @@
+<?=$this->partial('producao/partials/entregas.new.phtml', array(
+    'today' => $this->today,
+    'tomorrow' => $this->tomorrow
+));?>
+
+<div class="widget-box widget-color-blue">
+    <!-- #section:custom/widget-box.options -->
+    <div class="widget-header">
+        <h5 class="widget-title bigger lighter">
+            <i class="ace-icon fa fa-table"></i>
+            Obras em Produ&ccedil;&atilde;o - (<?=count($this->allJobsProducao);?>)
+        </h5>
+
+        <div class="widget-toolbar no-border" >
+
+        </div>
+    </div>
+
+    <div class="widget-body">
+        <div class="widget-main no-padding">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Reg</th>
+                    <th>Situa&ccedil;&atilde;o</th>
+                    <th>Tipo<br />Obra</th>
+                    <th>Cliente</th>
+                    <th>Descri&ccedil;&atilde;o</th>
+                    <th>C&oacute;digo</th>
+                    <th>OC</th>
+                    <th>Data In&iacute;cio</th>
+                    <th>Data Pedida</th>
+                    <th>Qtd Pedida</th>
+                </tr>
+                </thead>
+                <tbody class="small">
+                <?php foreach ($this->jobProducao as $name) : ?>
+
+                    <?php
+                    $todayPHP = date('Y-m-d');
+
+                    if (date('l') == "Friday") {
+                        $today = new Zend_Date();
+                        $dayT = $today->add('3', Zend_Date::DAY);
+                        $tomorrow = date('Y') . '-' . App_Auxiliar_ChangeMonth::changeMonth($dayT) . '-' . $dayT;
+                    } else {
+                        $today = new Zend_Date();
+                        $dayT = $today->add('1', Zend_Date::DAY);
+                        $tomorrow = date('Y') . '-' . App_Auxiliar_ChangeMonth::changeMonth($dayT) . '-' . $dayT;
+                    }
+                    if ($name['j_deldate'] == $todayPHP) {
+                        $rowColor = 'text-warning';
+                    } else
+                        if ($name['j_deldate'] == $tomorrow) {
+                            $rowColor = 'text-success';
+                        } else
+                            if ($name['j_deldate'] < $todayPHP) {
+                                $rowColor = 'text-danger';
+                            } else {
+                                $rowColor = '';
+                            }
+                    ?>
+
+
+                    <tr class="<?=$rowColor?>">
+                        <?php if (count($this->obras->getValues($name['j_number'])) > 0 ) : ?>
+                            <td class="spec"><a href="/cockpit/preview/<?=$name['j_number'];?>"><?=$name['j_number'];?></a></td>
+                        <?php else: ?>
+                            <td class="specalt"><?=$name['j_number'];?></td>
+                        <?php endif;?>
+                        <td>
+                            <i><?=App_JobState::getState($name['j_number']);?></i>
+                            <br />
+                            <small><?=App_Auxiliar_MachineToHumanCostCenter::translateUTF8(App_JobState::getState($name['j_number']));?></small>
+                        </td>
+                        <td><?=App_Change::fundo($name['j_type']);?></td>
+                        <td><?=$name['j_customer'];?></td>
+                        <td><?=utf8_encode($name['j_title1']);?></td>
+                        <td><?=utf8_encode($name['j_title2']);?></td>
+                        <td><?=utf8_encode($name['j_ordnum']);?></td>
+                        <td><?=App_Change::date($name['j_datein']);?></td>
+                        <td><?=App_Change::date($name['j_deldate']);?></td>
+                        <td><?=$name['j_qty_ordered'];?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<br />
+<?=$this->paginationControl($this->jobProducao, 'Sliding', 'pagination2.phtml');?>

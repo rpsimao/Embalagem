@@ -86,13 +86,13 @@ foreach ($this->jobProducao as $name) :
         $tomorrow = date('Y') . '-' . App_Auxiliar_ChangeMonth::changeMonth($dayT) . '-' . $dayT;
     }
     if ($name['j_deldate'] == $todayPHP) {
-        $rowColor = 'orange';
+        $rowColor = 'text-warning';
     } else 
         if ($name['j_deldate'] == $tomorrow) {
-            $rowColor = 'green';
+            $rowColor = 'text-success';
         } else 
             if ($name['j_deldate'] < $todayPHP) {
-                $rowColor = 'red';
+                $rowColor = 'text-danger';
             } else {
                 $rowColor = $color->display($i);
             }

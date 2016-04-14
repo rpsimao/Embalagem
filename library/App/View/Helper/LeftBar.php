@@ -72,7 +72,7 @@ class App_View_Helper_LeftBar extends Zend_View_Helper_Abstract{
 			</li>
 			<li class="<?=$this->_setActive("braille")?> hover">
 				<a href="#" class="dropdown-toggle">
-					<i class="menu-icon fa fa-language"></i>
+					<i class="menu-icon fa fa-braille"></i>
 					<span class="menu-text"> Braille </span>
 
 					<b class="arrow fa fa-angle-down"></b>
@@ -99,7 +99,7 @@ class App_View_Helper_LeftBar extends Zend_View_Helper_Abstract{
 			</li>
 			<li class="<?=$this->_setActive("arqbraille")?> hover">
 				<a href="#" class="dropdown-toggle">
-					<i class="menu-icon fa fa-th"></i>
+					<i class="menu-icon fa fa-archive"></i>
 					<span class="menu-text"> Arquivo Braille </span>
 
 					<b class="arrow fa fa-angle-down"></b>
@@ -250,7 +250,7 @@ class App_View_Helper_LeftBar extends Zend_View_Helper_Abstract{
 				</a>
 				<b class="arrow"></b>
 			</li>
-			<li class=" hover">
+			<li class="<?=$this->_setActive("producao")?> hover">
 				<a href="/producao">
 					<i class="menu-icon fa fa-dashboard"></i>
 					<span class="menu-text"> Produção </span>

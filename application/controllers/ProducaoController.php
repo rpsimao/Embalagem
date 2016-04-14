@@ -21,12 +21,17 @@
 class ProducaoController extends Zend_Controller_Action
 {
 
+    public $optimus;
+
+
     public function init ()
     {
 
         $this->optimus = new App_User_Service_Optimus();
         $this->view->obras = new App_User_Service_Obras();
-        $this->_helper->layout()->setLayout('layoutisoautorefresh');
+        //$this->_helper->layout()->setLayout('layoutisoautorefresh');
+
+        $this->_helper->layout()->setLayout('layout-iso-bootstrap');
         $this->obras = new App_User_Service_Obras();
     }
 
@@ -46,6 +51,8 @@ class ProducaoController extends Zend_Controller_Action
         //
         $tomorrowJobs = $this->optimus->getAllFromJobTableProducaoTomorrow();
         $this->view->tomorrow = $tomorrowJobs;
+
+        $this->render("new");
     }
 
     public function todayAction ()

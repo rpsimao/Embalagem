@@ -6,3 +6,5 @@ db.sql
 sample/
 lib/
 application/configs/local.ini
+.DS_Store
+

@@ -1,0 +1,55 @@
+<?php
+$numberOfJobsToday = count($this->today);
+if ($numberOfJobsToday > 0) :
+foreach ($this->today as $variable) {
+    $jobsToday =  $variable['j_number'] . " / ";
+}
+endif;
+
+$numberOfJobsTomorrow = count($this->tomorrow);
+if ($numberOfJobsTomorrow > 0) :
+foreach ($this->tomorrow as $variable) {
+    $jobsTomorrow = $variable['j_number'] . " / ";
+}
+endif;
+
+
+?>
+
+<div class="row">
+    <div class="col-sm-7 infobox-container">
+    <!-- #section:pages/dashboard.infobox -->
+        <div class="infobox infobox-green">
+            <div class="infobox-icon">
+                <i class="ace-icon fa fa-truck"></i>
+            </div>
+
+            <div class="infobox-data">
+                <span class="infobox-data-number"><?=$numberOfJobsToday?></span>
+                <div class="infobox-content">Entrega Hoje</div>
+            </div>
+
+            <div class="badge badge-success">
+                <i class="ace-icon fa fa-eye"></i>
+            </div>
+
+        </div>
+
+        <div class="infobox infobox-blue">
+            <div class="infobox-icon">
+                <i class="ace-icon fa fa-truck"></i>
+            </div>
+
+            <div class="infobox-data">
+                <span class="infobox-data-number"><?=$numberOfJobsTomorrow?></span>
+                <div class="infobox-content">Entrega Amanhã</div>
+            </div>
+
+            <div class="badge badge-success">
+                +32%
+                <i class="ace-icon fa fa-arrow-up"></i>
+            </div>
+        </div>
+        <div class="space-6"></div>
+    </div>
+</div>

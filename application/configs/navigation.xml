@@ -361,5 +361,13 @@
                 </test>
             </pages>
         </test>
+        <producao>
+            <label>Obras em Produção</label>
+            <module>default</module>
+            <controller>producao</controller>
+            <action>index</action>
+            <uri>/producao</uri>
+            <id>producao</id>
+        </producao>
     </nav>
 </config>
