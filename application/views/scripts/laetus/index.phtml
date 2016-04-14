@@ -1,0 +1,16 @@
+<?php
+$this->placeholder('js')->set('<script type="text/javascript" src="/js/ajax.js"></script>
+');
+
+?>
+<?=$this->partial('partials/laetus.phtml');?>
+<div id="cont">
+
+<?=$this->partial('partials/laetusbotoes.phtml');?>
+
+<fieldset><legend>Criar C&oacute;digo Laetus</legend>
+<div id="loading-animation"></div>
+<span id="errmsg" style="color: white;background-color: red;width: 50px;height: 20px;padding: 5px;display: none;margin-bottom: 8px;"></span>
+<br />
+<?=$this->form->render();?>
+</fieldset></div>

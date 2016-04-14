@@ -1,0 +1,183 @@
+<?=$this->partial('partials/cortantes.phtml');?>
+<?=$this->partial('partials/searchcortantes.phtml');?>
+<?=$this->partial('partials/vercortanteautoplatina.phtml');?>
+<div id="ajax-msg"></div>
+<table class="novocortante">
+  <tr>
+    <td><a href="/cortantes/new">+ Criar novo cortante</a></td>
+    <td><a href="/cortantes/execucao">+ Novo cortante para Executar</a></td>
+   </tr>
+</table>
+
+<br />
+<div id="tabs" align="center">
+<ul>
+	<li><a href="#tabs-1">Cortantes Autoplatina</a></li>
+	<li><a href="#tabs-2">Cortantes Cil&iacute;ndricas</a></li>
+	<li><a href="#tabs-3">Cortantes em Execu&ccedil;&atilde;o</a></li>
+</ul>
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+?>
+<div id="tabs-1">
+
+<br />
+
+<table class="bordered">
+	<tr>
+		<th>Est.</th>
+		<th>C&oacute;d.</th>
+		<th>Cort.</th>
+		<th>A</th>
+		<th>B</th>
+		<th>H</th>
+		<th>f</th>
+		<th>g</th>
+		<th>Fto. Std</th>
+		<th>Ver</th>
+		
+	</tr>
+<?php
+foreach ($this->autoplatina as $name) :
+    ?>
+<tr class="<?=$color->display($i);?>" id="<?=$name['id']?>">
+		<td class="spec" align="center" ><?=$name['estante'];?></td>
+		<td align="center"><a href="/cortantes/display/<?=str_replace(" ", "", $name['codigo']);?>"><?=str_replace(" ", "", $name['codigo']);?></a></td>
+		<td><span id="clip<?=$name['id']?>"><?=$name['cortante'];?></span>&nbsp;<button onclick="Javascript:catchCod('<?=$name['id']?>')"></button></td>
+		<td align="center"><?=$name['A'];?></td>
+		<td align="center"><?=$name['B'];?></td>
+		<td align="center"><?=$name['H'];?></td>
+		<td align="center"><?=$name['f'];?></td>
+		<td align="center"><?=$name['g'];?></td>
+		<td align="center"><?=$name['formato_std'];?></td>
+		<td align="center"><img src="/images/eye.png" onclick="Javascript:populatePanel('<?=$name['id']?>', '<?=$name['codigo'];?>')"></td>
+	
+<?php
+    $i ++;
+endforeach;
+?>
+</tr>
+</table>
+
+<br />
+<br />
+<?=$this->paginationControl($this->autoplatina, 'Sliding', 'paginationTabs1.phtml');?>
+
+</div>
+
+<div id="tabs-2">
+
+<br />
+<table class="bordered">
+	<tr>
+		<th>Est.</th>
+		<th>C&oacute;d.</th>
+		<th>Cort.</th>
+		<th>A</th>
+		<th>B</th>
+		<th>H</th>
+		<th>f</th>
+		<th>g</th>
+		<th>Fto. Std</th>
+		<th>Ver</th>
+		
+	</tr>
+<?php
+foreach ($this->cilindrica as $name) :
+    ?>
+<tr class="<?=$color->display($i);?>" id="<?=$name['id']?>">
+		<td class="spec" align="center"><?=$name['estante'];?></td>
+		<td align="center"><a href="/cortantes/display/<?=$name['codigo'];?>"><?=$name['codigo'];?></a></td>
+		<td><span id="clip<?=$name['id']?>"><?=$name['cortante'];?></span>&nbsp;<button onclick="Javascript:catchCod('<?=$name['id']?>')"></button></td>
+		<td align="center"><?=$name['A'];?></td>
+		<td align="center"><?=$name['B'];?></td>
+		<td align="center"><?=$name['H'];?></td>
+		<td align="center"><?=$name['f'];?></td>
+		<td align="center"><?=$name['g'];?></td>
+		<td align="center"><?=$name['formato_std'];?></td>
+		<td align="center"><img src="/images/eye.png" onclick="Javascript:populatePanel('<?=$name['id']?>', '<?=$name['codigo'];?>')"></td>
+		<?php
+    $i ++;
+endforeach;
+?>
+</tr>
+</table>
+<br />
+<br />
+<?=$this->paginationControl($this->cilindrica, 'Sliding', 'paginationTabs2.phtml');?></div>
+
+<div id="tabs-3">
+
+<?/**=$this->partial('partials/ajaxcortantesexecucao.phtml');*/?>
+<script type="text/javascript" scr="/js/cortantes/index/script3.js"></script>
+<div id="ajax-msg" align="center"></div>
+<br />
+<div id="tabela-cortantes-execucao">
+
+<?php if (count($this->execucao) > 0) : ?>
+
+
+<table class="bordered">
+	<tr>
+		<th>Cort.</th>
+		<th>Autopl.</th>
+		<th>Cil&iacute;nd.</th>
+		<th>A</th>
+		<th>B</th>
+		<th>H</th>
+		<th>f</th>
+		<th>g</th>
+		<th>Pala</th>
+		<th>Tipo</th>
+		<th>N&ordm; Caixas</th>
+		<th>Req. N&ordm;</th>
+		<th>Data Envio</th>
+		<th>Data Pedida</th>
+		<th>N &ordm;Obra</th>
+		<th>Editar</th>
+		<th>Executado</th>
+	</tr>
+
+<?php
+foreach ($this->execucao as $name) :
+    ?>
+<tr class="<?=$color->display($i);?>" id="<?=$name['id'];?>">
+		<td align="center"><?=$name['cortante'];?></td>
+		<td align="center"><?=$name['autoplatina'];?></td>
+		<td align="center"><?=$name['cilindrica'];?></td>
+		<td align="center"><?=$name['a'];?></td>
+		<td align="center"><?=$name['b'];?></td>
+		<td align="center"><?=$name['h'];?></td>
+		<td align="center"><?=$name['f'];?></td>
+		<td align="center"><?=$name['g'];?></td>
+		<td align="center"><?=$name['pala'];?></td>
+		<td align="center"><?=$name['tipo'];?></td>
+		<td align="center"><?=$name['caixas'];?></td>
+		<td align="center"><?=$name['requisicao'];?></td>
+		<td align="center"><?=$name['dataenvio'];?></td>
+		<td align="center"><?=$name['datapedida'];?></td>
+		<td align="center"><?=$name['obra'];?></td>
+		<td align="center"><a href="/cortantes/execedit/<?=$name['id'];?>" style="color: green;">Editar</a></td>
+		<td align="center"><input type="checkbox" name="exec<?=$name['id'];?>" id="exec<?=$name['id'];?>" onclick= "Javascript:confirm_exec_product('<?=$name['id']?>','<?=$name['cortante']?>')" /></td>
+<?php
+    $i ++;
+endforeach;
+?>
+
+</tr>
+</table>
+</div>
+<br />
+<br />
+<?=$this->paginationControl($this->execucao, 'Sliding', 'paginationTabs3.phtml');?></div>
+<?php else :?>
+<div align="center"><h2>N&atilde;o existem cortantes em execu&ccedil;&atilde;o.</h2></div>
+
+<?php endif;?>
+
+</div>
+
+
+

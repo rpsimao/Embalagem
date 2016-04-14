@@ -1,0 +1,110 @@
+<?=$this->JSForm();?>
+<?php if (count($this->messages) > 0): ?>
+<div class="row">
+	<div class="col-sm-6">
+		<div id="diecuts_msg-flash" class="alert alert-block alert-success">
+			<button type="button" class="close" data-dismiss="alert">
+				<i class="ace-icon fa fa-times"></i>
+			</button>
+			<p>
+				<strong><i class="ace-icon fa fa-check"></i></strong>
+				<?=$this->messages[0]?>
+			</p>
+		</div>
+	</div>
+</div>
+		<script type="text/javascript">
+
+			$(function(){ $("#diecuts_msg-flash").fadeOut(8000);});
+
+		</script>
+
+
+<?php endif;?>
+<div id="chapas_recuperadas_flash"></div>
+<div class="row">
+	<div class="col-sm-2">
+
+		<h3 class="row header smaller lighter blue"><i class="ace-icon fa fa-cog"></i> Registos</h3>
+		<a class="btn btn-purple btn-sm" href="/chapasrecuperadas/new">
+			<i class="ace-icon fa fa-pencil-square-o"></i>
+			Novo Registo
+		</a>
+
+	</div>
+	<div class="col-sm-3 col-sm-offset-1">
+
+		<h3 class="row header smaller lighter blue"><i class="ace-icon fa fa-search"></i> Procurar</h3>
+
+		<form class="form-horizontal" id="chapasrecuperadas_search_form" action="/chapasrecuperadas/search" method="POST">
+						<div class="form-group">
+							<label for="obra" class="col-sm-4 control-label">Nº Obra</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="obra" id="obra" autocomplete="off">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-6">
+								<button type="submit" class="btn btn-sm">Procurar</button>
+							</div>
+						</div>
+		</form>
+	</div>
+	<div class="col-sm-2 col-sm-offset-1">
+
+
+		<h3 class="row header smaller lighter blue"><i class="ace-icon fa fa-filter"></i> Filtrar</h3>
+
+
+
+					<form class="form-horizontal">
+						<div>
+							<label for="clients">Escolha o Cliente para filtrar as chapas recuperadas:</label>
+
+							<select class="form-control" id="clients" onchange="searchClient(this.options[this.selectedIndex].value);">
+								<option value="">Cliente</option>
+								<?php foreach ($this->clients as $client): ?>
+									<option value="<?=$client['cliente'];?>" ><?=$client['cliente'];?></option>
+
+								<?php endforeach;?>
+							</select>
+						</div>
+
+					</form>
+				</div>
+
+	<div class="col-sm-3">
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-4">
+
+		<h3 class="row header smaller lighter blue"><i class="ace-icon fa fa-bar-chart-o"></i> Total chapas recuperadas</h3>
+		<table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+			<thead>
+			<tr>
+				<?php foreach ($this->chapasRec as $ano => $qtd): ?>
+					<th><?=$ano;?></th>
+				<?php endforeach; ?>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<?php foreach ($this->chapasRec as $ano => $qtd): ?>
+					<td><b><?=$qtd;?></b></td>
+				<?php endforeach; ?>
+			</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="col-sm-4 col-sm-offset-1" id="chapas_recuperadas_filtro">
+
+		<div id="id_chapas_recuperadas_filtro"></div>
+
+	</div>
+
+</div>

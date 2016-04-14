@@ -1,0 +1,21 @@
+<?php if ($this->errors) {
+echo $this->partial('partials/chapas.phtml');
+echo '<div id="cont">';
+    echo '<div id="cont"><fieldset><legend>Chapas Recuperadas</legend>';
+    $error = new App_Messages ( );
+	$error->setMessageType ( 'error' );
+	$error->setMessage ( 'Ocorreu um erro. Os dados n&atilde;o est&atilde;o correctos. Por favor tente de novo.' );
+	echo $error->displayMessage () . "<br /><br />";
+	echo $this->form;
+	echo '</fieldset></div>';
+} else {
+	
+    echo '<br /><br />';
+	$error = new App_Messages ( );
+	$error->setMessageType ( 'success' );
+	$error->setMessage ( 'Os dados foram inseridos correctamente.' );
+	echo $error->displayMessage ();
+	
+}
+
+echo '</div>';

@@ -1,0 +1,42 @@
+<script type="text/javascript">
+<!--
+
+$(function() {
+    $("input:button, input:submit, a", ".novoregisto").button();
+	$("a", ".novoregisto").click(function() { window.location="/registos/new"; return false; });
+	});
+//-->
+</script>
+
+
+
+<?php
+echo $this->partial('partials/registos.phtml');
+
+
+echo '<div id="cont">';
+if ($this->errors) {
+    echo '<fieldset><legend>Novo Registo</legend>';
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('error');
+    $newmsg->setMessage('Ocorreu um erro. O formul&aacute;rio n&atilde;o est&aacute; bem preenchido.');
+    echo $newmsg->displayMessage();
+    echo '<br />';
+    echo $this->form->render();
+    echo '</fieldset>';
+} else {
+    echo '<br /><b><a href="/registos/new">+ criar novo registo</a></b><br />';
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('success');
+    $newmsg->setMessage('Foi criado um novo registo');
+    echo $newmsg->displayMessage();
+    
+    
+}
+echo '</div>';
+?>
+<script type="text/javascript">
+<!--
+$(function() {$("input:submit").button();});
+//-->
+</script>

@@ -1,0 +1,22 @@
+<?php
+$this->placeholder('js')->set('
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+$("#cortante").focus();
+$("button, input:submit").button();
+$("button, input:submit, a", ".check").button();
+$("#cortante").keypress(function (e)  
+{if(e.which!=8 && e.which!=0 && e.which!=13 && (e.which<48 || e.which>57))
+{$("#errmsg").html("Apenas números.").show().fadeOut(2000); return false;}});
+});
+</script>');
+
+?>
+<div id="cont">
+<?=$this->partial('partials/laetusbotoes.phtml');?>
+<fieldset><legend>Criar C&oacute;digo Laetus</legend>
+
+<span id="errmsg" style="color: white;background-color: red;width: 50px;height: 20px;padding: 5px;display: none;margin-bottom: 8px;"></span>
+<br />
+<?=$this->form->render();?>
+</fieldset></div>

@@ -1,0 +1,65 @@
+<?php
+$this->placeholder('js')->set('<script type="text/javascript">
+
+	function showStuff(id1, id2) {
+		document.getElementById(id1).style.display = "block";
+		document.getElementById(id2).style.display = "none";
+	}
+</script>');
+if ($this->errors) : ?>
+	<div class="page-header">
+		<h1>
+			Criar Braille
+
+		</h1>
+	</div>
+	<span id="errors"></span>
+	<?= $this->form;?>
+<?php else :
+    if ($this->msg) {
+        echo '<div id="cont">';
+        $error = new App_Messages();
+        $error->setMessageType('error');
+        $error->setMessage($this->msg);
+        echo $error->displayMessage();
+        echo '</div>';
+    } else {
+        $image = new App_Auxiliar_CreateImage();
+        $image->setChars($this->calculateMaleLenght);
+        $image->setArrayOfText($this->formatTextforCount);
+        $image->setText($this->texto);
+        $image->setBrailleFlag(TRUE);
+        echo '<div id="cont2"><fieldset><legend>Brailles</legend>';
+        echo '<div align="center"><table id="the-table4"><tr><th>Pre&ccedil;o(s)</th><th>Texto exemplo</th></tr><tr>';
+        echo '<td valign="top">O pre&ccedil;o do cortante (macho) &eacute;: &euro;' . $this->priceMale . '</p>';
+        echo "<p>O pre&ccedil;o do cortante (f&ecirc;mea) &eacute;: &euro;" . $this->priceFemale . '</p>';
+        echo "<p>O pre&ccedil;o total do Braille &eacute;: &euro;" . ($this->priceMale + $this->priceFemale) . '</p>';
+        /*
+     	*  confirma n�mero de linhas
+     	*/
+        echo '<p style="color:blue;"><b>A aplica&ccedil;&atilde;o retornou ' . $this->calculateMaleHeight . ' linhas.</b></p>';
+        echo '<span id="confirma"><p><b><u>Confirma dados do Braille?</b></u></p>';
+        echo '<input type="button" value="Sim" onclick="showStuff(\'pdflink\', \'confirma\');" />&nbsp;<input type="button" value="N&atilde;o" onclick="javascript:history.back();" /> </span>';
+        echo '<p id="pdflink"><a href="/braille/braillepdf/' . $this->pdfLink . '">Criar PDF</a></td>';
+        /**
+         * FIM 
+         */
+        echo '<td valign="top">' . $image->render() . '</td>';
+        echo '</tr></table></div>';
+        echo '<h5>Informa&ccedil;&atilde;o T&eacute;cnica Braille Obra N&ordm;' . $this->pdfLink . "</h5>";
+        echo '<table>';
+        echo "<tr><td>Unidades do Cortante <small>[via Optimus]: </small></td><td>" . $this->getUnidadesdoCortante . "</td></tr>";
+        echo '<tr><td>Texto Separado:</td><td>';
+        print_r($this->formatTextforCount);
+        echo '</td></tr>';
+        echo '<tr><td>Caracteres Largura Macho:</td><td>' . $this->calculateMaleLenght . "</td></tr>";
+        echo '<tr><td>Linhas Macho:</td><td>' . $this->calculateMaleHeight . "</td></tr>";
+        echo '<tr><td>Largura Macho:</td><td>' . $this->setMaleLenghtFinalValue . " cm</td></tr>";
+        echo '<tr><td>Altura Macho:</td><td>' . $this->setMaleHeightFinalValue . " cm</td></tr>";
+        echo '<tr><td>1&ordm; Caracter Macho:</td><td>' . $this->getFirstChar . "</td></tr>";
+        echo '<tr><td>&Uacute;ltimo Caracter Macho:</td><td>' . $this->getLastChar . "</td></tr>";
+        echo '<tr><td>Altura:</td><td>' . $this->xalturax . "</td></tr>";
+        echo '<tr><td>Largura:</td><td>' . $this->xlargurax . "</td></tr>";
+        echo "</fieldset></div>";
+    }
+ endif;

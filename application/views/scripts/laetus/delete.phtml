@@ -1,0 +1,17 @@
+<?php 
+$this->placeholder('js')->set('
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+$("button, input:submit, a", ".check").button();
+});
+</script>');
+?>
+<div id="cont">
+<?=$this->partial('partials/laetusbotoes.phtml');?>
+<?php
+$error = new App_Messages();
+$error->setMessageType('success');
+$error->setMessage('O registo foi apagado com sucesso');
+echo $error->displayMessage();
+?>
+</div>

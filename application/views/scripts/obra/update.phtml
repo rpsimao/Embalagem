@@ -1,0 +1,79 @@
+<?php if ($this->errors) :
+echo '<div id="cont">';
+
+
+$error = new App_Messages ( );
+	$error->setMessageType ( 'error' );
+	$error->setMessage ( 'Ocorreu um erro. Os dados n&atilde;o est&atilde;o correctos. Por favor tente de novo.' );
+	echo $error->displayMessage () . "<br /><br />";
+	echo '<fieldset><legend>Informa&ccedil;&atilde; Obra N&ordm;'.$this->numobra .'</legend>';
+	echo $this->form;
+	echo '</fieldset>';
+	
+else :
+?>   
+    
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+
+	$('#success').delay(2000).fadeOut(1000, function() { 
+		  $('#success').hide(); 
+	});
+	
+	
+});
+//-->
+</script>
+
+
+<?php 	
+    echo '<br /><br />';
+	$error = new App_Messages ( );
+	$error->setMessageType ( 'success' );
+	$error->setMessage ( 'Os dados foram introduzido correctamente. Pode criar o selo para a prova.' );
+	echo $error->displayMessage ();
+	
+
+
+echo '</div>';
+?>
+
+<?php $this->headScript()->appendFile('/js/jquery.validate.js');?>
+<?php $this->headScript()->appendScript('$(function() {$("input:submit").button();});');?>
+<?php $this->headScript()->appendScript('$(document).ready(function() {
+      $("#loginform").validate({
+        rules: {
+          numobra: "required",
+        },
+        messages: {
+          numobra: "Este campo n&atilde;o pode estar vazio."
+        }
+        
+	});
+      });
+});');
+?>
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+
+	$("#novoselo").delay(500).fadeIn(500, function() { 
+		  $("#novoselo").show();
+		  $('#numobra').focus(); 
+	});
+});	
+//-->
+</script>
+<div id="novoselo" style="display: none;">
+<div id="primarycontainer">
+	<div id="primarycontent">
+	<div class="box">
+<h3>Selo Provas</h3>
+<span class="form"><span id="errors"></span>
+                <?=$this->form;?></span>
+</div>
+</div>
+</div>
+</div>
+<?php endif;?>

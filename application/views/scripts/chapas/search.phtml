@@ -1,0 +1,52 @@
+
+<script type="text/javascript">
+<!--
+function confirm_delete_product(registo) {
+input_box=confirm("Tem a certeza que deseja apagar o registo " + registo + "?");
+if (input_box==true)
+ { 
+	window.location = "/chapas/delete/" + registo;
+ } else {
+	return false; 
+ }
+}
+//-->
+</script><div id="dameespaco">
+<table>
+	<tr>
+		<td><a href="/chapas/new">+ criar novo registo</a></td>
+		<td class="esp"></td>
+		<td>
+		<form action="/chapas/search" method="post">Insira o N&ordm; Obra:&nbsp; <input
+			type="text" size="15" id="obra" name="obra"></input> <input
+			type="submit" value="Procurar"></input></form>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div align="center">
+<table id="the-table-producao">
+	<tr>
+		<th>Obra</th>
+		<th>Cliente</th>
+		<th>Cores</th>
+		<th>Verniz</th>
+		<th>Data</th>
+		<th>Apagar</th>
+	</tr>
+	
+
+<tr bgcolor="">
+		<td><a href="/chapas/edit/<?=$this->sql->obra;?>"><?=$this->sql->obra;?></a></td>
+		<td><?=$this->sql->cliente;?></td>
+		<td><?=$this->sql->cores;?></td>
+		<td><?=$this->sql->verniz;?></td>
+		<td><?=$this->sql->dia;?></td>
+		<td><a href="Javascript:confirm_delete_product('<?=$this->sql->obra?>')" style="color: red">Apagar</a></td>
+
+</tr>
+</table>
+</div>
+
+

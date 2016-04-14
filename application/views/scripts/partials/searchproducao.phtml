@@ -1,0 +1,83 @@
+<?php
+$this->placeholder('js')->set('<link rel="stylesheet" type="text/css" media="screen" href="/css/dashboard.css" />');
+?>
+<script type="text/javascript">
+//<![CDATA[
+/*$(function() {
+	$("#accordion").accordion({
+		collapsible: true,
+		active: false
+	});
+	
+});*/
+<?php
+$datePicker = App_Javascript_Date_Helper::generateMultipleDatePickers('data', 3);
+foreach ($datePicker as $date) {
+    echo $date;
+}
+?>
+function search(){
+	var myTextField = document.getElementById('lab');
+	var lab = myTextField.value;
+
+	if (lab != 0)
+	{
+	window.location = "/producao/search/lab/" + lab;
+	} 
+}
+
+function search1(){
+	var myTextField1 = document.getElementById('data1');
+	var dia = myTextField1.value;
+	if (dia != 0)
+	{
+	window.location = "/producao/search/date/" + dia;
+	}
+}
+
+function search2(){
+	var myTextField1 = document.getElementById('data2');
+	var myTextField2 = document.getElementById('data3');
+	var dia1 = myTextField1.value;
+	var dia2 = myTextField2.value;
+	if (dia1 != 0 || dia2 !=0 )
+	{
+	window.location = "/producao/search/date1/" + dia1 + "/date2/" + dia2;
+	}
+}
+
+//]]>
+</script>
+
+<div align="center">
+<div id="accordion-search">
+<h3>Procurar <span style="float:right;margin-right:10px;"><img src="/images/16x16/delete.png" onclick='closeboxFadeOut("accordion-search");'/></span></h3>
+<div>
+<table>
+	<tr>
+		<td><select id="lab" name="lab">
+			<option value="">Escolha o Cliente</option> 
+			<?php
+foreach (App_GetLabs::completeLabs() as $name) {
+    echo '<option value="' . $name . '">' . $name . '</option>';
+}
+?>
+			
+			</select></td>
+		<td><input type='button' onclick='search();' value='Procurar' /></td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td>Insira a Data:</td>
+		<td><input type="text" size="12" id="data1" name="data" /> <input
+			type='button' onclick='search1();' value='Procurar' /></td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td>Insira as Datas:&nbsp;</td>
+		<td><input type="text" size="12" id="data2" name="data1" /></td>
+		<td><input type="text" size="12" id="data3" name="data2" /> <input
+			type='button' onclick='search2();' value='Procurar' /></td>
+
+	</tr>
+
+</table>
+</div>
+</div>
+</div>

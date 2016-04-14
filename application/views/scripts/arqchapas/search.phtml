@@ -1,0 +1,60 @@
+<script language="JavaScript">
+<!--
+function confirm_entry(codf3, id)
+{
+input_box=confirm("Tem a certeza que deseja apagar o C&oacute;digo F3 " + codf3 + "?");
+if (input_box==true)
+{ 
+window.location = "/arqchapas/deleterecord/" + id;
+} else {
+	return false; 
+}
+
+}
+//-->
+</script>
+<div id="dameespacoemcima">
+<table id="the-table-producao">
+	<tr>
+		<th style="background: #faa517">C&oacute;digo F3</th>
+		<th>Cortante</th>
+		<th>Vers&atilde;o</th>
+		<th>Produto</th>
+		<th>700x1000</th>
+		<th>1000x700</th>
+		<th>800x700</th>
+		<th>700x800</th>
+		<th>000x000</th>
+		<th>550x800</th>
+		<th>698x498</th>
+		<th>698x398</th>
+		<th>698x332</th>
+		<th>Arquivo</th>
+		<th>Editar</th>
+		<th>Apagar</th>
+	</tr>
+  
+<?php
+foreach ($this->record as $record) {
+echo '<tr>';
+echo '<td align="center"><b>' . $record['codf3'] . '</b></td>';
+echo '<td>' . $record['cortante'] . '</td>';
+echo '<td>' . $record['versao'] . '</td>';
+echo '<td>' . $record['produto'] . '</td>';
+echo '<td>' . $record['700_1000'] . '</td>';
+echo '<td>' . $record['1000_700'] . '</td>';
+echo '<td>' . $record['800_700'] . '</td>';
+echo '<td>' . $record['700_800'] . '</td>';
+echo '<td>' . $record['000_000'] . '</td>';
+echo '<td>' . $record['550_800'] . '</td>';
+echo '<td>' . $record['698_498'] . '</td>';
+echo '<td>' . $record['698_398'] . '</td>';
+echo '<td>' . $record['698_332'] . '</td>';
+echo '<td>' . $record['arquivo'] . '</td>';
+echo '<td><a href="/arqchapas/editrecord/' . $record['codf3'] . '">Editar</a></td>';
+echo '<td><a href="JavaScript:confirm_entry('.$record['codf3'].','.$record['id'].');" style="color: #d91213;">Apagar</a></td>';
+echo '</tr>';
+}
+?>
+</table>
+</div>

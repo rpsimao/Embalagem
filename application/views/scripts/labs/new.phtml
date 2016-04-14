@@ -1,0 +1,15 @@
+<?php
+echo $this->partial('partials/registos.phtml');
+?>
+<div id="cont">
+<fieldset>
+<legend>Novo Registos</legend>
+<?php 
+$labs = new App_Messages();
+$labs->setMessageType('info');
+$labs->setMessage('Os valores apresentados, s&atilde;o da vers&atilde;o j&aacute; existente.<br />por favor, confime.');
+echo $labs->displayMessage();
+?>
+<?= $this->form->render(); ?>
+</fieldset>
+</div>

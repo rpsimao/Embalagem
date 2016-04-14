@@ -1,0 +1,53 @@
+<div id="dameespaco"></div>
+<?=$this->nav->ArqBraillesSearchNav();?>
+<div align="center">
+<table class="bordered">
+	<tr>
+		<th>Nº Braille</th>
+		<th>O. C.</th>
+		<th>Obra</th>
+		<th>Cód. F3</th>
+		<th>Cód. Cliente</th>
+		<th>Produto</th>
+		<th>Qtd</th>
+		<th>B1</th>
+		<th>B2</th>
+		<th>B3</th>
+		<th>B4</th>
+		<th>Obs.</th>
+	</tr>
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+?>
+<?php foreach ($this->records as $value) : ?>
+<tr class="<?=$color->display($i);?>">
+		<td><a href="/arqbraille/edit/<?=$value['nbraille_num'];?>"><?=$value['nbraille_lab'];?>-<?=App_Auxiliar_AddZero::num($value['nbraille_num']);?>-<?=App_Auxiliar_AddZero::month($value['nbraille_mes']);?>-<?=App_Auxiliar_AddZero::month($value['nbraille_ano']);?></a></td>
+		<td><?=$value['oc'];?></td>
+        <td><?=str_replace(",", ", ", $value['obras']);?></td>
+        <td><?=str_replace(",", ", ", $value['codf3']);?></td>
+        <td><?=str_replace(",", ", ", $value['codcli']);?></td>
+		<td><?=$value['produto'];?></td>
+		<td><?=$value['qtd'];?></td>
+		<td><?=$value['b1'];?></td>
+		<td><?=$value['b2'];?></td>
+		<td><?=$value['b3'];?></td>
+		<td><?=$value['b4'];?></td>
+		<td><?=$value['obs'];?></td>
+		</tr>
+<?php $i ++;
+endforeach;
+?>
+
+</table>
+</div>
+<script type="text/javascript">
+$(function() {
+    $("input:button, input:submit, a", ".sessao").button();
+    $("a", ".sessao").click(function() { window.location="/arqbraille/new"; return false; });	
+
+    $("input:button, input:submit, a", ".sessao1").button();
+    $("a", ".sessao1").click(function() { window.location="/arqbraille"; return false; });
+});
+</script>

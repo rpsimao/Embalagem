@@ -1,0 +1,29 @@
+<?=$this->doctype();?>
+<html>
+<head>
+<title>Fernandes &amp; Terceiro, S.A. :: Embalagem Database</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?=$this->headMeta();?>
+<?=$this->headLink();?>
+<?=$this->headScript();?>
+	<script type="text/javascript" src="http://cdn.fterceiro.pt/library/js/jquery/latest/min.js"></script>
+	<script type="text/javascript" src="http://cdn.fterceiro.pt/library/js/jqueryui/latest/min.js"></script>
+	<script type="text/javascript" src="/js/menu.js"></script>
+	<script type="text/javascript" src="/js/jquery.clipboard.min.js"></script>
+	<?=$this->placeholder('js');?>
+<?=$this->placeholder('scripts');?>
+</head>
+<body>
+<div id="growl"></div>
+<div id="header">
+<?=$this->partial('pagname.phtml');?>
+<?=$this->partial('menu2.phtml');?>
+</div>
+<div id="container1">
+<?php
+echo $this->layout()->content;
+?>
+<div class="clearit"></div>
+</div>
+</body>
+</html>

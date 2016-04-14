@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Application"  default="main" basedir=".">
+
+	<!-- Set date -->
+	<tstamp>
+		<format property="DATE" pattern="%c" locale="pt_PT" />
+	</tstamp>
+	
+	<target name="main" >
+			
+			<echo>Welcome to the Phing Build System</echo>
+        	<echo>---------------------------------</echo>
+        	<echo>1) Build Script				   </echo>
+        	<echo>2) Rollback Script               </echo>
+        	<echo>---------------------------------</echo>
+			
+			<input propertyName="choice" validargs="1,2"/>
+			<if>
+            <equals arg1="${choice}" arg2="1" />
+            <then>
+                <phing phingfile="deploy.xml" inheritRefs="true" target="main" />
+            </then>
+            <elseif>
+                <equals arg1="${choice}" arg2="2" />
+                <then>
+                    <phing phingfile="rollback.xml" inheritRefs="true" target="main" />
+                </then>
+            </elseif>
+        </if>
+    </target>
+</project>

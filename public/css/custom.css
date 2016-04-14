@@ -1,0 +1,60 @@
+.rps-mtop10 {
+
+    margin-top: 10px;
+}
+
+.rps-mtop5 {
+
+    margin-top: 5px;
+}
+
+.rps-mtop7 {
+
+    margin-top: 7px;
+}
+
+.rps-mtop8 {
+
+    margin-top: 8px;
+}
+
+.rps_controls {
+
+    display:block;
+    background-color:#F5F5F5;
+    border-top:1px solid #E5E5E5;
+    margin-bottom:20px;
+    margin-top:20px;
+    padding:19px 20px 20px;
+    clear: both;
+
+}
+
+.text-black {
+    color: #000000;
+}
+
+
+.rps_pad_top_8{
+    padding-top: 8px;
+}
+
+.rps_pad_top_10{
+     padding-top: 10px;
+ }
+
+.rps_pad_top_12{
+    padding-top: 12px;
+}
+
+.rps_pad_top_15{
+    padding-top: 15px;
+}
+
+.rps_strike{
+    text-decoration: line-through;
+}
+
+.rps_background_remove{
+    background-color: #ffe8e5;
+}

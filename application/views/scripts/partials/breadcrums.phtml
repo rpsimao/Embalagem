@@ -1,0 +1,18 @@
+<ul class="breadcrumb">
+	<li>
+		<i class="ace-icon fa fa-home home-icon"></i>
+		<a href="/">Home</a>
+	</li>
+<?php foreach ($this->pages as $key => $page): ?>
+
+	<li>
+		<?php if($key < count($this->pages) -1 ):?>
+			<a href="<?= $page->getHref(); ?>"><?=$page->getLabel();?></a>
+			<span class="divider"><?php $page->isActive()?></span>
+			<?php else: ?>
+			<?=$page->getLabel(); ?>
+
+		<?php endif;?>
+	</li>
+<?php endforeach; ?>
+</ul>

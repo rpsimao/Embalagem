@@ -1,0 +1,88 @@
+<?php if ($this->errors) :?>
+<?=$this->nav->ArqBraillesSearchNav();?>
+<div id="cont">
+<fieldset><legend>Braille</legend>
+            <?=$this->form;?>
+		</fieldset>
+
+</div>
+<?php else:?>
+
+<div id="msg-flash">
+	<div class="alert alert-block alert-success">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="ace-icon fa fa-times"></i>
+		</button>
+		<p><strong><i class="ace-icon fa fa-check"></i></strong>
+			<?=$this->messageTxt;?>
+		</p>
+
+	</div>
+</div>
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-3 widget-container-col ui-sortable">
+			<div class="widget-box">
+				<div class="widget-header">
+					<h5 class="widget-title smaller"><i class="ace-icon fa fa-cog"></i>&nbsp;Selo</h5>
+				</div>
+
+				<div class="widget-body align-center">
+					<div class="space-10"></div>
+					<i class="ace-icon fa fa-list-alt fa-4x text-primary"></i>
+					<div class="space-6"></div>
+					<select name="verify" id="verify" onchange="replaceHref(<?=$this->brailleNum?>)">
+						<option value="" label="Seleccione um nome:">Seleccione um nome:</option>
+						<option value="Rosa Freitas" label="Rosa Freitas"><i class="ace-icon fa fa-user"></i>&nbsp;Rosa Freitas</option>
+						<option value="Mário Castilho" label="Mário Castilho"><i class="ace-icon fa fa-user"></i>&nbsp;Mário Castilho</option>
+						<option value="Frederico Sarmento" label="Frederico Sarmento"><i class="ace-icon fa fa-user"></i>&nbsp;Frederico Sarmento</option>
+					</select>
+					<div class="space-10"></div>
+					<a href="#" class="btn btn-white btn-primary" id="criar-selo" target="_blank"><i class="ace-icon fa fa-arrow-right"></i>Criar Selo</a>
+					<div class="space-20"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-3 widget-container-col ui-sortable">
+			<div class="widget-box">
+				<div class="widget-header">
+					<h5 class="widget-title smaller"><i class="ace-icon fa fa-cog"></i>&nbsp;Listagem</h5>
+				</div>
+					<div class="widget-body align-center">
+						<div class="space-10"></div>
+						<i class="ace-icon fa fa-table fa-4x text-primary"></i>
+						<div class="space-10"></div>
+						<a href="/arqbraille/listagem" class="btn btn-white btn-primary"><i class="ace-icon fa fa-arrow-right"></i>Listagem</a>
+					</div>
+				<div class="space-30"></div>
+				<div class="space-20"></div>
+				</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-3 widget-container-col ui-sortable">
+				<div class="widget-box">
+					<div class="widget-header">
+						<h5 class="widget-title smaller"><i class="ace-icon fa fa-cog"></i>&nbsp;Criar Braille</h5>
+					</div>
+
+					<div class="widget-body align-center">
+						<div class="space-10"></div>
+						<i class="ace-icon fa fa-language fa-4x text-primary"></i>
+						<div class="space-10"></div>
+						<a href="#create-braille-modal" role="button" class="btn btn-white btn-primary" data-toggle="modal"> <i class="ace-icon fa fa-arrow-right"></i>Criar Braille </a>
+						<input type="hidden" value="<?=$this->brailleNum; ?>" id="braille-num-for-pdf"/>
+						<div class="space-30"></div>
+						<div class="space-20"></div>
+					</div>
+				</div>
+		</div>
+	</div>
+
+
+
+<?php endif;?>
+<?=$this->partial("partials/arqbraillecreatepdf.phtml"); ?>
+<?//=$this->partial("partials/arqbraillecreatemail.phtml"); ?>
+

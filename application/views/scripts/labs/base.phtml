@@ -1,0 +1,35 @@
+<?php
+$this->placeholder('js')->set('<script type="text/javascript" src="/js/ajax.js"></script><script type="text/javascript" src="/js/custom.js"></script>');
+?>
+<h1 class="labs">Laborat&oacute;rio <?=$this->labName['nome'];?></h1>
+<?=$this->partial('partials/searchlabs.phtml');?>
+<br /><br />
+<div align="center">
+<table class="bordered">
+	<tr>
+		<th>C&oacute;d. Interno</th>
+		<th>Produto</th>
+		<th>Edi&ccedil;&atilde;o</th>
+		<th>Trabalho</th>
+		<th>Apagar</th>
+	</tr>
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+foreach ($this->paginator as $record) {
+    echo '<tr class="' . $color->display($i) . '"><td class="spec" align="center">' . $record['cod_interno'] . '</td>';
+    echo '<td>' . $record['produto'] . '</td>';
+    echo '<td>' . $record['edicao'] . '</td>';
+    echo '<td align="center"><a href="/labs/view/id/' . $record['cod_interno'] . '">Ver Registos</a></td>';
+    echo '<td align="center"><a href="Javascript:confirm_delete_product(' . $record['cod_interno'] . ',' . $record['id'] . ')" style="color:red">Apagar</a></td>';
+    echo '</tr>';
+    $i ++;
+};
+?>
+</table>
+</div>
+
+<br />
+<br />
+<?=$this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml');?>

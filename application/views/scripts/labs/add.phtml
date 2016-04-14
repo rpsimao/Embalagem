@@ -1,0 +1,15 @@
+<div id="primarycontainer">
+<div id="primarycontent">
+
+<fieldset><legend>In&iacute;cio de sess&atilde;o</legend>
+<?php
+if ($this->errors) {
+    echo $this->errors->displayMessage();
+    echo $this->form->render();
+} else {
+    echo $this->form->render();
+}
+?>
+</fieldset>
+</div>
+</div>

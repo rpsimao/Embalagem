@@ -1,0 +1,323 @@
+<?php $records = $this->records;?>
+
+<tr id="detail-view-<?=$records["id"]?>">
+	<td colspan="10">
+		<h4 class="header smaller lighter red">
+			<i class="ace-icon fa fa-list-alt"></i> Detalhes do Cortante N&ordm;<?=$records["codigo"]?>
+			<button type="button" class="close" onclick="slideMeUp('<?=$records["id"]?>')">
+				<i class="ace-icon fa fa-times"></i>
+			</button>
+		</h4>
+<form id="updateDiecuts-<?=$records["id"]?>" action="/diecuts/updatediecut" method="post">
+
+	<div class="row">
+		<div class="col-sm-1">
+				<div class="form-group">
+					<label for="estante">Estante</label>
+					<input type="text" class="form-control" id="estante" name="estante" value="<?=$records["estante"]?>">
+				</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="codigo">Código</label>
+				<input type="text" class="form-control" id="codigo"  name="codigo" value="<?=$records["codigo"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="cortante">Cortante</label>
+				<input type="text" class="form-control" id="cortante-<?=$records["id"]?>" name="cortante" value="<?=$records["cortante"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="a">A</label>
+				<input type="text" class="form-control" id="A"  name="A" value="<?=$records["A"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="b">B</label>
+				<input type="text" class="form-control" id="B"  name="B" value="<?=$records["B"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="h">H</label>
+				<input type="text" class="form-control" id="H" name="H" value="<?=$records["H"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="f">F</label>
+				<input type="text" class="form-control" id="f" name="f" value="<?=$records["f"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="g">G</label>
+				<input type="text" class="form-control" id="g" name="g" value="<?=round($records["g"], 2)?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="pala">Pala</label>
+				<input type="text" class="form-control" id="pala" name="pala" value="<?=$records["pala"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="tipo">Tipo</label>
+				<input type="text" class="form-control" id="tipo" name="tipo" value="<?=$records["tipo"]?>">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="formato_util">Fto. Útil</label>
+				<input type="text" class="form-control" id="formato_util"  name="formato_util" value="<?=$records["formato_util"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="espaco">Espaço</label>
+				<input type="text" class="form-control" id="espaco"  name="espaco" value="<?=$records["espaco"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="braille1">Braille 1</label>
+				<input type="text" class="form-control" id="braille1"  name="braille1" value="<?=$records["braille1"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="braille2">Braille 2</label>
+				<input type="text" class="form-control" id="braille2"  name="braille2" value="<?=$records["braille2"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="braille3">Braille 3</label>
+				<input type="text" class="form-control" id="braille3"  name="braille3" value="<?=$records["braille3"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="formato_std">Fto. Standard</label>
+				<input type="text" class="form-control" id="formato_std"  name="formato_std" value="<?=$records["formato_std"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="formato_otimizado">Fto. Otimizado</label>
+				<input type="text" class="form-control" id="formato_otimizado"  name="formato_otimizado" value="<?=$records["formato_otimizado"]?>">
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="form-group">
+				<label for="descasque">Descasque</label>
+				<input type="text" class="form-control" id="descasque" name="descasque" value="<?=$records["descasque"]?>">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="formato_entrada">Fto. Corte</label>
+				<input type="text" class="form-control" id="formato_entrada" name="formato_entrada" value="<?=$records["formato_entrada"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="pl_entrada">Plano Entrada</label>
+				<input type="text" class="form-control" id="pl_entrada" name="pl_entrada" value="<?=$records["pl_entrada"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="pl_impressao">Plano Impressão</label>
+				<input type="text" class="form-control" id="pl_impressao" name="pl_impressao" value="<?=$records["pl_impressao"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="sentido_fibra">Sentido Fibra</label>
+				<input type="text" class="form-control" id="sentido_fibra" name="sentido_fibra" value="<?=$records["sentido_fibra"]?>">
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<label for="ex_pl">Ex/pl</label>
+				<input type="text" class="form-control" id="ex_pl" name="ex_pl" value="<?=$records["ex_pl"]?>">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label for="obs">Observações</label>
+				<textarea class="form-control" rows="5" name="obs" id="obs"><?=$records["obs"]?></textarea>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label for="alteracoes">Alterações</label>
+				<textarea class="form-control" rows="5" name="alteracoes" id="alteracoes"><?=$records["alteracoes"]?></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary"><i class="ace-icon fa fa-check"></i> Actualizar</button>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="form-group">
+				<button type="button"  class="btn btn-danger" onclick="removeDiecut(<?=$records["id"]?>)"><i class="ace-icon fa fa-times"></i> Apagar</button>
+			</div>
+		</div>
+
+	</div>
+	<input type="hidden" name="id" value="<?=$records["id"]?>" />
+</form>
+
+	</td>
+</tr>
+
+<script type="text/javascript">
+
+
+
+function removeDiecut(id){
+
+
+	var html = '<p class="text-danger"><i class="ace-icon fa fa-exclamation-triangle fa-2x"></i><br />Vai apagar o registo do Cortante.<br /> Tem a certeza?</p>';
+
+
+	bootbox.confirm(html, function(result) {
+			if(result) {
+
+				 $.ajax({
+					type:     'GET',
+					url:      '/diecuts/deletediecut',
+					data:     {'id': id},
+					error: handleAjaxError,
+					// beforeSend: loading(),
+					async: false,
+					dataType: 'html'});
+
+
+
+				slideMeUp(id);
+
+				var alert = '<span class="label label-danger arrowed pull-right"><i class="ace-icon fa fa-times"></i> Cortante removido</span>';
+
+				var cort = $("#cortante-"+id).val();
+				$("#diecutNumber-"+id).html(cort + alert);
+				$("#diecut-edit-"+id).html('<i class="ace-icon fa fa-ban" disabled></i>');
+				$('#diecut-'+id).addClass('diecut_remove');
+				$('#diecut-'+id).addClass('danger');
+
+
+			}
+		});
+
+
+
+
+	}
+
+
+
+	$(function() {
+		var options = {
+			target:        '#output2',
+			beforeSubmit:  showRequest,
+			dataType:  "json",
+			success:       function(){
+				var id = '<?=$records["id"]?>';
+				var div = $("#diecutsToOptimus-"+id);
+
+				slideMeUp(id);
+
+				div.show();
+
+				div.html('<span class="label label-success arrowed pull-right"><i class="ace-icon fa fa-check"></i> Cortante actualizado</span>');
+
+
+			}
+
+
+		};
+
+
+
+		$('#updateDiecuts-'+<?=$records["id"]?>).submit(function() {
+
+			$(this).ajaxSubmit(options);
+
+
+			var id = '<?=$records["id"]?>';
+			var div = $("#diecutsToOptimus-"+id);
+
+			slideMeUp(id);
+
+			div.show();
+
+			div.html('<span class="label label-success arrowed pull-right"><i class="ace-icon fa fa-check"></i> Cortante actualizado</span>');
+
+			return false;
+		});
+	});
+
+
+	function showRequest(formData, jqForm, options) {
+		// formData is an array; here we use $.param to convert it to a string to display it
+		// but the form plugin does this for you automatically when it submits the data
+		var queryString = $.param(formData);
+
+		// jqForm is a jQuery object encapsulating the form element.  To access the
+		// DOM element for the form do this:
+		// var formElement = jqForm[0];
+
+		//alert('About to submit: \n\n' + queryString);
+
+		// here we could return false to prevent the form from being submitted;
+		// returning anything other than false will allow the form submit to continue
+		return true;
+	}
+
+	// post-submit callback
+	function showResponse()  {
+
+
+		//alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.');
+
+
+		var id = '<?=$records["id"]?>';
+		var div = $("#diecutsToOptimus-"+id);
+
+		slideMeUp(id);
+
+		div.show();
+
+		div.html('<span class="label label-success arrowed pull-right"><i class="ace-icon fa fa-check"></i> Cortante actualizado</span>');
+	}
+
+
+
+function slideMeUp(id){
+	$("#detail-view-"+id).slideUp();
+	$('#diecut-'+id).removeClass('highlight_diecut');
+	$("#diecut-edit-"+id).html('<i class="ace-icon fa fa-edit bigger-120" style="cursor: pointer;" onclick="populateDiecut(\''+id+'\', \'diecut-'+id+'\')"></i>');
+
+
+}
+
+
+</script>
+

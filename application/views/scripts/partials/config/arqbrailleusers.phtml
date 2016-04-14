@@ -1,0 +1,21 @@
+<button type="button" onclick="add_utilizadores_braille_config()" class="btn btn-white btn-default btn-xs pull-right" style="margin-bottom: 8px"><i class="ace-icon fa fa-plus-square"></i> Adicionar utilizador</button>
+<table class="table table-bordered table-striped table-hover" id="table_utilizadores_braille_config">
+	<thead>
+	<tr>
+		<th><i class="ace-icon fa fa-users"></i> Nome</th>
+		<th><i class="ace-icon fa fa-edit"></i>Editar</th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php foreach ($this->names as $name): ?>
+		<tr id="utilizadores_braille_config_tr-<?=$name["id"]?>">
+			<td><i class="ace-icon fa fa-user blue"></i> <span id="utilizadores_braille_config-<?=$name["id"]?>"><?=$name["nome"]?></span></td>
+			<td id="buttons_utilizadores_braille_config-<?=$name["id"]?>">
+				<button class="btn btn-primary btn-xs" onclick="edit_utilizadores_braille(<?=$name["id"]?>)"><i class="ace-icon fa fa-edit"></i></button>
+				<button class="btn btn-danger btn-xs" onclick="delete_utilizadores_braille(<?=$name["id"]?>)"><i class="ace-icon fa fa-trash-o"></i></button>
+			</td>
+		</tr>
+	<?endforeach;?>
+	</tbody>
+
+</table>

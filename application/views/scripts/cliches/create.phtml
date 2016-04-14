@@ -1,0 +1,30 @@
+<?php if ($this->errors) {
+    $this->placeholder('js')->set('<link rel="stylesheet" type="text/css" media="screen" href="/css/dashboard.css" />
+<script type="text/javascript" src="/js/mootools.js"></script>
+<script type="text/javascript" src="/js/calendar.js"></script>
+<script type="text/javascript">		
+	//<![CDATA[
+		window.addEvent(\'domready\', function() { 
+			myCal2 = new Calendar({ dia: \'Y-m-d\' }, { classes: [\'dashboard\']});
+		});
+	//]]>
+	</script>');
+echo '<div id="cont">';
+    echo '<div id="cont"><fieldset><legend>Chapas Recuperadas</legend>';
+    $error = new App_Messages ( );
+	$error->setMessageType ( 'error' );
+	$error->setMessage ( 'Ocorreu um erro. Os dados n&atilde;o est&atilde;o correctos. Por favor tente de novo.' );
+	echo $error->displayMessage () . "<br /><br />";
+	echo $this->form;
+	echo '</fieldset></div>';
+} else {
+	
+    echo '<br /><br />';
+	$error = new App_Messages ( );
+	$error->setMessageType ( 'success' );
+	$error->setMessage ( 'Os dados foram inseridos correctamente.' );
+	echo $error->displayMessage ();
+	
+}
+
+echo '</div>';

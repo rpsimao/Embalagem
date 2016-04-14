@@ -1,0 +1,127 @@
+<script>
+	$(function() {
+		$( "#dialog-message" ).dialog({
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+</script>
+
+<div id="dialog-message" title="Informa&ccedil;&atilde;o">
+	<p
+		style="color: gray; font-weight: bold; font-size: 14px; text-align: left;">Aten&ccedil;&atilde;o,
+		esta funcionalidade encontra-se actualmente em fase de testes.</p>
+	<p
+		style="color: red; font-weight: bold; font-size: 16px; text-align: center;">N&atilde;o
+		usar para Produ&ccedil;&atilde;o.</p>
+</div>
+
+
+<?php $this->placeholder('js-footer')->set("<script type='text/javascript' src='/js/caixas/cartelas/script.js'></script>");?>
+
+<div id="maincol">
+	<!-- begin main content area -->
+
+	<div id="leftcol">
+		<!-- begin leftcol -->
+		<div class="leftcol-info">
+			<h2>Info</h2>
+			<table>
+				<tr>
+					<td><b>Nome:</b></td>
+					<td id="leftcol-info-name"></td>
+				</tr>
+				<tr>
+					<td><b>C&oacute;digo:</b></td>
+					<td id="leftcol-info-codigo"></td>
+				</tr>
+				<tr>
+					<td><b>Obras:</b></td>
+					<td id="leftcol-info-obra"></td>
+				</tr>
+			</table>
+
+			<span id="leftcol-info-codigo-image"></span>
+		</div>
+	</div>
+	<!-- end leftcol -->
+
+	<div id="rightcol">
+		<!-- begin rightcol -->
+		<h2>Caixas para Optimus</h2>
+		<br />
+		<form id="add-to-optimus" name="add-to-optimus" action="">
+			<table>
+				<tr>
+					<td><label for="nobra">N&ordm; Obra:</label></td>
+					<td><input type="text" id="nobra" name="nobra"
+						onfocus="digits('nobra');" onblur="checkObraOptimus('nobra');" />
+						<label class="error" for="nobra" id="nobra_error">Este campo
+							&eacute; obrigat&oacute;rio.</label></td>
+				</tr>
+				<tr>
+					<td><label for="addoptimus">Optimus:</label></td>
+					<td><textarea name="addoptimus" id="addoptimus" rows="10"></textarea>
+						<label class="error" for="addoptimus" id="addoptimus_error">Este
+							campo &eacute; obrigat&oacute;rio.</label></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Enviar Optimus" class="button" id="submit_btn" /></td>
+				</tr>
+			</table>
+
+		</form>
+
+
+
+	</div>
+	<!-- end righttcol -->
+
+	<div id="centercol">
+		<!-- begin centercol -->
+		<div class="search-field">
+			<label for="search">C&oacute;d: </label> 
+		        <input type="text" id="search" style="border-radius: 5px; width: 100px;" /> 
+			<label for="search-nome">Nome: </label>
+				<input type="text" id="search-nome" style="border-radius: 5px;width: 100px;"/> 
+				
+				<input type="button" class="button-small" value="Refresh" onClick="window.location.reload()">
+		</div>
+		<div id="search-results"></div>
+		<div id="products-all">
+				<?php foreach ($this->records as $record):?>
+			<div id="display-<?=$record['codbarras'];?>">
+				<div class="product">
+					<p class="product-title"><?=$record['nome'];?><br /><span
+							class="product-code"><?=$record['codbarras'];?></span>
+					</p>
+					<img src="/cartons/cartelas/thumbs/<?=$record['codbarras'];?>.jpg"
+						alt="<?=$record['nome'];?>" />
+					<div class="barra-botoes">
+						<button class="button-small"
+							id="button-preview-<?=$record['codbarras'];?>"
+							name="button-preview-<?=$record['codbarras'];?>"
+							onclick="zoom('<?=$record['codbarras'];?>','<?=$record['nome'];?>')">Zoom</button>
+						<button class="button-small"
+							id="button-add-<?=$record['codbarras'];?>"
+							name="button-add-<?=$record['codbarras'];?>"
+							onclick="addToJob('<?=$record['nome'];?>','<?=$record['codbarras'];?>');">Adic.</button>
+						<button class="button-small"
+							id="button-info-<?=$record['codbarras'];?>"
+							name="button-info-<?=$record['codbarras'];?>"
+							onclick="info(<?=$record['codbarras'];?>)">Info</button>
+					</div>
+				</div>
+			</div>   
+			    <?php endforeach;?>
+			</div>
+	</div>
+	<!-- end centercol -->
+
+</div>
+<!-- end main content area -->

@@ -1,0 +1,26 @@
+<?php
+if ($this->errors) {
+    
+    echo '<div id="cont">';
+    $error = new App_Messages();
+    $error->setMessageType('error');
+    $error->setMessage('Ocorreu um erro. Os dados n&atilde;o est&atilde;o correctos. Por favor tente de novo.');
+    echo $error->displayMessage() . "<br /><br />";
+    echo '<div id="cont"><fieldset><legend> Novo Registo</legend>';
+    echo $this->form;
+    echo '</fieldset></div>';
+    echo '</div>';
+} else {
+    if ($this->check == 1) {
+     echo '<div id="cont">';   
+    $error = new App_Messages();
+    $error->setMessageType('error');
+    $error->setMessage('Ocorreu um erro. N&atilde;o existe nenhum cortante com esse n&uacute;mero.');
+    echo $error->displayMessage();
+     echo '</div>';
+    } else {
+        header('Content-type: application/pdf');
+        echo $this->pdf
+            ->render();
+    }
+}

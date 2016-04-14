@@ -1,0 +1,19 @@
+<div id="cont">
+<?php
+echo $this->result;
+
+if ($this->result) {
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('error');
+    $newmsg->setMessage('Ocorreu um erro.');
+    echo $newmsg->displayMessage();
+    echo '<br />';
+    
+} else {
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('success');
+    $newmsg->setMessage('O registo foi apagado com sucesso.');
+    echo $newmsg->displayMessage();
+}
+?>
+</div>

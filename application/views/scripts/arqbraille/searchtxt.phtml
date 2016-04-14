@@ -1,0 +1,56 @@
+<link rel="stylesheet" type="text/css" href="http://cdn.fterceiro.pt/library/plugins/qtip2/jquery.qtip.min.css" />
+<script type="text/javascript" src="http://cdn.fterceiro.pt/library/plugins/qtip2/jquery.qtip.min.js"></script>
+<?php $title = new App_View_Helper_ArqBrailleTitleSearch(); ?>
+<?=$this->nav->ArqBraillesSearchNav();?>
+
+<div style="margin-top: 30px">&nbsp;</div>
+<div class="widget-box widget-color-blue">
+	<!-- #section:custom/widget-box.options -->
+	<div class="widget-header">
+		<h5 class="widget-title bigger lighter">
+			<i class="fa fa-search"></i>&nbsp;  Resultados da pesquisa - <?=$title->ArqBrailleTitleSearch($this->postvalue);?>
+		</h5>
+
+		<div class="widget-toolbar no-border" >
+
+		</div>
+	</div>
+
+	<!-- /section:custom/widget-box.options -->
+	<div class="widget-body">
+		<div class="widget-main no-padding">
+
+			<?php if (count($this->records) > 0): ?>
+
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Obra</th>
+						<th>Texto</th>
+						<th>Imagem da Embalagem</th>
+					</tr>
+				</thead>
+				<tbody>
+<?php foreach ($this->records as $value) : ?>
+					<tr>
+						<td><a href="/cockpit/preview/<?=$value['obra'];?>"><?=$value['obra'];?></a></td>
+						<td><?=utf8_encode($value['texto']);?></td>
+						<td><span class="thumbsaqrbrailles"></span><span class="btn btn-xs" onmouseover="displayImageArqBrailleTXT('<?=$value['obra'];?>')" id="<?=$value['obra'];?>"><i class="fa fa-image"></i></span></td>
+
+					</tr>
+<?php endforeach;
+?>
+				</tbody>
+			</table>
+			<?php else: ?>
+				<div class="alert alert-warning">
+					<strong><i class="fa fa-thumbs-o-down"></i></strong>
+						Não foram encontrados registos...
+					<br>
+				</div>
+			<?php endif;?>
+		</div>
+	</div>
+</div>
+<br />
+<?=$this->paginationControl($this->records, 'Sliding', 'pagination2.phtml');?>

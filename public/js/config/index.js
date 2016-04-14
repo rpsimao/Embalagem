@@ -1,0 +1,5 @@
+$(function(){
+
+    $('#config-password').focus();
+
+});

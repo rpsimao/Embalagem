@@ -1,0 +1,20 @@
+<?php if ($this->errors) {
+echo '<div id="cont"><div id="cont"><fieldset><legend>Arquivo Chapas</legend>';
+
+    $error = new App_Messages ( );
+	$error->setMessageType ( 'error' );
+	$error->setMessage ( 'Ocorreu um erro. Os dados n&atilde;o est&atilde;o correctos. Por favor tente de novo.' );
+	echo $error->displayMessage () . "<br /><br />";
+	echo $this->form->render ();
+	
+} else {
+	
+    echo '<br /><br />';
+	$error = new App_Messages ( );
+	$error->setMessageType ( 'success' );
+	$error->setMessage ( 'Os dados foram introduzidos correctamente.' );
+	echo $error->displayMessage ();
+	
+}
+
+echo '</fieldset></div>';

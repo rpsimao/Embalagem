@@ -1,0 +1,33 @@
+<?php if ($this->sql == false) : ?>
+
+	<h3 class="row header smaller lighter red"><i class="ace-icon fa fa-exclamation-triangle"></i> Chapas Recuperadas</h3>
+	<h4 class="text-danger">Não existem registos para a obra procurada.</h4>
+
+<?php else: ?>
+<h3 class="row header smaller lighter blue"><i class="ace-icon fa fa-bar-chart-o"></i> Chapas Recuperadas Obra Nº<?=$this->sql->obra;?></h3>
+<table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+	<thead>
+		<tr>
+			<th>Obra</th>
+			<th>Cliente</th>
+			<th>Cores</th>
+			<th>Verniz</th>
+			<th>Data</th>
+			<th>Editar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="chapas_recuperadas_row">
+			<td><?=$this->sql->obra;?></td>
+			<td><?=$this->sql->cliente;?></td>
+			<td><?=$this->sql->cores;?></td>
+			<td><?=$this->sql->verniz;?></td>
+			<td><?=$this->sql->dia;?></td>
+			<td id="chapas_recuperadas_row_button">
+				<a class="btn btn-xs btn-info" href="/chapasrecuperadas/edit/<?=$this->sql->obra?>"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+				<button class="btn btn-xs btn-danger" onclick="delete_chapa_recuperada('<?=$this->sql->obra?>')"><i class="ace-icon fa fa-trash-o bigger-120"></i></button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<?php endif; ?>

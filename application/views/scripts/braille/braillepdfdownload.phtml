@@ -1,0 +1,5 @@
+<?php
+$this->pdf->save("/tmp/" . $this->name . ".pdf");
+header('Content-type: application/pdf');
+header('Content-Disposition: attachment; filename="' . $this->name.'.pdf"');
+readfile("/tmp/" . $this->name . ".pdf");

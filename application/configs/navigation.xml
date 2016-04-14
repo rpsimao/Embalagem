@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <nav>
+        <home>
+            <label>Home</label>
+            <module>default</module>
+            <controller>index</controller>
+            <action>index</action>
+            <uri>/</uri>
+            <id>home</id>
+        </home>
+        <braille>
+            <label>Braille</label>
+            <module>default</module>
+            <controller>braille</controller>
+            <action>index</action>
+            <uri>/braille</uri>
+            <id>braille_index</id>
+            <pages>
+                <index>
+                    <label>Criar Braille</label>
+                    <module>default</module>
+                    <controller>braille</controller>
+                    <action>index</action>
+                    <uri>/braille</uri>
+                    <id>braille</id>
+                </index>
+                <prova>
+                    <label>Criar Braille para Prova</label>
+                    <module>default</module>
+                    <controller>braille</controller>
+                    <action>prova</action>
+                    <uri>/braille/prova</uri>
+                    <id>braille_prova</id>
+                </prova>
+                <braillepdf>
+                    <label>Criar Braille para Prova</label>
+                    <module>default</module>
+                    <controller>braille</controller>
+                    <action>prova</action>
+                    <uri>/braille/braillepdf</uri>
+                    <id>braille_prova</id>
+                    <route>braille_createpdf</route>
+                    <params>
+                        <obra />
+                    </params>
+                </braillepdf>
+            </pages>
+        </braille>
+        <arqbraille>
+            <label>Arquivo Braille</label>
+            <module>default</module>
+            <controller>arqbraille</controller>
+            <action>index</action>
+            <uri>/arqbraille</uri>
+            <id>arqbraille</id>
+            <pages>
+                <new>
+                    <label>Novo Registo Arquivo de Brailles</label>
+                    <module>default</module>
+                    <controller>arqbraille</controller>
+                    <action>new</action>
+                    <uri>/arqbraille/new</uri>
+                    <id>arqbraille_new</id>
+                </new>
+                <listagem>
+                    <label>Listagem Arquivo de Brailles</label>
+                    <module>default</module>
+                    <controller>arqbraille</controller>
+                    <action>listagem</action>
+                    <uri>/arqbraille/listagem</uri>
+                    <id>arqbraille_listagem</id>
+                </listagem>
+                <selo>
+                    <label>Novo Selo</label>
+                    <module>default</module>
+                    <controller>arqbraille</controller>
+                    <action>selo</action>
+                    <uri>/arqbraille/selo</uri>
+                    <id>arqbraille_selo</id>
+                </selo>
+                <labs>
+                    <label>Criar Laboratório para Arquivo de Brailles</label>
+                    <module>default</module>
+                    <controller>arqbraille</controller>
+                    <action>labs</action>
+                    <uri>/arqbraille/labs</uri>
+                    <id>arqbraille_labs</id>
+                </labs>
+                <pricesimulation>
+                    <label>Simular Preço Braille</label>
+                    <module>default</module>
+                    <controller>arqbraille</controller>
+                    <action>pricesimulation</action>
+                    <uri>/arqbraille/pricesimulation</uri>
+                    <id>arqbraille_pricesimulation</id>
+                </pricesimulation>
+            </pages>
+        </arqbraille>
+        <registos>
+            <label>Labs</label>
+            <module>default</module>
+            <controller>labs</controller>
+            <action>index</action>
+            <uri>/labs</uri>
+            <id>labs</id>
+        </registos>
+        <config>
+            <label>Configurações</label>
+            <module>default</module>
+            <controller>config</controller>
+            <action>index</action>
+            <uri>/config</uri>
+            <id>config</id>
+            <pages>
+                <options>
+                    <label>Opções</label>
+                    <module>default</module>
+                    <controller>config</controller>
+                    <action>options</action>
+                    <uri>/config/options</uri>
+                    <id>config_options</id>
+                </options>
+            </pages>
+        </config>
+        <diecuts>
+            <label>Cortantes</label>
+            <module>default</module>
+            <controller>diecuts</controller>
+            <action>index</action>
+            <uri>/diecuts</uri>
+            <id>diecuts</id>
+            <pages>
+                <index>
+                    <label>Arquivo Cortantes</label>
+                    <module>default</module>
+                    <controller>diecuts</controller>
+                    <action>index</action>
+                    <uri>/diecuts</uri>
+                    <id>diecuts_index</id>
+                </index>
+                <create>
+                    <label>Criar Novo Cortante</label>
+                    <module>default</module>
+                    <controller>diecuts</controller>
+                    <action>create</action>
+                    <uri>/diecuts/create</uri>
+                    <id>diecuts_create</id>
+                </create>
+            </pages>
+        </diecuts>
+        <arquivochapas>
+            <label>Chapas</label>
+            <module>default</module>
+            <controller>arquivochapas</controller>
+            <action>index</action>
+            <uri>/arquivochapas</uri>
+            <id>arquivochapas</id>
+            <pages>
+                <index>
+                    <label>Arquivo de Chapas</label>
+                    <module>default</module>
+                    <controller>arquivochapas</controller>
+                    <action>index</action>
+                    <uri>/arquivochapas</uri>
+                    <id>arquivochapas</id>
+                </index>
+                <search>
+                    <label>Procurar Registo Chapas</label>
+                    <module>default</module>
+                    <controller>arquivochapas</controller>
+                    <action>search</action>
+                    <uri>/arquivochapas/search</uri>
+                    <id>arquivochapas_search</id>
+                </search>
+                <editrecord>
+                    <label>Editar Registo de Chapas</label>
+                    <module>default</module>
+                    <controller>arquivochapas</controller>
+                    <action>editrecord</action>
+                    <uri>/arquivochapas/editrecord</uri>
+                    <id>arquivochapas_edit</id>
+                    <route>arquivochapas_editrecord_router</route>
+                    <params>
+                        <codf3 />
+                    </params>
+                </editrecord>
+                <new>
+                    <label>Criar Registo Arquivo de Chapas</label>
+                    <module>default</module>
+                    <controller>arquivochapas</controller>
+                    <action>new</action>
+                    <uri>/arquivochapas/new</uri>
+                    <id>arquivochapas_new</id>
+                </new>
+            </pages>
+        </arquivochapas>
+        <chapasrecuperadas>
+            <label>Chapas</label>
+            <module>default</module>
+            <controller>chapasrecuperadas</controller>
+            <action>index</action>
+            <uri>/chapasrecuperadas</uri>
+            <id>chapasrecuperadas</id>
+            <pages>
+                <index>
+                    <label>Chapas Recuperadas</label>
+                    <module>default</module>
+                    <controller>chapasrecuperadas</controller>
+                    <action>index</action>
+                    <uri>/chapasrecuperadas</uri>
+                    <id>chapasrecuperadas_index</id>
+                </index>
+                <new>
+                    <label>Novo Registo</label>
+                    <module>default</module>
+                    <controller>chapasrecuperadas</controller>
+                    <action>new</action>
+                    <uri>/chapasrecuperadas/new</uri>
+                    <id>chapasrecuperadas_new</id>
+                </new>
+                <create>
+                    <label>Novo Registo</label>
+                    <module>default</module>
+                    <controller>chapasrecuperadas</controller>
+                    <action>create</action>
+                    <uri>/chapasrecuperadas/create</uri>
+                    <id>chapasrecuperadas_create</id>
+                </create>
+                <edit>
+                    <label>Editar Registo</label>
+                    <module>default</module>
+                    <controller>chapasrecuperadas</controller>
+                    <action>edit</action>
+                    <uri>/chapasrecuperadas/edit</uri>
+                    <id>chapasrecuperadas_edit</id>
+                    <route>chapasrecuperadas_edit_route</route>
+                    <params>
+                        <obra />
+                    </params>
+                </edit>
+            </pages>
+        </chapasrecuperadas>
+        <codigolaetus>
+            <label>Laetus</label>
+            <module>default</module>
+            <controller>codigolaetus</controller>
+            <action>index</action>
+            <uri>/codigolaetus</uri>
+            <id>codigolaetus</id>
+            <pages>
+                <index>
+                    <label>Criar Código Laetus</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>index</action>
+                    <uri>/codigolaetus</uri>
+                    <id>codigolaetus_index</id>
+                </index>
+                <create>
+                    <label>Novo Registo</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>create</action>
+                    <uri>/codigolaetus/create</uri>
+                    <id>codigolaetus_create</id>
+                </create>
+                <check>
+                    <label>Verificar Laetus</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>check</action>
+                    <uri>/codigolaetus/check</uri>
+                    <id>codigolaetus_check</id>
+                </check>
+                <verify>
+                    <label>Verificar Laetus</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>verify</action>
+                    <uri>/codigolaetus/verify</uri>
+                    <id>codigolaetus_verify</id>
+                </verify>
+                <recreatelaetus>
+                    <label>Regenerar Laetus</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>recreatelaetus</action>
+                    <uri>/codigolaetus/recreatelaetus</uri>
+                    <id>codigolaetus_recreatelaetus</id>
+                </recreatelaetus>
+                <regenerate>
+                    <label>Regenerar Laetus</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>regenerate</action>
+                    <uri>/codigolaetus/regenerate</uri>
+                    <id>codigolaetus_regenerate</id>
+                </regenerate>
+                <edit>
+                    <label>Editar Código Laetus</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>edit</action>
+                    <uri>/codigolaetus/edit</uri>
+                    <id>codigolaetus_edit</id>
+                </edit>
+                <list>
+                    <label>Listagem Código Laetus</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>list</action>
+                    <uri>/codigolaetus/list</uri>
+                    <id>codigolaetus_list</id>
+                </list>
+                <item>
+                    <label>Editar Código Laetus</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>item</action>
+                    <uri>/codigolaetus/item</uri>
+                    <id>codigolaetus_item</id>
+                    <route>codigolaetus_item_route</route>
+                    <params>
+                        <id />
+                    </params>
+                </item>
+                <search>
+                    <label>Procurar Código Laetus Por Cortante</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>search</action>
+                    <uri>/codigolaetus/search</uri>
+                    <id>codigolaetus_search</id>
+                </search>
+                <listsearch>
+                    <label>Procurar Código Laetus Por Cortante</label>
+                    <module>default</module>
+                    <controller>codigolaetus</controller>
+                    <action>listsearch</action>
+                    <uri>/codigolaetus/listsearch</uri>
+                    <id>codigolaetus_listsearch</id>
+                </listsearch>
+            </pages>
+        </codigolaetus>
+        <test>
+            <label>Folha de Testes</label>
+            <module>default</module>
+            <controller>test</controller>
+            <action>index</action>
+            <uri>/test</uri>
+            <id>test</id>
+            <pages>
+                <test>
+                    <label>Folha de Testes</label>
+                    <module>default</module>
+                    <controller>test</controller>
+                    <action>test</action>
+                    <uri>/test</uri>
+                    <id>test_test</id>
+                </test>
+            </pages>
+        </test>
+    </nav>
+</config>

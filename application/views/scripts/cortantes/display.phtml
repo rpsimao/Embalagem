@@ -1,0 +1,45 @@
+<div id="container">
+<div id="cont">
+<fieldset><legend>Cortante c&oacute;digo <?=$this->id;?></legend>
+<table>
+	
+<?php
+$path = "/arqcortantes/" . $this->id . "/" . $this->id . "i.pdf";
+if (! file_exists($path)) :
+    ?>
+<tr>
+		<td>N&atilde;o existe imagem do individual.</td>
+	</tr>
+<?php else : ?>
+<tr>
+		<td><img
+			src="http://arqcortantes.embalagem.intranet.fterceiro.pt/<?=$this->id;?>/<?=$this->id;?>i.jpg"></img></td>
+		<td><img src="/imagens/pdf-logo.jpg" width="36 px" height="36 px" /><br />
+		<a
+			href="http://arqcortantes.embalagem.intranet.fterceiro.pt/<?=$this->id;?>/<?=$this->id;?>i.pdf">Ver
+		PDF</a></td>
+	</tr>
+
+<?php endif;
+$path = "/arqcortantes/" . $this->id . "/" . $this->id . "p.pdf";
+if (! file_exists($path)) :
+    ?>
+<tr>
+		<td>N&atilde;o existe imagem do plano.</td>
+	</tr>
+<?php else : ?>		
+	
+	<tr>
+		<td><img
+			src="http://arqcortantes.embalagem.intranet.fterceiro.pt/<?=$this->id;?>/<?=$this->id;?>p.jpg"></img></td>
+		<td><img src="/imagens/pdf-logo.jpg" width="36 px" height="36 px" /><br />
+		<a
+			href="http://arqcortantes.embalagem.intranet.fterceiro.pt/<?=$this->id;?>/<?=$this->id;?>p.pdf">Ver
+		PDF</a></td>
+	</tr>
+
+<?php endif; ?>	
+</table>
+</fieldset>
+</div>
+</div>

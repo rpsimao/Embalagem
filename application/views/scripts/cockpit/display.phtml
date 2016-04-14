@@ -1,0 +1,469 @@
+<?php if ($this->errors) :?>
+<style type="text/css">
+.novoregisto{
+	padding: 10px;
+}
+</style>
+<div id="primarycontainer">
+<div id="primarycontent" class="sessao">
+<div class="box">
+<h3>In&iacute;cio de sess&atilde;o</h3>
+<span class="form">
+<?=$this->form->render ();?>
+</span>
+<div class="novoregisto">
+<a href="#" id="registonovo">+ Criar um novo registo</a>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+$('#numobra').focus();
+$("input:button, input:submit", ".sessao").button();
+$("#registonovo").click(function(){
+	document.location.href="/obra/"+$("#numobra").val();
+});
+</script>	
+<?php else :?>
+<?php
+$this->placeholder('js')->set('
+<script type="text/javascript" src="/js/jquery-ui-1.7.2.custom.min.js"></script>
+<link type="text/css" href="/css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" />');
+?>
+<script type="text/javascript">
+$(function(){$('#tabs').tabs({ fx: { opacity: 'toggle' }});});
+</script>
+<div id="dirdiv">
+<h2>Obra N&ordm;: <?=$this->job['numobra'];?></h2>
+<br />
+<table id="the-table-100">
+<tr>
+<th>Cliente:</th>
+</tr>
+<tr>
+<td><?=$this->job['cliente'];?></td>
+</tr>
+</table>
+<br />
+<table id="the-table-100">
+<tr>
+<th>Produto:</th>
+</tr>
+<tr>
+<td><?=$this->job['produto'];?></td>
+</tr>
+</table>
+<br />
+<div class="sep">
+<form action="/obra" method="post"><input type="hidden"
+	value="<?php
+echo $this->job['numobra'];
+?>" id="numobra"
+	name="numobra"> <input type="submit" id="editar" name="editar"
+	value="Editar Obra"></form>
+
+<div id="thumb">	
+<?php
+if (file_exists($this->cleanPath2 . "/temp/preview.jpg")) {
+    echo '<img src="http://intranet.fterceiro.pt/media/scope/' . $this->path . '/temp/preview.jpg"></img>';
+} else 
+    if (file_exists($this->cleanPath2 . "/temp/preview.pdf") && ! file_exists($this->cleanPath2 . "/temp/preview.jpg")) {
+        $preview = new App_Files_CreateImages();
+        $preview->setPath($this->cleanPath2);
+        $preview->convert();
+        echo '<img src="http://intranet.fterceiro.pt/media/scope/' . $this->path . '/temp/preview.jpg"></img>';
+    } else {
+        echo '<img src="/imagens/nopreview.jpg"></img>';
+    }
+
+ /**
+  * Get Filename of PDF
+  */   
+   
+    $getPdf = new App_Auxiliar_GetPdf();
+    $getPdf->setPath('/media/scope/' . $this->path .'/grs');
+    echo $getPdf->build();
+    
+   
+echo '<br /><br /><fieldset><legend>Cores:</legend>';
+foreach ($this->colors as $name => $color) {
+    echo $name . $color;
+}
+echo '</fieldset>';
+?>
+
+</div>
+</div>
+</div>
+<div id="content">
+   
+
+
+	<div id="tabs">
+<ul>
+	<li><a href="#tabs-1">Home</a></li>
+	<li><a href="#tabs-2">Cortante</a></li>
+	<!--<li><a href="#tabs-3">Ficheiros</a></li>-->
+	<li><a href="#tabs-4">Braille</a></li>
+	<li><a href="#tabs-5">Registos</a></li>
+	<li><a href="#tabs-6">Chapas</a></li>
+	<li><a href="#tabs-7">Produ&ccedil;&atilde;o</a></li>
+	<li><a href="#tabs-8">Entregas</a></li>
+</ul>
+<div id="tabs-1">
+
+<?php if ($this->jobParameters['j_status'] == 10) :?>
+
+<p>Estado da obra: <span class="tderror">EM PRODU&Ccedil;&Atilde;O</span></p>
+
+<?php else:?>
+<p>Estado da obra: <span class="tdgreen">TERMINADA</span></p>
+
+<?php endif;?>
+<table cellspacing="0" id="the-table">
+	<tr>
+		<th>Formato</th>
+		<th>Edi&ccedil;&atilde;o</th>
+		<th>Cartolina</th>
+		<th>Espessura</th>
+		<th>Fto. Cartolina</th>
+	</tr>
+	<tr>
+		<td><?=App_Auxiliar_Formato::replaceAst($this->job['formato']);?></td>
+		<td><?=$this->job['edicao'];?></td>
+		<td><?=$this->job['cartolina'];?></td>
+		<td><?=$this->job['espessura'];?> mm</td>
+		<td><?=$this->formatoCartolina;?></td>
+	</tr>
+</table>
+<br />
+<table cellspacing="0" id="the-table">
+	<tr>
+		<th>C&oacute;d. Produto</th>
+		<th>C&oacute;d. Laetus</th>
+		<th>C&oacute;d. Visual</th>
+		<th>C&oacute;d. F3</th>
+		<th>Prova N&ordm;</th>
+	</tr>
+	<tr>
+		<td><?=$this->job['codproduto'];?></td>
+		<td><?=$this->job['codlaetus'];?></td>
+		<td><?=$this->job['codvisual'];?></td>
+		<td><?=$this->job['codf3'];?></td>
+		<td><?=$this->job['prova'];?></td>
+	</tr>
+</table>
+<br />
+<table id="the-table">
+<tr>
+	<th>Tipo</th>
+	<th>Data In&iacute;cio</th>
+	<th>Data Pedida</th>
+	<th>Data Finalizado</th>
+	<th>Qtd. Pedida</th>
+	
+</tr>
+<tr>
+	<td><?=App_Change::fundo($this->jobParameters['j_type']);?></td>
+	<td><?=$this->jobParameters['j_datein'];?></td>
+	<td><?=$this->jobParameters['j_deldate'];?></td>
+	<?php if($this->jobParameters['j_done'] > $this->jobParameters['j_deldate']):?>
+	<td class="tderror"><?=$this->jobParameters['j_done']?></td>
+	<?php else :?>
+	<td class="tdgreen"><?=$this->jobParameters['j_done']?></td>
+	<?php endif;?>
+	<td><?=$this->jobParameters['j_qty_ordered']?></td>
+</tr>
+</table>
+</div>
+
+<div id="tabs-2">
+<?php if (count($this->resultsCortantes) > 0):?>
+<table id="the-table">
+	<tr>
+		<th>Estante</th>
+		<th>C&oacute;digo</th>
+		<th>Cortante</th>
+		<th>A</th>
+		<th>B</th>
+		<th>H</th>
+		<th>f</th>
+		<th>g</th>
+		<th>Pala</th>
+		<th>Tipo</th>
+		<th>Formato Util</th>
+		<th>Formato Entrada</th>
+		<th>Espa&ccedil;o</th>
+		<th>Braille</th>
+		<th>Braille</th>
+		<th>Braille</th>
+		<th>Formato Std</th>
+		<th>Descasque</th>
+	</tr>
+<?php
+    $i = 1;
+    $color = new App_Styles_RowColor();
+    $color->setColors('white', '#eff9fe');
+    foreach ($this->resultsCortantes as $name) :
+        ?>
+<tr bgcolor="<?=$color->display($i);?>">
+		<td align="center"><?=$name['estante'];?></td>
+		<td align="center"><a
+			href="/cortantes/display/<?=str_replace(" ", "", $name['codigo']);?>"><?=str_replace(" ", "", $name['codigo']);?></a></td>
+		<td><?=$name['cortante'];?></td>
+		<td align="center"><?=$name['A'];?></td>
+		<td align="center"><?=$name['B'];?></td>
+		<td align="center"><?=$name['H'];?></td>
+		<td align="center"><?=$name['f'];?></td>
+		<td align="center"><?=$name['g'];?></td>
+		<td align="center"><?=$name['pala'];?></td>
+		<td align="center"><?=$name['tipo'];?></td>
+		<td align="center"><?=$name['formato_util'];?></td>
+		<td align="center"><?=$name['formato_entrada'];?></td>
+		<td align="center"><?=$name['espaco'];?></td>
+		<td align="center"><?=$name['braille1'];?></td>
+		<td align="center"><?=$name['braille2'];?></td>
+		<td align="center"><?=$name['braille3'];?></td>
+		<td align="center"><?=$name['formato_std'];?></td>
+		<td align="center"><?=$name['descasque'];?></td>
+		
+<?php
+        $i ++;
+    endforeach;
+    ?>
+</tr>
+</table>
+<?php else:?>
+
+<p>N&atilde;o existe(m) cortante(s) para este modelo.</p>
+
+<?php endif;?>
+</div>
+<!-- <div id="tabs-3"><?php
+//echo $file;
+?></div>-->
+<div id="tabs-4">
+<?php if ($this->priceMale + $this->priceFemale == 0) : ?>
+    <p>O Braille para este trabalho n&atilde;o foi criado.</p>
+    	<form action="/braille/" method="post" id="getbraille">
+    		<input type="hidden" value="<?=$this->job['numobra'];?>">
+    		<input type="submit" value="Criar Braille">
+    	</form>	
+<?php else: ?>
+    <p>O pre&ccedil;o do cortante (macho) &eacute;: &euro;<?=$this->priceMale;?></p>
+    <p>O pre&ccedil;o do cortante (f&ecirc;mea) &eacute;: &euro;<?=$this->priceFemale;?></p>
+    <p>O pre&ccedil;o total do Braille &eacute;: &euro;<?=($this->priceMale + $this->priceFemale);?></p>
+    <p>Tamanho macho: <?=$this->brailleMaleSize['largura'];?>x<?=$this->brailleMaleSize['altura'];?>mm</p>
+    <p class="button"><a href="/braille/braillepdf/<?=$this->pdfLink;?>">Criar PDF</a>
+<?php endif;?> 
+
+</div>
+<div id="tabs-5">
+<?php
+$data = $this->registos;
+if (! empty($data['cod_interno'])) : ?>
+    <table id="the-table">
+	<tr>
+		<th>C&oacute;d. Interno</th>
+		<th>C&oacute;d. Cliente</th>
+		<th>N&ordm; Vers&atilde;o</th>
+		<th>N&ordm; Edi&ccedil;&atilde;o</th>
+		<th>Data</th>
+		<th>N&ordm; Obra</th>
+		<th>Editar</th>
+	</tr>
+<?php 	
+    $i = 1;
+    $color = new App_Styles_RowColor();
+    $color->setColors('white', '#eff9fe');
+    foreach ($this->registos as $data) {
+        echo '<tr bgcolor="' . $color->display($i) . '">';
+        echo '<td>' . $data['cod_interno'] . '</td>';
+        echo '<td>' . $data['cod_cliente'] . '</td>';
+        echo '<td>' . $data['versao'] . '</td>';
+        echo '<td>' . $data['edicao'] . '</td>';
+        echo '<td>' . $data['data_entrega'] . '</td>';
+        echo '<td>' . $data['obra'] . '</td>';
+        echo '<td><a href="/labs/editrecord/' . $data['id'] . '" style="color: green;">Editar</a></td>';
+        echo '</tr>';
+        $i ++;
+    }
+ ?>   
+    </table>
+<?php else: ?>
+    N&atilde;o existe(m) registo(s).
+
+<?php endif; ?>
+			
+</div>
+
+<div id="tabs-6">
+
+<?php if (count($this->arquivo)>0):?>
+<h2>Arquivo Chapas</h2>
+   <table id="the-table">
+	<tr>
+		<th>Cortante</th>
+		<th>Vers&atilde;o</th>
+		<th>700<br />x<br />1000</th>
+		<th>1000<br />x<br />700</th>
+		<th>800<br />x<br />700</th>
+		<th>700<br />x<br />800</th>
+		<th>000<br />x<br />000</th>
+		<th>550<br />x<br />800</th>
+		<th>698<br />x<br />498</th>
+		<th>698<br />x<br />398</th>
+		<th>698<br />x<br />332</th>
+		<th>Tipo</th>
+		<th>Caixa<br />N&ordm;</th>
+	</tr>
+<?php	
+    foreach ($this->arquivo as $data) {
+        echo '<tr>';
+        echo '<td>' . $data['cortante'] . '</td>';
+        echo '<td>' . $data['versao'] . '</td>';
+        echo '<td>' . $data['700_1000'] . '</td>';
+        echo '<td>' . $data['1000_700'] . '</td>';
+        echo '<td>' . $data['800_700'] . '</td>';
+        echo '<td>' . $data['700_800'] . '</td>';
+        echo '<td>' . $data['000_000'] . '</td>';
+        echo '<td>' . $data['550_800'] . '</td>';
+        echo '<td>' . $data['698_498'] . '</td>';
+        echo '<td>' . $data['698_398'] . '</td>';
+        echo '<td>' . $data['698_332'] . '</td>';
+        echo '<td>' . $data['tipo'] . '</td>';
+        echo '<td>' . $data['arquivo'] . '</td>';
+        echo '</tr>';
+    }
+?>
+    </table>
+<?php else :?>
+    <p>N&atilde;o existe registo de Arquivo de Chapas.</p>
+
+<?php endif;?>
+			
+<br />
+<br />
+<?php if (count($this->chapasrec->obra)>0):?>
+<h2>Chapas Recuperadas</h2>
+<table id="the-table-chapasrec">
+	<tr>
+		<th>Obra</th>
+		<th>Cliente</th>
+		<th>Cores</th>
+		<th>Verniz</th>
+		<th>Data</th>
+	</tr>
+	<tr bgcolor="">
+		<td><?=$this->chapasrec->obra;?></td>
+		<td><?=$this->chapasrec->cliente;?></td>
+		<td><?=$this->chapasrec->cores;?></td>
+		<td><?=$this->chapasrec->verniz;?></td>
+		<td><?=$this->chapasrec->dia;?></td>
+	</tr>
+</table>
+<?php else :?>
+    <p>N&atilde;o existe registo de Chapas Recuperadas.</p>
+
+<?php endif;?>
+</div>
+<div id="tabs-7">
+
+<?php foreach ($this->producao as $stage) 
+{
+    $time[]=$stage['tm_duration'];
+}
+$minutes = array_sum($time);
+
+$hours = ($minutes / 60);
+
+$realTime = explode('.', $hours);
+$hours = $realTime[0];
+$minutes = (($realTime[0] * 60) - $minutes);
+?>
+<p>
+Tempo total de produ&ccedil;&atilde;o: <?=$hours;?>H<?=$minutes;?>m.
+</p>
+
+<table id="the-table">
+	<tr>
+		<th>Centro Custo</th>
+		<th>In&iacute;cio</th>
+		<th>Fim</th>
+		<th>Dura&ccedil;&atilde;o <small>(min.)</small></th>
+		<th>Qtd.</th>
+		<th>Operador</th>
+	</tr>
+<?php 
+$i = 1;
+    $color = new App_Styles_RowColor();
+    $color->setColors('white', '#eff9fe');
+foreach ($this->producao as $stage) :?>
+<tr bgcolor="<?=$color->display($i);?>">
+	<td><?=$stage['tm_act']?><br /><small><?=App_Auxiliar_MachineToHumanCostCenter::translate($stage['tm_act']);?></small></td>
+	<td><?=$stage['tm_start']?></td>
+	<td><?=$stage['tm_end']?></td>
+	<td><?=$stage['tm_duration']?></td>
+	<td>
+	<?php
+	    if ($stage['tm_good_qty'] != 0)
+	        { 
+                echo $stage['tm_good_qty'] . " " . $stage['tm_unit'];
+	        } else {
+	            echo "-";
+	        }
+	?>
+	</td>
+	<td>
+	<?= $stage['tm_name'] . " - ".App_Auxiliar_StaffName::getName($stage['tm_name']);?>
+	
+	
+	</td>
+
+</tr>		
+<?php $i ++;
+endforeach;
+?>
+</table>
+</div>
+<div id="tabs-8">
+<?php if (count($this->entregas)>0):?>
+<table id="the-table">
+	<tr>
+		<th>Qtd. Entregue</th>
+		<th>Data Pedida</th>
+		<th>Data Entrega</th>
+		<th>Local</th>
+		
+	</tr>
+<?php 
+$i = 1;
+    $color = new App_Styles_RowColor();
+    $color->setColors('white', '#eff9fe');
+foreach ($this->entregas as $stage) :?>
+<tr bgcolor="<?=$color->display($i);?>">
+	<?php if($stage['del_quantity'] < $this->jobParameters['j_qty_ordered']):?>
+	<td class="tderror"><?=$stage['del_quantity']?></td>
+	<?php else :?>
+	<td class="tdgreen"><?=$stage['del_quantity']?></td>
+	<?php endif;?>
+	<td><?=$stage['del_scheduled']?></td>
+	<?php if($stage['del_scheduled'] < $stage['del_actual']):?>
+	<td class="tderror"><?=$stage['del_actual']?></td>
+	<?php else :?>
+	<td class="tdgreen"><?=$stage['del_actual']?></td>
+	<?php endif;?>
+	<td><?=$stage['del_customer']?></td>
+</tr>		
+<?php $i ++;
+endforeach;
+?>
+</table>
+<?php else :?>
+    <p>N&atilde;o existe(m) registo(s) de Entrega(s).</p>
+
+<?php endif;?>
+</div>
+</div>
+</div>
+<?php endif;?>

@@ -1,0 +1,79 @@
+<?php Zend_Layout::getMvcInstance()->assign("jsqtip", TRUE);?>
+
+<?php if (count($this->messages) > 0): ?>
+	<div <div id="msg-flash" class="alert alert-block alert-success">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="ace-icon fa fa-times"></i>
+		</button>
+		<p>
+			<strong><i class="ace-icon fa fa-check"></i></strong>
+			<?=$this->messages[0]?>
+		</p>
+	</div>
+
+<?php endif;?>
+<?=$this->nav->ArqBraillesSearchNav();?>
+<div style="margin-top: 30px">&nbsp;</div>
+<div class="widget-box widget-color-blue">
+	<!-- #section:custom/widget-box.options -->
+	<div class="widget-header">
+		<h5 class="widget-title bigger lighter">
+			<i class="ace-icon fa fa-table"></i>
+			Arquivo Brailles  - #Listagem
+		</h5>
+
+		<div class="widget-toolbar no-border" >
+
+		</div>
+	</div>
+
+	<!-- /section:custom/widget-box.options -->
+	<div class="widget-body">
+		<div class="widget-main no-padding">
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+				<tr>
+					<th>Nº Braille</th>
+					<th>O. C.</th>
+					<th>Obra</th>
+					<th>Cód. F3</th>
+					<th>Cód. Cliente</th>
+					<th>Produto</th>
+					<th>Qtd</th>
+					<th>B1</th>
+					<th>B2</th>
+					<th>B3</th>
+					<th>B4</th>
+					<th>Obs.</th>
+				</tr>
+				</thead>
+				<tbody class="small">
+				<?php foreach ($this->records as $value) : ?>
+					<tr>
+						<td><a href="/arqbraille/edit/<?=$value['nbraille_num'];?>"><i class="fa fa-edit">&nbsp;</i><?=$value['nbraille_lab'];?>-<?=App_Auxiliar_AddZero::num($value['nbraille_num']);?>-<?=App_Auxiliar_AddZero::month($value['nbraille_mes']);?>-<?=App_Auxiliar_AddZero::month($value['nbraille_ano']);?></a></td>
+						<td><?=$value['oc'];?></td>
+						<td><?=App_Auxiliar_VerBraille::DisplayObraInfo($value['obras']);?></td>
+						<td style="cursor: pointer"><i class="fa fa-search smaller-80 blue">&nbsp;</i><?=App_Auxiliar_VerBraille::DisplayImage($value['codf3']);?></td>
+						<td><?=$value['codcli'];?></td>
+						<td><?=$value['produto'];?></td>
+						<td><?=$value['qtd'];?></td>
+						<td><?=App_Auxiliar_VerBraille::Search($value['b1']);?></td>
+						<td><?=App_Auxiliar_VerBraille::Search($value['b2']);?></td>
+						<td><?=App_Auxiliar_VerBraille::Search($value['b3']);?></td>
+						<td><?=App_Auxiliar_VerBraille::Search($value['b4']);?></td>
+						<td><?=$value['obs'];?></td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</div>
+<br />
+<?=$this->paginationControl($this->records, 'Sliding', 'pagination2.phtml');?>
+
+
+
+
+

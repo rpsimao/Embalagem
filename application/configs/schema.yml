@@ -1,0 +1,26 @@
+options:
+  type: MYISAM
+  collate: utf8_general_ci
+  charset: utf8
+
+chapasrec:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    obra: 
+      type: integer
+      notnull: true
+    cliente: 
+      type: string(500)
+      notnull: true
+    cores: 
+      type: integer
+      notnull: true
+    verniz: 
+      type: tinyint(1)
+      notnull: true
+    dia: 
+      type: date
+      notnull: true

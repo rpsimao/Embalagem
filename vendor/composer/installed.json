@@ -1,0 +1,143 @@
+[
+    {
+        "name": "emagister/zend-form-decorators-bootstrap",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Emagister/zend-form-decorators-bootstrap.git",
+            "reference": "323abe0afba89e898d7c1471d606411800277f57"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Emagister/zend-form-decorators-bootstrap/zipball/323abe0afba89e898d7c1471d606411800277f57",
+            "reference": "323abe0afba89e898d7c1471d606411800277f57",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "time": "2013-07-12 08:51:54",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Twitter_": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            ""
+        ],
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "EmagisterTech",
+                "email": "php@emagister.com",
+                "homepage": "http://engineering.emagister.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "Zend_Form decorators for Twitter's Bootstrap UI",
+        "homepage": "https://emagister.github.com/zend-form-decorators-bootstrap",
+        "keywords": [
+            "bootstrap",
+            "twitter",
+            "twitter bootstrap",
+            "zend",
+            "zend form",
+            "zend form decorators"
+        ]
+    },
+    {
+        "name": "eden/core",
+        "version": "1.0.9",
+        "version_normalized": "1.0.9.0",
+        "target-dir": "Eden/Core",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Eden-PHP/Core.git",
+            "reference": "3f48f2de858c809924b220f5ab06b63f076cdd27"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Eden-PHP/Core/zipball/3f48f2de858c809924b220f5ab06b63f076cdd27",
+            "reference": "3f48f2de858c809924b220f5ab06b63f076cdd27",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.1"
+        },
+        "time": "2013-09-28 04:20:29",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Eden\\Core\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Christian Blanquera",
+                "email": "cblanquera@openovate.com"
+            }
+        ],
+        "description": "Eden Core component full of secret sauce",
+        "homepage": "http://eden-php.com",
+        "keywords": [
+            "eden",
+            "library"
+        ]
+    },
+    {
+        "name": "eden/template",
+        "version": "1.0.3",
+        "version_normalized": "1.0.3.0",
+        "target-dir": "Eden/Template",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Eden-PHP/Template.git",
+            "reference": "75ef5cd62091909ab7b4fd754352fcdf104f24e9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Eden-PHP/Template/zipball/75ef5cd62091909ab7b4fd754352fcdf104f24e9",
+            "reference": "75ef5cd62091909ab7b4fd754352fcdf104f24e9",
+            "shasum": ""
+        },
+        "require": {
+            "eden/core": "1.*",
+            "php": ">=5.3.1"
+        },
+        "time": "2013-09-24 09:56:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Eden\\Template\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Christian Blanquera",
+                "email": "cblanquera@openovate.com"
+            }
+        ],
+        "description": "Eden template component. Lazy template engine",
+        "homepage": "http://eden-php.com",
+        "keywords": [
+            "eden",
+            "library"
+        ]
+    }
+]

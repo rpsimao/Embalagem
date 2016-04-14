@@ -1,0 +1,42 @@
+<?php $this->headLink()->appendStylesheet('/css/dashboard.css','screen')?>
+<?php $this->headScript()->appendFile('/js/entregas/index.js');?>
+<script type="text/javascript">
+//<![CDATA[
+<?php
+		$datePicker = App_Javascript_Date_Helper::generateMultipleDatePickers('data', 3);
+		foreach ($datePicker as $date) {
+		    echo $date;
+		}
+?>
+//]]>
+</script>
+
+<div align="center">
+<div id="accordion">
+<h3><a href="#">Procurar</a></h3>
+<div>
+<table class="search">
+	<tr>
+		<td><select id="lab" name="lab"> 
+		<option value="">Escolha o Cliente</option>
+			<?php
+foreach (App_GetLabs::completeLabs() as $name) {
+    echo '<option value="' . $name . '">' . $name . '</option>';
+}
+?>
+		</select></td>
+		<td>Insira a Data:</td>
+		<td><input type="text" size="12" id="data1" name="data" /> <input
+			type='button' onclick='search1();' value='Procurar' /></td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td>Insira as Datas:&nbsp;</td>
+		<td><input type="text" size="12" id="data2" name="data1" /></td>
+		<td><input type="text" size="12" id="data3" name="data2" /> <input
+			type='button' onclick='search2();' value='Procurar' /></td>
+
+	</tr>
+
+</table>
+</div>
+</div>
+</div>

@@ -1,0 +1,27 @@
+<div id="primarycontainer">
+<div id="primarycontent" class="sessao">
+<div class="box">
+<h3>In&iacute;cio de sess&atilde;o</h3>
+<span class="form"><?php
+
+if ($this->errors) {
+
+	echo $this->errors->displayMessage ();
+	echo $this->form->render ();
+} else {
+
+echo $this->form->render ();
+}
+?></span>
+</div>
+
+
+</div>
+</div>
+<script type="text/javascript">
+$("input:button, input:submit, a", ".sessao").button();
+
+
+
+
+</script>

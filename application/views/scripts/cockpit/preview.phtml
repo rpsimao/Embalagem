@@ -1,0 +1,648 @@
+<?php
+$this->placeholder('js')->set('<script type="text/javascript" src="/js/ajax.js"></script>');
+$this->placeholder('scripts')->set('
+<script type="text/javascript">
+<!--
+$(function(){$("#tabs").tabs({ fx: { opacity: "toggle" }});});
+
+$(function() {
+	    $("input:button, input:submit, a", ".sep").button();
+		$("a", ".sep").click(function() { window.location="/cortantes/new"; return false; });
+		});
+
+//-->
+</script>
+')
+?>
+
+<div id="dirdiv">
+<h2>Obra N&ordm;: <?=$this->job['numobra'];?></h2>
+<br />
+<table id="the-table-producao-230">
+<tr>
+<th>Cliente:</th>
+</tr>
+<tr>
+<td><?=$this->job['cliente'];?></td>
+</tr>
+</table>
+<br />
+<table id="the-table-producao-230">
+<tr>
+<th>Produto:</th>
+</tr>
+<tr>
+<td><?=$this->job['produto'];?></td>
+</tr>
+</table>
+<br />
+<div class="sep">
+<form action="/obra" method="post"><input type="hidden"
+	value="<?php
+echo $this->job['numobra'];
+?>" id="numobra"
+	name="numobra"> <input type="submit" id="editar" name="editar"
+	value="Editar Obra"></form>
+</div>
+<div id="thumb">
+<?php  if (file_exists($this->cleanPath2 . "/temp/preview.png")) :?>
+    
+    <small>
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", $this->path);?>', 90, <?=$this->job['numobra']?>);">Rodar 90&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", $this->path);?>', 180, <?=$this->job['numobra']?>);">Rodar 180&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageDelete('<?=$path = str_replace("/", "::", $this->cleanPath2);?>', <?=$this->job['numobra']?>);">Apagar Imagem</a>
+    </small>
+    <div id="thumb_ajax">
+    <p>&nbsp;</p>    
+    <img src="http://intranet.fterceiro.pt/media/scope/<?=$this->path;?>/temp/preview.png" alt="Thumbnail do Trabalho" />
+    <p>&nbsp;</p>
+    </div>
+<?php  elseif (file_exists($this->cleanPath2 . "/temp/preview.pdf") && ! file_exists($this->cleanPath2 . "/temp/preview.png")) :
+        $preview = new App_Files_CreateImages();
+        $preview->setPath($this->cleanPath2);
+        $preview->setNumObra($this->job['numobra']);
+        $preview->convert();
+        
+  ?>     <small>
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", $this->path);?>', 90, <?=$this->job['numobra']?>);">Rodar 90&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", $this->path);?>', 180, <?=$this->job['numobra']?>);">Rodar 180&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageDelete('<?=$path = str_replace("/", "::", $this->cleanPath2);?>', <?=$this->job['numobra']?>);">Apagar Imagem</a>
+    </small> 
+    <div id="thumb_ajax">   
+    <p>&nbsp;</p> 
+    <img src="http://intranet.fterceiro.pt/media/scope/<?=$this->path;?>/temp/preview.png" alt="Thumbnail do Trabalho" />
+    <p>&nbsp;</p>
+    </div>
+    
+    
+    
+    <?php  elseif (file_exists("/media/scope/imagens_ricardo/" . $this->job['codf3'] . ".pdf") && ! file_exists("/media/scope/imagens_ricardo/" . $this->job['codf3'] . ".jpg")) :
+        $preview = new App_Files_CreateImages();
+        $preview->setCodF3($this->job['codf3']);
+        $preview->setNumObra($this->job['numobra']);
+        $preview->convertFixed();
+        
+  ?>     <small>
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", $this->path);?>', 90, <?=$this->job['numobra']?>);">Rodar 90&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", $this->path);?>', 180, <?=$this->job['numobra']?>);">Rodar 180&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageDelete('<?=$path = str_replace("/", "::", $this->cleanPath2);?>', <?=$this->job['numobra']?>);">Apagar Imagem</a>
+    </small> 
+    <div id="thumb_ajax">   
+    <p>&nbsp;</p> 
+    <img src="http://intranet.fterceiro.pt/media/scope/imagens_ricardo/<?=$this->job['codf3']?>.jpg" alt="Thumbnail do Trabalho" />
+    <p>&nbsp;</p>
+    </div>
+    
+     <?php  elseif (file_exists("/media/scope/imagens_ricardo/" . $this->job['codf3'] . ".jpg")) :?>
+    <small>
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" . $this->job['codf3'] . ".jpg");?>', 90, <?=$this->job['numobra']?>);">Rodar 90&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" . $this->job['codf3'] . ".jpg");?>', 180, <?=$this->job['numobra']?>);">Rodar 180&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageDelete('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" . $this->job['codf3'] . ".jpg");?>', <?=$this->job['numobra']?>);">Apagar Imagem</a>
+    </small> 
+    <div id="thumb_ajax">   
+    <p>&nbsp;</p> 
+    <img src="http://intranet.fterceiro.pt/media/scope/imagens_ricardo/<?=$this->job['codf3']?>.jpg" alt="Thumbnail do Trabalho" />
+    <p>&nbsp;</p>
+     </div>   
+     
+     
+    
+     
+     <?php   elseif (file_exists("/media/scope/imagens_ricardo/" . substr($this->job['codf3'], 0, -2) . ".jpg")) :?>
+    <small>
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" .substr($this->job['codf3'], 0, -2) . ".jpg");?>', 90, <?=$this->job['numobra']?>);">Rodar 90&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" . substr($this->job['codf3'], 0, -2) . ".jpg");?>', 180, <?=$this->job['numobra']?>);">Rodar 180&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageDelete('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" . substr($this->job['codf3'], 0, -2) . ".jpg");?>', <?=$this->job['numobra']?>);">Apagar Imagem</a>
+    </small> 
+    <div id="thumb_ajax">   
+    <p>&nbsp;</p> 
+    <img src="http://intranet.fterceiro.pt/media/scope/imagens_ricardo/<?=substr($this->job['codf3'], 0, -2)?>.jpg" alt="Thumbnail do Trabalho" />
+    <p>&nbsp;</p>
+     </div>
+    
+     
+    <?php  elseif (file_exists("/media/scope/imagens_ricardo/" . substr($this->job['codf3'], 0, -2) . ".pdf") && ! file_exists("/media/scope/imagens_ricardo/" . substr($this->job['codf3'], 0, -2) . ".jpg")) :
+        $preview = new App_Files_CreateImages();
+        $preview->setCodF3(substr($this->job['codf3'], 0, -2));
+        $preview->setNumObra($this->job['numobra']);
+        $preview->convertFixed();
+        
+  ?>     <small>
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" .substr($this->job['codf3'], 0, -2) . ".jpg");?>', 90, <?=$this->job['numobra']?>);">Rodar 90&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageRotate('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" . substr($this->job['codf3'], 0, -2) . ".jpg");?>', 180, <?=$this->job['numobra']?>);">Rodar 180&ordm;</a>
+    |
+    <a href="#" onclick="javascript:imageDelete('<?=$path = str_replace("/", "::", "/media/scope/imagens_ricardo/" . substr($this->job['codf3'], 0, -2) . ".jpg");?>', <?=$this->job['numobra']?>);">Apagar Imagem</a>
+    </small> 
+    <div id="thumb_ajax">   
+    <p>&nbsp;</p> 
+    <img src="http://intranet.fterceiro.pt/media/scope/imagens_ricardo/<?=substr($this->job['codf3'], 0, -2)?>.jpg" alt="Thumbnail do Trabalho" />
+    <p>&nbsp;</p>
+     </div>
+    
+     
+     
+    <?php else :?>
+        <img src="/imagens/nopreview.png" />
+    <?php endif; ?>
+
+ 
+<?php
+/**
+ * FICHEIROS PDF DO TRABALHO
+ * @var $getPdf App_Auxiliar_GetPdf
+ */ 
+$getPdf = new App_Auxiliar_GetPdf();
+$getPdf->setPath('/media/scope/' . $this->path .'/grs');
+ if ($getPdf->countFiles() > 0) : ?>
+
+    <p><b>Pdfs do Trabalho:</b></p>
+   <?php 
+    echo '<select id="pdf" onchange="window.open(this.options[this.selectedIndex].value,\'_self\')">';
+    echo '<option value="/cockpit/preview/'.$this->job['numobra'].'">Pdf(s) do trabalho...</option>';
+    $getPdf->build();
+    echo '</select>';
+
+endif;   
+$getPdf = new App_Auxiliar_GetPdf();
+$getPdf->setPath('/media/scope/' . $this->path .'/Provas/Enviadas');
+
+if ($getPdf->countFiles() > 0) : ?>
+<br /><br /><p><b>Provas do Trabalho:</b></p>
+    <?php
+ echo '<select id="pdf" onchange="window.open(this.options[this.selectedIndex].value,\'_self\')">';
+echo '<option value="">Escolha o ficheiro...</option>';
+$getPdf->build();
+echo '</select>';
+endif;    
+ /**
+  * FIM DOS FICHEIROS PDF
+  */   
+   
+echo '<br /><br /><fieldset><legend>Cores:</legend>';
+foreach ($this->colors as $name => $color) {
+    echo $name . $color;
+}
+echo '</fieldset>';
+?>
+
+</div>
+</div>
+
+<div id="content">
+   
+
+
+	<div id="tabs">
+<ul>
+	<li><a href="#tabs-1">Home</a></li>
+	<li><a href="#tabs-2">Cortante</a></li>
+	<!--<li><a href="#tabs-3">Ficheiros</a></li>-->
+	<li><a href="#tabs-4">Braille</a></li>
+	<li><a href="#tabs-5">Registos</a></li>
+	<li><a href="#tabs-6">Chapas</a></li>
+	<li><a href="#tabs-7">Produ&ccedil;&atilde;o</a></li>
+	<li><a href="#tabs-8">Entregas</a></li>
+	<li><a href="#tabs-9">Qualidade</a></li>
+	<li><a href="#tabs-10">Ocorr&ecirc;ncias</a></li>
+</ul>
+<div id="tabs-1">
+
+<?php if ($this->jobParameters['j_status'] == 10) :?>
+
+<p>Estado da obra: <span class="tdprod">EM PRODU&Ccedil;&Atilde;O</span></p>
+
+<?php elseif ($this->jobParameters['j_status'] == 0) :?>
+
+<p>Estado da obra: <span class="tdstart">POR INICIAR</span></p>
+<?php else:?>
+<p>Estado da obra: <span class="tdgreen">TERMINADA</span></p>
+
+<?php endif;?>
+<table id="the-table-producao">
+	<tr>
+		<th>Formato</th>
+		<th>Edi&ccedil;&atilde;o</th>
+		<th>Cartolina</th>
+		<th>Espessura</th>
+		<th>Fto. Cartolina</th>
+	</tr>
+	<tr>
+		<td><?=App_Auxiliar_Formato::replaceAst($this->job['formato']);?></td>
+		<td><?=$this->job['edicao'];?></td>
+		<td><?=$this->job['cartolina'];?></td>
+		<td><?=$this->job['espessura'];?> mm</td>
+		<td><?=$this->formatoCartolina;?></td>
+	</tr>
+</table>
+<br />
+<table id="the-table-producao">
+	<tr>
+		<th>C&oacute;d. Produto</th>
+		<th>C&oacute;d. Laetus</th>
+		<th>C&oacute;d. Visual</th>
+		<th>C&oacute;d. F3</th>
+		<th>Prova N&ordm;</th>
+	</tr>
+	<tr>
+		<td><?=$this->job['codproduto'];?></td>
+		<td><?=$this->job['codlaetus'];?></td>
+		<td><?=$this->job['codvisual'];?></td>
+		<td><a href="/labs/view/id/<?=substr($this->job['codf3'],0,5);?>"><?=$this->job['codf3'];?></a></td>
+		<td><?=$this->job['prova'];?></td>
+	</tr>
+</table>
+<br />
+<table id="the-table-producao">
+<tr>
+	<th>Tipo</th>
+	<th>Data In&iacute;cio</th>
+	<th>Data Pedida</th>
+	<th>Data Finalizado</th>
+	<th>Qtd. Pedida</th>
+	
+</tr>
+<tr>
+	<td><?=App_Change::fundo($this->jobParameters['j_type']);?></td>
+	<td><?=$this->jobParameters['j_datein'];?></td>
+	<td><?=$this->jobParameters['j_deldate'];?></td>
+	<?php if($this->jobParameters['j_done'] > $this->jobParameters['j_deldate']):?>
+	<td class="tderror"><?=$this->jobParameters['j_done']?></td>
+	<?php else :?>
+	<td class="tdgreen"><?=$this->jobParameters['j_done']?></td>
+	<?php endif;?>
+	<td><?=$this->jobParameters['j_qty_ordered']?></td>
+</tr>
+</table>
+</div>
+
+<div id="tabs-2">
+<?php if (count($this->resultsCortantes) > 0):?>
+<table id="the-table-producao">
+	<tr>
+		<th>Estante</th>
+		<th>C&oacute;digo</th>
+		<th>Cortante</th>
+		<th>A</th>
+		<th>B</th>
+		<th>H</th>
+		<th>f</th>
+		<th>g</th>
+		<th>Pala</th>
+		<th>Tipo</th>
+		<th>Fto Util</th>
+		<th>Fto. Entrada</th>
+		<th>Espa&ccedil;o</th>
+		<th>Braille</th>
+		<th>Braille</th>
+		<th>Braille</th>
+		<th>Fto. Std</th>
+		<th>Descasque</th>
+	</tr>
+<?php
+    $i = 1;
+    $color = new App_Styles_RowColor();
+    $color->setColors('white', 'alt');
+    foreach ($this->resultsCortantes as $name) :
+        ?>
+<tr class="<?=$color->display($i);?>">
+		<td class="spec" align="center"><?=$name['estante'];?></td>
+		<td align="center"><a
+			href="/cortantes/display/<?=str_replace(" ", "", $name['codigo']);?>"><?=str_replace(" ", "", $name['codigo']);?></a></td>
+		<td><?=$name['cortante'];?></td>
+		<td align="center"><?=$name['A'];?></td>
+		<td align="center"><?=$name['B'];?></td>
+		<td align="center"><?=$name['H'];?></td>
+		<td align="center"><?=$name['f'];?></td>
+		<td align="center"><?=$name['g'];?></td>
+		<td align="center"><?=$name['pala'];?></td>
+		<td align="center"><?=$name['tipo'];?></td>
+		<td align="center"><?=$name['formato_util'];?></td>
+		<td align="center"><?=$name['formato_entrada'];?></td>
+		<td align="center"><?=$name['espaco'];?></td>
+		<td align="center"><?=$name['braille1'];?></td>
+		<td align="center"><?=$name['braille2'];?></td>
+		<td align="center"><?=$name['braille3'];?></td>
+		<td align="center"><?=$name['formato_std'];?></td>
+		<td align="center"><?=$name['descasque'];?></td>
+		
+<?php
+        $i ++;
+    endforeach;
+    ?>
+</tr>
+</table>
+<?php else:?>
+
+<p>N&atilde;o existe(m) cortante(s) para este modelo.</p>
+
+<?php endif;?>
+</div>
+<!-- <div id="tabs-3"><?php
+//echo $file;
+?></div>-->
+<div id="tabs-4">
+<?php if ($this->priceMale + $this->priceFemale == 0) : ?>
+    <p>O Braille para este trabalho n&atilde;o foi criado.</p>
+    	<form action="/braille/" method="post" id="getbraille" class="sep">
+    		<input type="hidden" value="<?=$this->job['numobra'];?>">
+    		<input type="submit" value="Criar Braille">
+    	</form>	
+<?php else: ?>
+    <p>O pre&ccedil;o do cortante (macho) &eacute;: &euro;<?=$this->priceMale;?></p>
+    <p>O pre&ccedil;o do cortante (f&ecirc;mea) &eacute;: &euro;<?=$this->priceFemale;?></p>
+    <p>O pre&ccedil;o total do Braille &eacute;: &euro;<?=($this->priceMale + $this->priceFemale);?></p>
+    <p>Tamanho macho: <?=$this->brailleMaleSize['largura'];?>x<?=$this->brailleMaleSize['altura'];?>mm</p>
+    <p class="button"><a href="/braille/braillepdf/<?=$this->pdfLink;?>">Criar PDF</a>
+<?php endif;?> 
+
+</div>
+<div id="tabs-5">
+<?php
+$data = $this->registos;
+if (! empty($data['cod_interno'])) : ?>
+    <table id="the-table-producao">
+	<tr>
+		<th>C&oacute;d. Interno</th>
+		<th>C&oacute;d. Cliente</th>
+		<th>N&ordm; Vers&atilde;o</th>
+		<th>N&ordm; Edi&ccedil;&atilde;o</th>
+		<th>Data</th>
+		<th>N&ordm; Obra</th>
+		<th>Editar</th>
+	</tr>
+<?php 	
+    $i = 1;
+    $color = new App_Styles_RowColor();
+    $color->setColors('white', 'alt');
+    foreach ($this->registos as $data) {
+        echo '<tr class="' . $color->display($i) . '">';
+        echo '<td class="spec" align="center">' . $data['cod_interno'] . '</td>';
+        echo '<td>' . $data['cod_cliente'] . '</td>';
+        echo '<td>' . $data['versao'] . '</td>';
+        echo '<td>' . $data['edicao'] . '</td>';
+        echo '<td>' . $data['data_entrega'] . '</td>';
+        echo '<td>' . $data['obra'] . '</td>';
+        echo '<td><a href="/labs/editrecord/' . $data['id'] . '" style="color: green;">Editar</a></td>';
+        echo '</tr>';
+        $i ++;
+    }
+ ?>   
+    </table>
+<?php else: ?>
+    N&atilde;o existe(m) registo(s).
+
+<?php endif; ?>
+			
+</div>
+
+<div id="tabs-6">
+
+<?php if (count($this->arquivo)>0):?>
+<h2>Arquivo Chapas</h2>
+   <table id="the-table-producao">
+	<tr>
+		<th>Cortante</th>
+		<th>Vers&atilde;o</th>
+		<th>700<br />x<br />1000</th>
+		<th>1000<br />x<br />700</th>
+		<th>800<br />x<br />700</th>
+		<th>700<br />x<br />800</th>
+		<th>000<br />x<br />000</th>
+		<th>550<br />x<br />800</th>
+		<th>698<br />x<br />498</th>
+		<th>698<br />x<br />398</th>
+		<th>698<br />x<br />332</th>
+		<th>Tipo</th>
+		<th>Caixa<br />N&ordm;</th>
+	</tr>
+<?php	
+    foreach ($this->arquivo as $data) {
+        echo '<tr>';
+        echo '<td class="spec" align="center">' . $data['cortante'] . '</td>';
+        echo '<td>' . $data['versao'] . '</td>';
+        echo '<td>' . $data['700_1000'] . '</td>';
+        echo '<td>' . $data['1000_700'] . '</td>';
+        echo '<td>' . $data['800_700'] . '</td>';
+        echo '<td>' . $data['700_800'] . '</td>';
+        echo '<td>' . $data['000_000'] . '</td>';
+        echo '<td>' . $data['550_800'] . '</td>';
+        echo '<td>' . $data['698_498'] . '</td>';
+        echo '<td>' . $data['698_398'] . '</td>';
+        echo '<td>' . $data['698_332'] . '</td>';
+        echo '<td>' . $data['tipo'] . '</td>';
+        echo '<td>' . $data['arquivo'] . '</td>';
+        echo '</tr>';
+    }
+?>
+    </table>
+<?php else :?>
+    <p>N&atilde;o existe registo de Arquivo de Chapas.</p>
+
+<?php endif;?>
+			
+<br />
+<br />
+<?php if (@count($this->chapasrec->obra)>0):?>
+<h2>Chapas Recuperadas</h2>
+<table id="the-table-producao">
+	<tr>
+		<th>Obra</th>
+		<th>Cliente</th>
+		<th>Cores</th>
+		<th>Verniz</th>
+		<th>Data</th>
+	</tr>
+	<tr bgcolor="">
+		<td class="spec" align="center"><?=$this->chapasrec->obra;?></td>
+		<td><?=$this->chapasrec->cliente;?></td>
+		<td><?=$this->chapasrec->cores;?></td>
+		<td><?=$this->chapasrec->verniz;?></td>
+		<td><?=$this->chapasrec->dia;?></td>
+	</tr>
+</table>
+<?php else :?>
+    <p>N&atilde;o existe registo de Chapas Recuperadas.</p>
+
+<?php endif;?>
+</div>
+<div id="tabs-7">
+
+<?php if (count($this->producao) >0) :?>
+<?php foreach ($this->producao as $stage) 
+{
+    $time[]=$stage['tm_duration'];
+}
+$minutes = array_sum($time);
+
+$hours = ($minutes / 60);
+
+$realTime = explode('.', $hours);
+$hours = $realTime[0];
+$minutes = (($realTime[0] * 60) - $minutes);
+?>
+
+<p>
+Tempo total de produ&ccedil;&atilde;o: <?=$hours;?>H<?=$minutes;?>m.
+</p>
+
+<table id="the-table-producao">
+	<tr>
+		<th>Centro Custo</th>
+		<th>In&iacute;cio</th>
+		<th>Fim</th>
+		<th>Dura&ccedil;&atilde;o <small>(min.)</small></th>
+		<th>Qtd.</th>
+		<th>Operador</th>
+	</tr>
+<?php 
+$i = 1;
+    $color = new App_Styles_RowColor();
+    $color->setColors('white', 'alt');
+foreach ($this->producao as $stage) :?>
+<tr class="<?=$color->display($i);?>">
+	<td class="spec" align="center"><?=$stage['tm_act']?><br /><small><?=App_Auxiliar_MachineToHumanCostCenter::translate($stage['tm_act']);?></small></td>
+	<td><?=$stage['tm_start']?></td>
+	<td><?=$stage['tm_end']?></td>
+	<td><?=$stage['tm_duration']?></td>
+	<td>
+	<?php
+	    if ($stage['tm_good_qty'] != 0)
+	        { 
+                echo $stage['tm_good_qty'] . " " . $stage['tm_unit'];
+	        } else {
+	            echo "-";
+	        }
+	?>
+	</td>
+	<td>
+	<?= $stage['tm_name'] . " - ".App_Auxiliar_StaffName::getName($stage['tm_name']);?>
+	
+	
+	</td>
+
+</tr>		
+<?php $i ++;
+endforeach;
+?>
+</table>
+<?php else:?>
+<p>Ainda n&atilde;o foi iniciada a produ&ccedil;&atilde;o desta obra.</p>
+<?php endif;?>
+</div>
+<div id="tabs-8">
+<?php if (count($this->entregas)>0):?>
+<table id="the-table-producao">
+	<tr>
+		<th>Qtd. Entregue</th>
+		<th>Data Pedida</th>
+		<th>Data Entrega</th>
+		<th>Local</th>
+		
+	</tr>
+<?php 
+$i = 1;
+    $color = new App_Styles_RowColor();
+    $color->setColors('white', 'alt');
+foreach ($this->entregas as $stage) :?>
+<tr class="<?=$color->display($i);?>">
+	<?php if($stage['del_quantity'] < $this->jobParameters['j_qty_ordered']):?>
+	<td class="tderror"><?=$stage['del_quantity']?></td>
+	<?php else :?>
+	<td class="tdgreen"><?=$stage['del_quantity']?></td>
+	<?php endif;?>
+	<td><?=$stage['del_scheduled']?></td>
+	<?php if($stage['del_scheduled'] < $stage['del_actual']):?>
+	<td class="tderror"><?=$stage['del_actual']?></td>
+	<?php else :?>
+	<td class="tdgreen"><?=$stage['del_actual']?></td>
+	<?php endif;?>
+	<td><?=$stage['del_customer']?></td>
+</tr>		
+<?php $i ++;
+endforeach;
+?>
+</table>
+<?php else :?>
+    <p>N&atilde;o existe(m) registo(s) de Entrega(s).</p>
+<?php endif;?>
+</div>
+<div id="tabs-9">
+<?php if (count($this->qualidade) > 0):?>
+<table id="the-table-producao">
+	<tr>
+		<th>Tol. Mais</th>
+		<th>Tol. Menos</th>
+		<th>Paletes</th>
+		<th>Amostra</th>
+		<th>Bol. An&aacute;lise</th>
+		<th>Tel.</th>
+		<th>Contacto</th>
+		<th>Email</th>
+		<th>Comercial</th>
+	</tr>
+<?php 
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+foreach ($this->qualidade as $value) :?>
+<tr class="<?=$color->display($i);?>">
+<td class="spec" align="center"><?=$value['tol_mais']?></td>
+<td><?=$value['tol_menos']?></td>
+<td><?=$value['paletes']?></td>
+<?php if ($value['lab'] == "LUSOMEDICA"):
+$paragraph = str_replace("unidades", "unidades<br /><br />", $value['amostra']);
+?>
+<td><?=$paragraph?></td>
+<?php else: ?>
+<td><?=$value['amostra']?></td>
+<?php endif;?>
+<td><?=$value['bol_analise']?></td>
+<td><?=$value['contactos']?></td>
+<td><?=$value['contactos_lab']?></td>
+<td><?=$value['email']?></td>
+<td><?=$value['comercial']?></td>
+
+
+<?php $i ++; endforeach;?>
+</table>
+<?php else :?>
+N&atilde;o existem defini&ccedil;&otilde;es.
+
+<?php endif;?>
+
+</div>
+<div id="tabs-10">
+
+<?php if (count($this->ocorrencias) > 0) :?>
+<?php $num = count($this->ocorrencias);?>
+<p>Esta obra teve <?=$num?> ocorr&ecirc;ncia(s).</p>
+<?php foreach ($this->ocorrencias as $ocorrencia): ?>
+
+<p>Ocorr&ecirc;ncia N&ordm;<a href="http://ocorrencias.intranet.fterceiro.pt/export/pdf/<?=$ocorrencia['id'];?>" target="_new"><?=$ocorrencia['id'];?></a> de <?=$ocorrencia['data_detectada'];?></p>
+
+<?php endforeach;?>
+
+<?php else :?>
+
+<h4>N&atilde;o existem Ocorr&ecirc;ncias para este trabalho.</h4>
+<?php endif;?>
+</div>
+
+
+
+
+
+<!-- Fim -->
+</div>
+</div>

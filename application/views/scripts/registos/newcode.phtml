@@ -1,0 +1,20 @@
+<div id="cont"><fieldset><legend>Criar Novo Registo</legend>
+
+<?php
+echo $this->partial('partials/registos.phtml');
+if ($this->errors) {
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('error');
+    $newmsg->setMessage('Ocorreu um erro. O formul&aacute;rio n&atilde;o est&aacute; bem preenchido.');
+    echo $newmsg->displayMessage();
+    echo '<br />';
+    echo $this->form->render();
+} else {
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('success');
+    $newmsg->setMessage('Foi criado um novo registo');
+    echo $newmsg->displayMessage();
+}
+?>
+
+</fieldset></div>

@@ -1,0 +1,64 @@
+<script type="text/javascript">
+<!--
+function confirm_delete_product(id, cort) {
+input_box=confirm("Tem a certeza que deseja apagar o Cliche do Cort. N&ordm; " + cort + "?");
+if (input_box==true)
+ { 
+	window.location = "/cliches/delete/" + id;
+ } else {
+	return false; 
+ }
+}
+//-->
+</script>
+
+<div id="dameespaco">
+<table>
+	<tr>
+		<td><a href="/cliches/new">+ criar novo registo</a></td>
+		<td class="esp"></td>
+		<td>
+		<form action="/cliches/search" method="post">Insira o N&ordm;
+		Cortante:&nbsp; <input type="text" size="15" id="cortante"
+			name="cortante"></input> <input type="submit" value="Procurar"></input></form>
+		</td>
+		<td>
+		<form action="/cliches/search" method="post">Insira o Nome
+		Laborat&oacute;rio:&nbsp; <input type="text" size="15" id="laboratorio"
+			name="laboratorio"></input> <input type="submit" value="Procurar"></input></form>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div align="center" style="padding-top: 20px">
+<h2>Listagem de Cliches</h2>
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', '#eff9fe');
+?>
+<br />
+<table id="the-table-cliche">
+	<tr>
+		<th>Laborat&oacute;rio</th>
+		<th>Cortante</th>
+		<th>Editar</th>
+		<th>Apagar</th>
+	</tr>
+<?php
+foreach ($this->sql as $name) :
+    ?>
+<tr bgcolor="<?=$color->display($i);?>">
+<?='<td>' . $name['laboratorio'] . '</td><td>' . $name['cortante'] . "</td>";?>
+<td><a href="/cliches/edit" style="color: green;">Editar</a></td>
+		<td><a
+			href="Javascript:confirm_delete_product('<?=$name['id']?>', '<?=$name['cortante']?>')"
+			style="color: red">Apagar</a></td>
+<?php
+    $i ++;
+endforeach;
+?>
+</tr>
+</table>
+</div>

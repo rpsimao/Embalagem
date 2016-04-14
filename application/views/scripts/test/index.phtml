@@ -1,0 +1,25 @@
+<?php
+
+$config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'nav');
+$container = new Zend_Navigation($config);
+$config = Zend_Registry::get('home_links');
+
+$tr = $this->navigation($container);
+$rootPage = $tr->getContainer();
+
+$name = "test";
+
+
+
+
+
+foreach ($rootPage as $page) {
+
+
+	if ($config->$name == $page->get("controller")) {
+
+		//echo $page->getHref().$page->getLabel();
+
+	}
+
+}

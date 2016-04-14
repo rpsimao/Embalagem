@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="utf-8" />
+	<?=$this->headMeta();?>
+	<title><?php echo $this->navigation()->breadcrumbs()->setMinDepth(0)->setPartial(array('partials/title.phtml', 'default')); ?></title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<!-- bootstrap & fontawesome -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
+
+	<!-- page specific plugin styles -->
+
+	<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
+
+
+	<!-- text fonts -->
+	<link rel="stylesheet" href="/assets/css/ace-fonts.css" />
+
+	<!-- ace styles -->
+	<link rel="stylesheet" href="/assets/css/ace.min.css" />
+	<link rel="stylesheet" href="/assets/css/jquery.gritter.css" />
+
+
+	<link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+	<link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
+
+	<!-- inline styles related to this page -->
+
+	<script src='/assets/js/jquery.min.js'></script>
+
+	<script src="/assets/js/ace-extra.min.js"></script>
+
+	<!-- Load custom styles-->
+	<link rel="stylesheet" href="/css/custom.css" />
+
+	<?=$this->JSHelper(array("arqbraille" => "braille"));?>
+</head>
+
+<body class="no-skin">
+<!-- #section:basics/navbar.layout -->
+<div id="navbar" class="navbar navbar-default">
+<script type="text/javascript">
+	try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+</script>
+
+<div class="navbar-container" id="navbar-container">
+<!-- #section:basics/sidebar.mobile.toggle -->
+<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+	<span class="sr-only">Toggle sidebar</span>
+
+	<span class="icon-bar"></span>
+
+	<span class="icon-bar"></span>
+
+	<span class="icon-bar"></span>
+</button>
+
+<!-- /section:basics/sidebar.mobile.toggle -->
+<div class="navbar-header pull-left">
+	<!-- #section:basics/navbar.layout.brand -->
+	<a href="#" class="navbar-brand">
+		<small>
+			<i class="ace-icon fa fa-cubes"></i>
+			F3 Embalagem DB
+		</small>
+	</a>
+
+	<!-- /section:basics/navbar.layout.brand -->
+
+	<!-- #section:basics/navbar.toggle -->
+
+	<!-- /section:basics/navbar.toggle -->
+</div>
+
+
+</div><!-- /.navbar-container -->
+</div>
+
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+<script type="text/javascript">
+	try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+</script>
+
+<!-- #section:basics/sidebar -->
+
+
+<!-- /section:basics/sidebar -->
+<div class="main-content">
+	<!-- #section:basics/content.breadcrumbs -->
+
+
+	<!-- /section:basics/content.breadcrumbs -->
+	<div class="page-content">
+
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+				<?php echo $this->layout()->content; ?>
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+
+<div class="footer">
+	<div class="footer-inner">
+		<!-- #section:basics/footer -->
+		<div class="footer-content">
+
+		</div>
+
+		<!-- /section:basics/footer -->
+	</div>
+</div>
+
+<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+	<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+</a>
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<script type="text/javascript">
+	if('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="/assets/js/jquery-ui.min.js"></script>
+<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+
+<script src="/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="/assets/js/date-time/locales/bootstrap-datepicker.pt.js"></script>
+
+<!-- ace scripts -->
+<script src="/assets/js/ace-elements.min.js"></script>
+<script src="/assets/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
+<link rel="stylesheet" href="/assets/css/ace.onpage-help.css" />
+<link rel="stylesheet" href="/docs/assets/js/themes/sunburst.css" />
+<link rel="stylesheet" href="/css/newlayout.css" />
+
+<script type="text/javascript"> ace.vars['base'] = '..'; </script>
+<script src="/assets/js/ace/ace.onpage-help.js"></script>
+<script src="/docs/assets/js/rainbow.js"></script>
+<script src="/docs/assets/js/language/generic.js"></script>
+<script src="/docs/assets/js/language/html.js"></script>
+<script src="/docs/assets/js/language/css.js"></script>
+<script src="/docs/assets/js/language/javascript.js"></script>
+<script src="/assets/js/jquery.gritter.min.js"></script>
+<script src="/assets/js/bootbox.min.js"></script>
+<script src="/assets/js/fuelux/fuelux.spinner.min.js"></script>
+<?php echo $this->placeholder('aux1') ?>
+<?php echo $this->placeholder('js') ?>
+<?php echo $this->JSQtip($this->layout()->jsqtip);?>
+<?php echo $this->placeholder('main') ?>
+<?php echo $this->Bootstrapvalidator($this->layout()->flag);?>
+</body>
+</html>

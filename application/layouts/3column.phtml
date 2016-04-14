@@ -1,0 +1,43 @@
+<?=$this->doctype();?>
+<html>
+<head>
+<title>Fernandes &amp; Terceiro, S.A. :: Embalagem Database</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<?=$this->headMeta();?>
+<?=$this->headLink();?>
+<?=$this->headScript();?>
+	<script type="text/javascript" src="http://cdn.fterceiro.pt/library/js/jquery/latest/min.js"></script>
+	<script type="text/javascript" src="http://cdn.fterceiro.pt/library/js/jqueryui/latest/min.js"></script>
+	<script type="text/javascript" src="/js/menu.js"></script>
+	<script type="text/javascript" src="/js/jquery.clipboard.min.js"></script>
+<?=$this->placeholder('js');?>
+<?=$this->placeholder('scripts');?>
+<link href="/css/3col.css" rel="stylesheet" type="text/css" />
+<link href="http://static.fterceiro.pt/assets/private/css/css3buttons.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="http://static.fterceiro.pt/assets/private/jquery.fancybox-2.0.2/jquery.fancybox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="http://static.fterceiro.pt/assets/private/jquery.fancybox-2.0.2/jquery.fancybox.pack.js"></script>
+</head>
+<body>
+<div id="growl"></div>
+<div id="header">
+<?=$this->partial('pagname.phtml');?>
+<?=$this->partial('menu2.phtml');?>
+
+</div>
+
+<div id="wrapper1"><!-- sets background to white and creates full length leftcol-->
+	
+	<div id="wrapper2"><!-- sets background to white and creates full length rightcol-->
+	
+<?php echo $this->layout()->content;?>
+				
+		<div id="footer"><!-- begin footer -->
+		<p>This is the footer</p>
+		</div><!-- end footer -->
+	
+	</div><!-- end wrapper1 -->
+
+</div><!-- end wrapper2 -->
+<?=$this->placeholder('js-footer');?>	
+</body>
+</html>

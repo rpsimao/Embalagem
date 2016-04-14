@@ -1,0 +1,14 @@
+<div id="cont">
+<?php
+
+        $error = new App_Messages();
+        $error->setMessageType('error');
+        $error->setMessage('<p>A obra que est&aacute; a tentar aceder ainda n&atilde;o existe na base de dados da embalagem.</p>
+        					<p>Utilize o link em baixo para criar um novo registo</p>
+        					');
+        echo $error->displayMessage();
+
+?>
+<br />
+<a href="/selo">Criar um novo registo</a>
+</div>

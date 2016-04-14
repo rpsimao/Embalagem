@@ -1,0 +1,83 @@
+<?php 
+$this->placeholder('js')->set('<script type="text/javascript" src="/js/ajax.js"></script>
+							   <script type="text/javascript" src="/js/custom.js"></script>');
+$this->headScript()->appendScript('$(function() {$("input:submit").button();});');
+
+$this->headScript()->appendScript('$(function() {var luso =  $("#cliente").val();if (luso == "LUSOMEDICA"){	$("#cliente").val("LUSOMEDICAMENTA");}});');
+
+if (count($this->messages) > 0)
+{
+    $msg = new App_Messages();
+    $msg->setMessageType('success');
+    $msg->setMessage($this->messages[0]);
+    echo $msg->displayMessage();
+}
+?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#cartolina').after('<span id="buttonCartolina"></span>');
+	$('#buttonCartolina').html('&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="addValueCartolina()" />');
+	$(function() {$("input:button").button();});
+	$('#success').delay(2500).fadeOut(1000, function() { 
+		  $('#success').hide(); 
+
+	});
+
+
+    var f3codeInput = $("#codf3").val();
+	
+    var obra = $("#numobra").val();
+	var f3code = $.ajax({
+		type: 'GET',
+		url: '/ajax/checkf3code',
+		data: 'job=' + obra + "&code=" + f3codeInput,
+		dataType: 'text',
+		async: false,
+		}).responseText;
+
+	$("#codf3").val(f3code);
+       
+    	
+});
+
+function addValueCartolina()
+{
+	window.location = '/cartolina/<?=$this->numobra;?>';
+}
+</script>
+<div id="cont">
+<table>
+	<tr>
+		<td>
+		<fieldset><legend>Informa&ccedil;&atilde;o Obra N&ordm;<?=$this->numobra;?></legend>
+            <?=$this->form;?>
+		</fieldset>
+		</td>
+		<td>
+			<span class="fobra">Dados Folha Obra</span><br />
+			<textarea rows="20" cols="40"><?=$this->info1;?></textarea> 
+			<textarea rows="20" cols="40"><?=$this->info2;?></textarea>
+		</td>
+	</tr>
+</table>
+</div>
+<?php
+/*
+$domain = strstr($this->info2, 'FT_');
+
+$domain = substr($domain, 3,7);
+echo $domain;
+
+
+$headlineArray = preg_split('/\n/', $this->info2, - 1, PREG_SPLIT_NO_EMPTY);
+
+$line = strlen($headlineArray[0]);
+
+
+
+
+echo '<br>str: ' . $line;
+*/
+
+?>

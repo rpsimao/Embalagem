@@ -1,0 +1,58 @@
+<style type="text/css">
+@import url("/css/trello.css");
+</style>
+<div id="prepress-list-prod" class="list-prod">
+	<h3>Prepress</h3>
+        <?php foreach ($this->prepress as $job):?>
+            <div class="list-prod-action" id="pp-<?=$job['job']?>">
+		<div class="status" style="background-color:<?=$job['status']?>;"></div>
+		<ul>
+			<li><span class="des">Obra:</span> <?=$job['job']?></li>
+			<li><span class="des">Cliente:</span> <?=$job['cliente']?></li>
+			<li><span class="des">Trabalho:</span> <?=str_ireplace('Cart.', '', $job['trabalho'])?></li>
+		</ul>
+	</div>
+	<!-- Summary -->
+            <?=$this->partial('partials/trelloinfo.phtml', array('job' => $job['job'] , 'formato' => $job['formato'] , 'edicao' => $job['edicao'] , 'cartolina' => $job['cartolina'] , 'codproduto' => $job['codproduto'] , 'codf3' => $job['codf3'] , 'datapedida' => $job['datapedida'] , 'qtdpedida' => $job['qtdpedida']));?>
+     <!-- End Summary -->
+	<?php endforeach;?>
+</div>
+
+
+<div id="press-list-prod" class="list-prod">
+	<h3>Impress&atilde;o</h3>
+    <?php foreach ($this->impressao as $job):?>
+            <div class="list-prod-action" id="pp-<?=$job['job']?>">
+		<div class="status" style="background-color:<?=$job['status']?>;"></div>
+		<ul>
+			<li><span class="des">Obra:</span> <?=$job['job']?></li>
+			<li><span class="des">Cliente:</span> <?=$job['cliente']?></li>
+			<li><span class="des">Trabalho:</span> <?=str_ireplace('Cart.', '', $job['trabalho'])?></li>
+		</ul>
+	</div>
+	<!-- Summary -->
+           <?=$this->partial('partials/trelloinfo.phtml', array('job' => $job['job'] , 'formato' => $job['formato'] , 'edicao' => $job['edicao'] , 'cartolina' => $job['cartolina'] , 'codproduto' => $job['codproduto'] , 'codf3' => $job['codf3'] , 'datapedida' => $job['datapedida'] , 'qtdpedida' => $job['qtdpedida']));?>
+    <!-- End Summary -->
+	
+    <?php endforeach;?>
+</div>
+
+
+<div id="postpress-list-prod" class="list-prod">
+	<h3>Acabamentos</h3>
+    <?php foreach ($this->acabamentos as $job):?>
+            <div class="list-prod-action" id="pp-<?=$job['job']?>">
+		<div class="status" style="background-color:<?=$job['status']?>;"></div>
+		<ul>
+			<li><span class="des">Obra:</span> <?=$job['job']?></li>
+			<li><span class="des">Cliente:</span> <?=$job['cliente']?></li>
+			<li><span class="des">Trabalho:</span> <?=str_ireplace('Cart.', '', $job['trabalho'])?></li>
+		</ul>
+	</div>
+	<!-- Summary -->
+            <?=$this->partial('partials/trelloinfo.phtml', array('job' => $job['job'] , 'formato' => $job['formato'] , 'edicao' => $job['edicao'] , 'cartolina' => $job['cartolina'] , 'codproduto' => $job['codproduto'] , 'codf3' => $job['codf3'] , 'datapedida' => $job['datapedida'] , 'qtdpedida' => $job['qtdpedida']));?>
+    <!-- End Summary -->
+	
+    <?php endforeach;?>
+</div>
+

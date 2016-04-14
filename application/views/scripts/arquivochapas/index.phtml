@@ -1,0 +1,114 @@
+<?php if (count($this->messages) > 0): ?>
+	<div id="diecuts_msg-flash" class="alert alert-block alert-success">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="ace-icon fa fa-times"></i>
+		</button>
+		<p>
+			<strong><i class="ace-icon fa fa-check"></i></strong>
+			<?=$this->messages[0]?>
+		</p>
+	</div>
+
+	<script type="text/javascript">
+
+		$(function(){ $("#diecuts_msg-flash").fadeOut(8000);});
+
+	</script>
+
+
+<?php endif;?>
+
+<div class="row">
+
+
+	<div class="col-sm-3 col-sm-offset-1">
+
+
+		<h3 class="row header smaller lighter blue"><i class="ace-icon fa fa-cog"></i> Criar novo registo</h3>
+
+
+			<a href="/arquivochapas/new" class="btn btn-primary">
+				<i class="ace-icon fa fa-pencil-square-o "></i>
+				Novo Registo
+			</a>
+
+	</div>
+
+
+
+
+
+	<div class="col-sm-4 col-sm-offset-1">
+
+		<h3 class="row header smaller lighter blue"><i class="ace-icon fa fa-search"></i> Procurar Registo</h3>
+
+		<form action="/arquivochapas/search" method="post" class="form-inline">
+			<div class="form-group">
+				<label for="codf3">Insira o Cód. F3</label>
+				<input type="text" class="form-control" id="codf3" name="codf3">
+			</div>
+			<button type="submit" class="btn btn-default">Procurar</button>
+		</form>
+
+	</div>
+</div>
+<div class="row" style="margin-top: 15px;">
+<div class="col-sm-12">
+
+	<h3 class="row header smaller lighter blue"><i class="ace-icon fa fa-database"></i> Listagem</h3>
+
+	<table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+		<tr>
+			<!-- <th>ID</th> -->
+			<th>C&oacute;digo F3</th>
+			<th>Cortante</th>
+			<th>Vers&atilde;o</th>
+			<th>Produto</th>
+			<th>700x1000</th>
+			<th>1000x700</th>
+			<th>800x700</th>
+			<th>700x800</th>
+			<th>000x000</th>
+			<th>550x800</th>
+			<th>698x498</th>
+			<th>698x398</th>
+			<th>698x332</th>
+			<th>Tipo</th>
+			<th>Caixa N&ordm;</th>
+		</tr>
+
+		<?php
+
+
+
+
+		foreach ($this->paginator as $record) {
+			echo '<tr>';
+			echo '<td class="spec" align="center"><a href="/arquivochapas/editrecord/'.$record['codf3'].'">' . $record['codf3'] . '</a></td>';
+			echo '<td>' . $record['cortante'] . '</td>';
+			echo '<td>' . $record['versao'] . '</td>';
+			echo '<td>' . $record['produto'] . '</td>';
+			echo '<td>' . $record['700_1000'] . '</td>';
+			echo '<td>' . $record['1000_700'] . '</td>';
+			echo '<td>' . $record['800_700'] . '</td>';
+			echo '<td>' . $record['700_800'] . '</td>';
+			echo '<td>' . $record['000_000'] . '</td>';
+			echo '<td>' . $record['550_800'] . '</td>';
+			echo '<td>' . $record['698_498'] . '</td>';
+			echo '<td>' . $record['698_398'] . '</td>';
+			echo '<td>' . $record['698_332'] . '</td>';
+			echo '<td>' . $record['tipo'] . '</td>';
+			echo '<td align="center">' . $record['arquivo'] . '</td>';
+			echo '</tr>';
+
+		}
+		?>
+	</table>
+
+	<?='<p>' . $this->paginationControl($this->paginator, 'Sliding', 'pagination2.phtml') . '</p>';?>
+
+
+</div>
+
+
+</div>

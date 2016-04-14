@@ -1,0 +1,29 @@
+<div id="primarycontainer">
+<div id="primarycontent">
+<div align="center">
+<a href="/labshome/new" id="labshomenew">+ criar novo laborat&oacute;rio no sistema</a>
+<br /><br />
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+?>
+<table class="bordered red30"><tr><th>Nº</th><th>Laboratório</th><th>Editar</th></tr>
+<?php 
+foreach ($this->labs as $value) {
+    $table = '<tr class="' . $color->display($i) . '">';
+    $table .= '<td class="spec">' . $value['num'] . '</td>';
+    $table .= '<td>' . $value['nome'] . '</td>';
+    $table .= '<td><a href="/labshome/edit/'.$value['id'] . '" style="color:green;">Editar</a></td>';
+    $table .= '</tr>';
+    echo $table;
+    $i ++;
+}
+?>
+</table>
+</div>
+</div>
+</div>
+<script>
+$(function(){$("#labshomenew").button();});
+</script>

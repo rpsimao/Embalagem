@@ -1,0 +1,51 @@
+<?php
+$cName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+$title = new App_Auxiliar_PageTitles();
+switch ($cName) {
+    case "producao":
+        echo $title->htmlTitle("Obras em Produ&ccedil;&atilde;o");
+        break;
+    case "selo":
+        echo $title->htmlTitle("Selo Provas");
+        break;
+    case "obra":
+        echo $title->htmlTitle("Informa&ccedil;&atilde;o Obras");
+        break;
+    case "emprova":
+        echo $title->htmlTitle("Obras em Prova");
+        break;
+    case "braille":
+        echo $title->htmlTitle("Braille");
+        break;
+    case "laetus":
+        echo $title->htmlTitle("C&oacute;digo Laetus");
+        break;
+    case "cockpit":
+        echo $title->htmlTitle("Informa&ccedil;&atilde;o Obras");
+        break;
+    case "tolerancias":
+        echo $title->htmlTitle("Toler&acirc;ncias");
+        break;
+    case "labs":
+        echo $title->htmlTitle("Registos");
+        break;
+    case "arqchapas":
+        echo $title->htmlTitle("Arquivo Chapas");
+        break;
+    case "labshome":
+        echo $title->htmlTitle("Laborat&oacute;rios");
+        break;
+    case "cliches":
+        echo $title->htmlTitle("Clich&eacute;s");
+        break;
+    case "cortantes":
+        echo $title->htmlTitle("Arquivo Cortantes");
+        break;
+    case "entregas":
+        echo $title->htmlTitle("Obras Entregues M&ecirc;s " . date('m'));
+        break;
+    default:
+        echo '<div class="f3">F3 Embalagem DB </div>';
+        break;
+}
+

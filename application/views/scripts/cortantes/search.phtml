@@ -1,0 +1,74 @@
+<?=$this->partial('partials/vercortanteautoplatina.phtml');?>
+<?php
+$this->placeholder('js')->set('
+<script type="text/javascript">
+<!--
+function confirm_delete_product(id, cort) {
+input_box=confirm("Tem a certeza que deseja apagar o Cort. Nº " + cort + "?");
+if (input_box==true)
+ { 
+	window.location = "/cortantes/delete/" + id;
+ } else {
+	return false; 
+ }
+}
+//-->
+</script>
+');
+?>
+<?=$this->partial('partials/searchcortantes.phtml');?>
+
+
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', '#eff9fe');
+?>
+
+<div align="center">
+<?php if (empty($this->results[0])): ?>
+	
+<h4><b>N&atilde;o foram encontrados cortantes.</b></h4>
+    
+
+<?php else :?>
+
+
+<table id="the-table-producao">
+	<tr>
+		<th>Estante</th>
+		<th>C&oacute;d.</th>
+		<th>Cortante</th>
+		<th>A</th>
+		<th>B</th>
+		<th>H</th>
+		<th>f</th>
+		<th>g</th>
+		<th>Fto Std</th>
+		<th>Ver</th>
+	</tr>
+<?php
+foreach ($this->results as $name) :
+    ?>
+<tr bgcolor="<?=$color->display($i);?>">
+		<td align="center"><?=$name['estante'];?></td>
+		<td align="center"><a href="/cortantes/display/<?=str_replace(" ", "", $name['codigo']);?>"><?=str_replace(" ", "", $name['codigo']);?></a></td>
+		<td><span id="clip<?=$name['id']?>"><?=$name['cortante'];?></span>&nbsp;<button onclick="Javascript:catchCod('<?=$name['id']?>')"></button></td>
+		<td align="center"><?=$name['A'];?></td>
+		<td align="center"><?=$name['B'];?></td>
+		<td align="center"><?=$name['H'];?></td>
+		<td align="center"><?=$name['f'];?></td>
+		<td align="center"><?=$name['g'];?></td>
+		<td align="center"><?=$name['formato_std'];?></td>
+		<td align="center"><img src="/images/eye.png" onclick="Javascript:populatePanel('<?=$name['id']?>', '<?=$name['codigo'];?>')"></td>
+		
+<?php
+    $i ++;
+endforeach;
+?>
+</tr>
+</table>
+<br />
+<br />
+</div>
+<?php endif;?>

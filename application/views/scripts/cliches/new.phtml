@@ -1,0 +1,18 @@
+<?php 
+$this->placeholder('js')->set('<link rel="stylesheet" type="text/css" media="screen" href="/css/dashboard.css" />
+<script type="text/javascript" src="/js/mootools.js"></script>
+<script type="text/javascript" src="/js/calendar.js"></script>
+<script type="text/javascript">		
+	//<![CDATA[
+		window.addEvent(\'domready\', function() { 
+			myCal2 = new Calendar({ dia: \'Y-m-d\' }, { classes: [\'dashboard\']});
+		});
+	//]]>
+	</script>');
+?>
+<div id="cont">
+<fieldset>
+<legend>Criar Clich&eacute;</legend>
+<?= $this->form->render();?>
+</fieldset>
+</div>

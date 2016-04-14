@@ -1,0 +1,39 @@
+<script type="text/javascript" src="/js/cortantes/index/script1.js"></script>
+<div id="dialog-message" title=".:ERRO:." style="display: none;">
+<p><span class="ui-icon ui-icon-alert"
+	style="float: left; margin: 0 7px 50px 0;"></span> Não preencheu
+correctamente os campos da procura!</p>
+</div>
+
+<br /><table>
+	<tr>
+		<td>
+            <select name="id" id="id">
+            	<option value="">Escolha uma opção:</option>
+            	<option value="1">Código</option>
+            	<option value="2">A</option>
+            	<option value="3">A &amp; B</option>
+            	<option value="4">A &amp; B &amp; H</option>
+            </select>
+         </td>   
+		<td>
+			<input type="text" id="query" name="query" />
+		</td>
+		<td>	
+            <input type="button" onclick="search();" id="scr" value="Procurar" />
+        </td>
+        <td>   
+            <small>(se utilizar mais que um valor utilize um "x" para separar)</small>
+        </td>
+        <td>
+        	<button id="optimus" class="optimus" onclick="openD();">Colocar Cortante Optimus</button>
+        </td>
+        <td>
+        	<button id="optimus-remove" class="optimus-remove" onclick="openR();">Remover Cortante Optimus</button>
+        </td>
+      </tr>
+</table>           
+<?=$this->partial('partials/cortantesoptimus.phtml');?>
+<?=$this->partial('partials/cortantesoptimusdelete.phtml');?>
+<br />
+<br />

@@ -1,0 +1,60 @@
+<?=$this->partial('partials/searchproducao.phtml');?>
+<div align="center" style="padding-top: 20px"><br />
+<br />
+<h4>Resultados</h4>
+
+<?php if (count($this->results ) > 0) :?>
+
+<table class="bordered">
+	<tr>
+		<th>Reg</th>
+		<th>Tipo<br />Obra</th>
+		<th>Cliente</th>
+		<th>Descri&ccedil;&atilde;o</th>
+		<th>C&oacute;digo</th>
+		<th>OC</th>
+		<th>Data<br />
+		In&iacute;cio</th>
+		<th>Data<br />
+		Pedida</th>
+		<th>Qtd<br />
+		Pedida</th>
+	</tr>
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+foreach ($this->results as $name) :
+    ?>
+    
+    
+<tr class="<?=$color->display($i);?>">
+		<?php if (count($this->obras->getValues($name['j_number'])) > 0 ) : ?>
+		<td class="spec"><a href="/cockpit/preview/<?=$name['j_number'];?>"><?=$name['j_number'];?></a></td>
+        <?php else: ?>
+		<td class="specalt"><?=$name['j_number'];?></td>
+        <?php endif;?>
+		<td><?=App_Change::fundo($name['j_type']);?></td>
+		<td><?=$name['j_customer'];?></td>
+		<td><?=$name['j_title1'];?></td>
+		<td><?=$name['j_title2'];?></td>
+		<td><?=$name['j_ordnum'];?></td>
+		<td><?=App_Change::date($name['j_datein']);?></td>
+		<td><?=App_Change::date($name['j_deldate']);?></td>
+		<td><?=$name['j_qty_ordered'];?></td>
+</tr>
+<?php
+    $i ++;
+endforeach;
+?>
+
+</table>
+<p>
+<?=$this->paginationControl($this->results, 'Sliding', 'pagination.phtml');?>
+</p>
+<?php else :?>
+
+<h4>N&atilde;o existem trabalhos em produ&ccedil;&atilde;o. </h4>
+
+<?php endif;?>
+</div>

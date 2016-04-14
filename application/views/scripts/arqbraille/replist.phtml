@@ -1,0 +1,67 @@
+<?php if (count($this->pecas) > 0):?>
+<div class="widget-box widget-color-blue">
+	<!-- #section:custom/widget-box.options -->
+	<div class="widget-header">
+		<h5 class="widget-title bigger lighter pull-left">
+			<i class="ace-icon fa fa-table"></i>
+			Listagem Repetição de Peças
+		</h5>
+
+		<div class="widget-toolbar no-border" >
+			<label class="pull-right inline">
+				<small class="muted">Opções:</small>
+				<input id="id-pills-stacked" type="checkbox" class="ace ace-switch ace-switch-3">
+				<span class="lbl middle"></span>
+			</label>
+		</div>
+	</div>
+	<div class="widget-body">
+		<div class="widget-main no-padding">
+			<table class="table table-bordered table-striped" id="arqbraille-rep-pecas-tb">
+				<thead>
+				    <tr>
+				        <th>Qtd</th>
+				        <th>Data</th>
+				        <th>Oxidação</th>
+				        <th>Partido</th>
+				        <th>Esmagado</th>
+				        <th>Cort. Novo</th>
+					    <th id="arqbraille-rep-th" style="display: none;">Opções</th>
+				    </tr>
+			    </thead>
+				<tbody>
+		<?php $i = 1; ?>
+		<?php foreach ($this->pecas as $peca):?>
+				<span id="arqbraille-rep-pecas-tr-span-form<?=$i?>"></span>
+					<tr id="arqbraille-rep-pecas-tr-id-<?=$peca['id']?>">
+				        <td id="arqbraille-rep-pecas-id-<?=$peca['id']?>"><?=$peca['pecas']?></td>
+				        <td id="arqbraille-rep-pecas-dt-<?=$peca['id']?>"><?=$peca['data']?></td>
+				        <td id="arqbraille-rep-pecas-ox-<?=$peca['id']?>" class="text-right"><?=$nv = ($peca['oxidacao'] == 1 ? "X" : "-")?></td>
+				        <td id="arqbraille-rep-pecas-pt-<?=$peca['id']?>" class="text-right"><?=$nv = ($peca['partidos'] == 1 ? "X" : "-")?></td>
+				        <td id="arqbraille-rep-pecas-em-<?=$peca['id']?>" class="text-right"><?=$nv = ($peca['esmagados'] == 1 ? "X" : "-")?></td>
+				        <td id="arqbraille-rep-pecas-cn-<?=$peca['id']?>" class="text-right"><?=$nv = ($peca['novo'] == 1 ? "X" : "-")?></td>
+						<td class="hidden-sm hidden-xs action-buttons" id="arqbraille-rep-td-<?=$i?>" style="display: none">
+							<a class="green" href="#" onclick="arqbrailleEdit(<?=$peca['id'] . "," . $i?>)"><i class="ace-icon fa fa-pencil bigger-130"></i></a>
+							<a class="red"   href="#" onclick="arqbrailleTrash(<?=$peca['id'] . "," . $i?>)"><i class="ace-icon fa fa-trash-o bigger-130"></i></a>
+						</td>
+					</tr>
+			<span id="arqbraille-rep-pecas-tr-span-endform<?=$i?>"></span>
+		<?php $i++;?>
+		<?php endforeach;?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script type='text/javascript' src='/js/arqbraille/replist.js'></script>
+<?php else :?>
+
+	<div class="alert alert-info">
+
+		<strong><i class="fa fa-check"></i>&nbsp;</strong>
+			Não existem repetições para este Braille.
+		<br>
+	</div>
+
+
+<?php endif;?>

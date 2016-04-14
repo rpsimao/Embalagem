@@ -1,0 +1,20 @@
+<?php
+$this->placeholder('js')->set('
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+$("button, input:submit").button();
+});
+</script>');
+
+$datepicker1 = App_Javascript_Date_Helper::generateSingleDatePickers('dataenvio');
+$datepicker2 = App_Javascript_Date_Helper::generateSingleDatePickers('datapedida');
+echo $datepicker1 . $datepicker2;
+
+?>
+<div id="cont">
+<fieldset><legend>Executar Cortante</legend>
+<span id="errmsg" style="color: white;background-color: red;width: 50px;height: 20px;padding: 5px;display: none;margin-bottom: 8px;"></span>
+<br />
+<?=$this->form->render();?>
+</fieldset>
+</div>

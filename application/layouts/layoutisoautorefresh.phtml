@@ -1,0 +1,64 @@
+<?=$this->doctype();?>
+<html>
+<head>
+<title>Fernandes &amp; Terceiro, S.A. :: Embalagem Database</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<?=$this->headMeta();?>
+<?=$this->headLink();?>
+<?=$this->headScript();?>
+	<script type="text/javascript" src="http://cdn.fterceiro.pt/library/js/jquery/latest/min.js"></script>
+	<script type="text/javascript" src="http://cdn.fterceiro.pt/library/js/jqueryui/latest/min.js"></script>
+	<script type="text/javascript" src="/js/menu.js"></script>
+	<script type="text/javascript" src="/js/jquery.clipboard.min.js"></script>
+<?=$this->placeholder('js');?>
+<?=$this->placeholder('scripts');?>
+
+<script type="text/JavaScript">
+<!--
+function timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
+//   -->
+</script>
+
+</head>
+<body onload="JavaScript:timedRefresh(60000);">
+<div id="growl"></div>
+<div id="header">
+
+<table style="float:right;margin-right:25px;text-align:center;" cellpadding="0">
+    <tr>
+        <td><a href="#" id="search-producao"><img style="border:none;" src="/images/icons/search.png" width="30px" height="28px" /></a></td>
+        <td style="padding-left:35px;"><?=$this->partial('pagname.phtml');?></td>
+    </tr>
+    <tr>
+        <td>Procurar</td>
+    </tr>    
+</table>
+<?=$this->partial('menu2.phtml');?>
+</div>
+<div id="container">
+<?php
+echo $this->layout()->content;
+?>
+<div class="clearit"></div>
+</div>
+<script type="text/javascript">
+
+$('#search-producao').click(function() {
+    /*if ($(this).attr('value') == 'show') {
+        $(this).attr('value', 'hide');
+        $('#accordion-search').slideDown();
+    } else {
+        $(this).attr('value', 'show');
+        $('#accordion-search').slideUp();
+    }*/
+
+    /*$('#accordion-search').slideToggle();*/
+
+	$('#accordion-search').fadeIn('slow');
+    });
+
+</script>
+</body>
+</html>

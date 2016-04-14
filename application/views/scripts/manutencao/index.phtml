@@ -1,0 +1,12 @@
+<div id="cont">
+<?php
+$msg = '<p class="umbocadinhomaior">Este m&oacute;dulo da aplica&ccedil;&atilde;o est&aacute; tempor&aacute;riamente em manuten&ccedil;&atilde;o / reconstru&ccedil;&atilde;o.</p>';
+$msg .='<p>Se necessitar contacte o Administrador de Sistemas:<br />';
+$msg .= '<a href="mailto:ricardo.simao@fterceiro.pt">Ricardo Simão</a> - Ext. 253</p>';
+
+$newmsg = new App_Messages();
+$newmsg->setMessageType('info');
+$newmsg->setMessage($msg);
+echo $newmsg->displayMessage();
+?>
+</div>

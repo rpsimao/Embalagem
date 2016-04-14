@@ -1,0 +1,14 @@
+<div class="btn-group">
+	<button data-toggle="dropdown" class="btn btn-xs btn-primary btn-white dropdown-toggle" style="margin-left: 6px;">
+		Clientes
+		<i class="ace-icon fa fa-angle-down icon-on-right"></i>
+	</button>
+
+	<ul class="dropdown-menu">
+
+		<?php foreach ($this->clientes as $cliente): ?>
+
+			<li><a href="#" onclick="setValueClienteChapasRecuperadas('<?=$cliente['cliente'];?>')"><?=$cliente['cliente'];?></a></li>
+		<?php endforeach; ?>
+	</ul>
+</div>

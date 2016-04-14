@@ -1,0 +1,50 @@
+<script type="text/javascript">
+<!--
+function search(){
+	var myTextField = document.getElementById('codf3');
+	var id = myTextField.value;
+	window.location = "/labs/view/id/" + id;
+}
+
+function search1(){
+	var myTextField1 = document.getElementById('codcliente');
+	var id1 = myTextField1.value;
+	window.location = "/labs/view/cc/" + id1;
+	}
+
+
+
+function confirm_delete_product(codf3, id) {
+input_box=confirm("Tem a certeza que deseja apagar o Código F3 " + codf3 + "?");
+if (input_box==true)
+ { 
+	window.location = "/labs/deleterecord/" + id;
+ } else {
+	return false; 
+ }
+}
+//-->
+</script>
+<div id="primarycontainer">
+<div align="center"><br />
+<table><tr><td>
+Insira o C&oacute;digo F3:&nbsp; <input type="text"
+	size="15" id="codf3" name="codf3" /> <input type='button'
+	onclick='search();' value='Procurar' />
+</td><td>Insira o C&oacute;digo Cliente:&nbsp; <input type="text"
+	size="15" id="codcliente" name="codcliente" /> <input type='button'
+	onclick='search1();' value='Procurar' /></td></tr></table>
+	<br />
+	<b><a href="/registos/new">+ criar novo registo</a></b>
+	</div>
+
+<div id="primarycontent">
+<br />
+<fieldset><legend>In&iacute;cio de sess&atilde;o</legend>
+
+<?php
+echo $this->form->render();
+?>
+</fieldset>
+</div>
+</div>

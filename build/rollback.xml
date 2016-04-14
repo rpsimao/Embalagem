@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Application"  default="main" basedir=".">
+
+	<!-- Set date -->
+	<tstamp>
+		<format property="DATE" pattern="%c" locale="pt_PT" />
+	</tstamp>
+	
+<!-- Set Rollbackversion -->
+	<taskdef name="rollback" classname="tasks.ext.RPSGetRollBackTask" />
+	<target name="get.rollback" description="">
+		<rollback file="rollback.txt" property="rollback.file"/>
+	</target>
+	
+	<target name="prepare" depends="get.rollback">
+		<!-- Create new symlink to maintenece page -->
+		
+		 <property file="main.properties"/>
+		
+		<echo>----------------------------------</echo>
+		<echo>|   Redirect to maintenence...   |</echo>
+		<echo>----------------------------------</echo>
+		<exec command="ssh ${sync.remote.host} 'rm ${remote.live.dir}'" />
+		<exec command="ssh ${sync.remote.host} 'ln -s ${remote.maintence.dir} ${remote.live.dir}'" />
+		
+		<!-- Delete current app -->
+		<echo>------------------------------------</echo>
+		<echo>|      Delete Current App...       |</echo>
+		<echo>------------------------------------</echo>
+		<exec command="ssh ${sync.remote.host} 'rm -R ${remote.deploy.dir}'" />
+		
+		<echo>----------------------------------------</echo>
+		<echo>|      Untar Last Version App...       |</echo>
+		<echo>----------------------------------------</echo>
+		<exec command="ssh ${sync.remote.host} 'tar --directory / -zxvf ${remote.backup.dir}${rollback.file}'" />
+	</target>	
+	
+		<target name="live" depends="prepare">
+			<!-- redirect to Live -->
+			<echo>-----------------------------------</echo>
+		    <echo>|     Redirect to Live Site...    |</echo>
+		    <echo>-----------------------------------</echo>
+            <!--<exec command="ssh ${sync.remote.host} 'rm ${remote.live.dir}'" />-->
+            <exec command="ssh ${sync.remote.host} 'ln -s ${remote.deploy.dir} ${remote.live.dir}'" />
+        </target>
+
+    <target name="main" depends="get.rollback,prepare,live">
+            <echo>=======================================================================</echo>
+            <echo>=======================================================================</echo>
+            <echo> Application ${APP_NAME} successfully Rollback to last version         </echo>
+            <echo>=======================================================================</echo>
+            <echo>=======================================================================</echo>
+        </target>
+</project>

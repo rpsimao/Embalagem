@@ -1,0 +1,57 @@
+<div id="dameespaco">
+<?php if (count($this->cortante) > 0):?>
+<br />
+<h3>Cortante <?=$this->cortante['codigo'];?></h3>
+
+<table id="the-table-producao">
+	<tr>
+		<th>Estante</th>
+		<th>C&oacute;digo</th>
+		<th>Cortante</th>
+		<th>A</th>
+		<th>B</th>
+		<th>H</th>
+		<th>f</th>
+		<th>g</th>
+		<th>Pala</th>
+		<th>Tipo</th>
+		<th>Formato Util</th>
+		<th>Formato Entrada</th>
+		<th>Espa&ccedil;o</th>
+		<th>Braille</th>
+		<th>Braille</th>
+		<th>Braille</th>
+		<th>Formato Std</th>
+		<th>Descasque</th>
+	</tr>
+
+<tr>
+		<td align="center" class="spec"><?=$this->cortante['estante'];?></td>
+		<td align="center"><a
+			href="/cortantes/display/<?=str_replace(" ", "", $this->cortante['codigo']);?>"><?=str_replace(" ", "", $this->cortante['codigo']);?></a></td>
+		<td><?=$this->cortante['cortante'];?></td>
+		<td align="center"><?=$this->cortante['A'];?></td>
+		<td align="center"><?=$this->cortante['B'];?></td>
+		<td align="center"><?=$this->cortante['H'];?></td>
+		<td align="center"><?=$this->cortante['f'];?></td>
+		<td align="center"><?=$this->cortante['g'];?></td>
+		<td align="center"><?=$this->cortante['pala'];?></td>
+		<td align="center"><?=$this->cortante['tipo'];?></td>
+		<td align="center"><?=$this->cortante['formato_util'];?></td>
+		<td align="center"><?=$this->cortante['formato_entrada'];?></td>
+		<td align="center"><?=$this->cortante['espaco'];?></td>
+		<td align="center"><?=$this->cortante['braille1'];?></td>
+		<td align="center"><?=$this->cortante['braille2'];?></td>
+		<td align="center"><?=$this->cortante['braille3'];?></td>
+		<td align="center"><?=$this->cortante['formato_std'];?></td>
+		<td align="center"><?=$this->cortante['descasque'];?></td>
+		
+
+</tr>
+</table>
+<?php else:?>
+
+<p>N&atilde;o existe(m) cortante(s) para este modelo.</p>
+
+<?php endif;?>
+</div>

@@ -1,0 +1,31 @@
+<div class="center">
+	<ul class="pagination">
+
+	        <!-- First page link -->
+	        <?php if (isset($this->previous)): ?>
+	              <li><a href="<?php echo $this->url(array('page' => $this->first)); ?>"><i class="ace-icon fa fa-angle-double-left"></i></a></li>
+
+	        <?php endif; ?>
+
+	        <!-- Previous page link -->
+
+
+	        <!-- Numbered page links -->
+	        <?php foreach ($this->pagesInRange as $page): ?>
+	            <?php if ($page != $this->current): ?>
+	               <li><a href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page; ?></a></li>
+	            <?php else: ?>
+	                <li class="active"><a href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page; ?></a></li>
+	            <?php endif; ?>
+	        <?php endforeach; ?>
+	        <!-- Next page link -->
+
+	        <!-- Last page link -->
+	        <?php if (isset($this->next)): ?>
+	              <li><a href="<?php echo $this->url(array('page' => $this->last)); ?>"><i class="ace-icon fa fa-angle-double-right"></i></a></li>
+
+	        <?php endif; ?>
+	        <br><small>&nbsp; P&aacute;g. <?php echo $this->current; ?> de <?php echo $this->last; ?></small>
+
+	 </ul>
+</div>

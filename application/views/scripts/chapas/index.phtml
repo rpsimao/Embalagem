@@ -1,0 +1,115 @@
+
+<script type="text/javascript">
+<!--
+function confirm_delete_product(registo) {
+input_box=confirm("Tem a certeza que deseja apagar o registo " + registo + "?");
+if (input_box==true)
+ { 
+	window.location = "/chapas/delete/" + registo;
+ } else {
+	return false; 
+ }
+}
+
+function searchClient(client)
+{
+	 	$.ajax({
+			type: 'GET',
+			url: '/ajax/chapasrecuperadascliente',
+			data: 'cli=' + client,
+			dataType: 'json',
+			
+			success: function(response) {
+
+				var json = eval(response);
+				var total = parseInt(json[0].verniz)+parseInt(json[0].cores);
+
+				$('#ajax-client').html('<table id="the-table-producao"><tr><th>Total chapas recuperadas Cliente: '+client+'</th></tr><tr><td align="center" id="effect"><b>Chapas Verniz: '+json[0].verniz+'</b> - <b>Chapas Cores: '+json[0].cores+'</b>&nbsp;&nbsp;&nbsp;<b>Total: '+total+'</b></td></tr></table>');
+				$("#effect").effect('highlight', 1500);
+				/*$("#effect").effect('pulsate', "fast");*/
+			}});
+
+
+	
+}
+
+
+
+//-->
+</script><div id="dameespaco">
+<table class="chapasrec">
+	<tr>
+		<td><a href="/chapas/new" id="registonew">+ criar novo registo</a></td>
+		
+		<td>
+		<form action="/chapas/search" method="post">Insira o Nº Obra:&nbsp; <input
+			type="text" size="15" id="obra" name="obra"></input> <input
+			type="submit" value="Procurar"></input></form>
+		</td>
+		<td>Filtro: <select id="clients" onchange="searchClient(this.options[this.selectedIndex].value);">
+				<option value="">Escolha o cliente</option>
+			<?php foreach ($this->clients as $client): ?>
+				<option value="<?=$client['cliente'];?>" ><?=$client['cliente'];?></option>
+			    
+			<?php endforeach;?>
+		</select></td>
+	</tr>
+</table>
+</div>
+<div id="ajax-client">
+<table class="bordered red10">
+	<caption>Total chapas recuperadas</caption>
+	<tr>
+		<?php foreach ($this->chRecuperadas as $ano => $qtd): ?>
+			<th><?=$ano;?></th>
+		<?endforeach ?>
+	</tr>
+	<tr>
+		<?php foreach ($this->chRecuperadas as $ano => $qtd): ?>
+			<td align="center"><b><?=$qtd;?></b></td>
+		<?endforeach ?>
+	</tr>
+</table>
+</div>
+<br />
+<br />
+<div align="center">
+<table class="bordered red60">
+	<tr>
+		<th>Obra</th>
+		<th>Cliente</th>
+		<th>Cores</th>
+		<th>Verniz</th>
+		<th>Data</th>
+		<th>Apagar</th>
+	</tr>
+	
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+?>
+<?php
+
+foreach ($this->paginator as $value) :
+    ?>
+<tr class="<?=$color->display($i);?>">
+		<td class="spec"><a href="/chapas/edit/<?=$value['obra'];?>"><?=$value['obra'];?></a></td>
+		<td><?=$value['cliente'];?></td>
+		<td><?=$value['cores'];?></td>
+		<td><?=$value['verniz'];?></td>
+		<td><?=$value['dia'];?></td>
+		<td><a href="Javascript:confirm_delete_product('<?=$value['obra']?>')" style="color: red">Apagar</a></td>
+</tr>		
+<?php
+    $i ++;
+endforeach;
+?>
+
+</table>
+</div>
+<br />
+<?=$this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml');?>
+<script>
+$(function(){$("#registonew").button();});
+</script>

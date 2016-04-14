@@ -1,0 +1,52 @@
+<div align="center"><br />
+<br />
+<br />
+<h2>Trabalhos em Prova</h2>
+<table class="bordered">
+	<tr>
+		<th>Obra</th>
+		<th>Laborat&oacute;rio</th>
+		<th>C&oacute;digo Prod.</th>
+		<th>C&oacute;digo F3</th>
+		<th>Descri&ccedil;&atilde;o</th>
+		<th>In&iacute;cio</th>
+		<th>Fim</th>
+		<th>Dura&ccedil;&atilde;o <small>(min.)</small></th>
+	</tr>
+<?php
+
+
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', '#eff9fe');
+foreach ($this->provas as $jobs) :
+    
+    $getJobParameters = $this->optimus->genericQuery("select * from `job` where `j_number` ="  . $jobs["tm_job"]);
+    $getMyParams = $this->job->getValues($jobs["tm_job"]);
+    if ($jobs['tm_act'] == "PRE PAG EM" && $getJobParameters['j_status'] == 10) :
+        ?>
+<tr bgcolor="<?=$color->display($i);?>">
+		<td><a href="/cockpit/preview/<?=$jobs['tm_job'];?>"><?=$jobs['tm_job'];?></a></td>
+		<td><?=$getJobParameters['j_customer'];?></td>
+		<td><?=$getMyParams['codproduto'];?></td>
+		<td><?=$getMyParams['codf3'];?></td>
+		<td><?=$getJobParameters['j_title1'];?></td>
+		<td><?=$jobs['tm_start']?></td>
+		<td><?=$jobs['tm_end']?></td>
+		<td><?=$jobs['tm_duration']?></td>
+
+
+	</tr>		
+        
+<?php
+        $i ++;
+    
+    
+endif;
+endforeach;
+?>
+</table>
+<p>
+<?=$this->paginationControl($this->provas, 'Sliding', 'pagination.phtml');?>
+</p>
+</div>

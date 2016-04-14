@@ -1,0 +1,12 @@
+<?php
+echo $this->partial('partials/registos.phtml');
+?>
+
+<div id="cont">
+<fieldset><legend>Criar Novo Registo</legend>
+<br />
+<?=$this->form->render();?>
+</fieldset></div>
+<script type="text/javascript">
+$("input:button, input:submit").button();
+</script> 

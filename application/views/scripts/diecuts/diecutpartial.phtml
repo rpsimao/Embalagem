@@ -1,0 +1,69 @@
+<div class="page-content">
+
+	<div id="diecut_search_thumbnail" style="display: none;">
+
+		<button class="btn btn-light btn-sm" id="diecut_topsearch_display"><i class="ace-icon fa fa-search"></i> </button>
+
+	</div>
+	<div class="row" id="diecut_top_search">
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+			<div class="page-header">
+				<h1>Arquivo de Cortantes
+					<div class="pull-right">
+						<button class="btn btn-white btn-info btn-bold" id="create_new_diecut">
+							<i class="ace-icon fa fa-wrench bigger-120 blue"></i>
+							Criar novo cortante
+						</button>
+					</div>
+				</h1>
+
+			</div>
+		</div>
+		<div class="col-xs-6">
+
+			<div id="diecuts_form_errors"></div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cortante: </label>
+
+				<div class="input-group col-sm-5">
+					<span class="input-group-addon"><i class="ace-icon fa fa-search"></i></span>
+					<input class="form-control input-mask-search col-xs-2" type="text" id="cortante" autocomplete="off" placeholder="Utilize x ou * como separador">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="inlineRadioOptions"> Opções: </label>
+
+				<label class="radio-inline">
+					<input type="radio" name="opcoes" id="opcoes1" value="1" class="ace"><span class="lbl"> Código</span>
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="opcoes" id="opcoes2" value="2" class="ace"><span class="lbl"> A</span>
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="opcoes" id="opcoes3" value="3" class="ace"><span class="lbl"> A & B</span>
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="opcoes" id="opcoes4" value="4" class="ace"><span class="lbl"> A & B & H</span>
+				</label>
+
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+				<button type="button" class="btn btn-info btn-sm" id="procurarCortante">
+					Procurar
+				</button>
+			</div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="diecuts_results"></div>
+		</div>
+
+	</div>
+</div>

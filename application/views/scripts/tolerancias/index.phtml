@@ -1,0 +1,473 @@
+<style>
+<!--
+#mytable {
+	width: 630px;
+	padding: 0;
+	margin: 0;
+}
+
+caption {
+	padding: 0 0 5px 0;
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+
+#mytable .caption1 {
+	padding: 0 0 5px 0;
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+
+th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA url(/images/bg_header.jpg) no-repeat;
+}
+
+th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+th.nobgborder {
+	border-top: 0;
+	border-left: 0;
+	border-bottom: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	padding: 6px 6px 6px 12px;
+	color: #4f6b72;
+}
+
+td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+td.altbold {
+	background: #F5FAFA;
+	color: #797268;
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.bold {
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.bolduv {
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	background: #faffda;
+}
+
+th.spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff url(/images/bullet1.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+th.specuv {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #faffda url(/images/bullet1.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.uv {
+	background: #faffda;
+}
+
+th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #f5fafa url(/images/bullet2.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+
+td.empty {
+	border: none;
+}
+
+tr.empty {
+	border-right: 0;
+}
+
+.totals {
+	font-weight: bold;
+	border: none;
+}
+-->
+</style>
+
+<div id="esq">
+<div style="padding-top: 10px;">
+<table id="mytable" cellspacing="0" >
+	<caption>Par&acirc;metros de Produ&ccedil;&atilde;o para % ESTRAGOS</caption>
+
+	<tr>
+		<th scope="col" class="nobgborder"></th>
+		<th scope="col" class="right"></th>
+		<th scope="col" class="left">Planos (estragos)</th>
+		<th scope="col"></th>
+	</tr>
+	<tr>
+		<th scope="col" class="nobg">at&eacute; 10.000 planos</th>
+		<th scope="col">Impressão + Verniz</th>
+		<th scope="col">c/vinco e colagem</th>
+		<th scope="col">Total</th>
+	</tr>
+	<tr>
+		<th scope="row" class="specalt">c/ 1 cor (2
+		entradas)</th>
+		<td class="alt">200</td>
+		<td class="alt">50</td>
+		<td class="altbold">250</td>
+	</tr>
+	<tr>
+		<th scope="row" class="spec">c/ 2 cores (2
+		entradas)</th>
+		<td>200</td>
+		<td>50</td>
+		<td class="bold">250</td>
+	</tr>
+
+	<tr>
+		<th scope="row" class="specalt">c/ 3 cores (3
+		entradas)</th>
+		<td class="alt">300</td>
+		<td class="alt">50</td>
+		<td class="altbold">350</td>
+	</tr>
+	<tr>
+		<th scope="row" class="spec">c/ 4 cores (3
+		entradas)</th>
+		<td>350</td>
+		<td>50</td>
+		<td class="bold">400</td>
+	</tr>
+
+	<tr>
+		<th scope="row" class="specalt">c/ 5 cores (4
+		entradas)</th>
+		<td class="alt">400</td>
+		<td class="alt">50</td>
+		<td class="altbold">450</td>
+	</tr>
+	<tr>
+		<th scope="row" class="specuv">u.v./plast.
+		(acresce)</th>
+		<td class="uv">50</td>
+		<td class="uv">--</td>
+		<td class="bolduv">50</td>
+	</tr>
+	<tr class="empty">
+		<td class="empty">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<th scope="col" class="nobg">de 10.000 at&eacute;
+		20.000 planos</th>
+		<th scope="col" >Impress&atilde;o + Verniz</th>
+		<th scope="col" >c/vinco e colagem</th>
+		<th scope="col" >Total</th>
+	</tr>
+
+	<tr>
+		<th scope="row" class="specalt">c/ 1 cor (2
+		entradas)</th>
+		<td class="alt">250</td>
+		<td class="alt">50</td>
+		<td class="altbold">300</td>
+	</tr>
+	<tr>
+		<th scope="row" abbr="Frontside bus" class="spec">c/ 2 cores (2
+		entradas)</th>
+		<td>300</td>
+		<td>50</td>
+		<td class="bold">350</td>
+	</tr>
+
+	<tr>
+		<th scope="row" abbr="G5 Processor" class="specalt">c/ 3 cores (3
+		entradas)</th>
+		<td class="alt">350</td>
+		<td class="alt">50</td>
+		<td class="altbold">400</td>
+	</tr>
+	<tr>
+		<th scope="row" abbr="Frontside bus" class="spec">c/ 4 cores (3
+		entradas)</th>
+		<td>400</td>
+		<td>50</td>
+		<td class="bold">450</td>
+	</tr>
+
+	<tr>
+		<th scope="row" abbr="G5 Processor" class="specalt">c/ 5 cores (4
+		entradas)</th>
+		<td class="alt">450</td>
+		<td class="alt">50</td>
+		<td class="altbold">500</td>
+	</tr>
+	<tr>
+		<th scope="row" abbr="Frontside bus" class="specuv">u.v./plast.
+		(acresce)</th>
+		<td class="uv">75</td>
+		<td class="uv">--</td>
+		<td class="bolduv">75</td>
+	</tr>
+</table>
+</div>
+</div>
+<div id="esq">
+<div class="calc"><script language="javascript">
+
+function onlyNumbers(evt)
+{
+    var e = event || evt; // for trans-browser compatibility
+    var charCode = e.which || e.keyCode;
+
+    if (charCode > 31 && (charCode < 45 || charCode > 57))
+        return false;
+
+    return true;
+
+}
+
+
+function DoMath()
+{
+	var tiragem        = document.frmData.tiragem.value;
+	var tolerancia     = document.frmData.tolerancia.value / 100;
+	var aproveitamento = document.frmData.aproveitamento.value;
+	var subtotal       = (tiragem*(1+tolerancia))/aproveitamento;
+	var cores          = document.frmData.cores.value;
+	var estragos       = document.frmData.estragos.value;
+	var total          =  parseInt(document.frmData.subtotal.value) +  parseInt(document.frmData.estragos.value);
+
+document.frmData.subtotal.value = Math.round(subtotal);
+
+document.frmData.total.value = Math.round(total);
+}
+function DoMath1()
+{
+var tiragem1        = document.frmData1.tiragem1.value;
+var tolerancia1     = document.frmData1.tolerancia1.value / 100;
+var aproveitamento1 = document.frmData1.aproveitamento1.value;
+var subtotal1       = (tiragem1*(1+tolerancia1))/aproveitamento1;
+var cores1          = document.frmData1.cores1.value;
+var estragos1       = document.frmData1.estragos1.value;
+var total1          =  (parseInt(document.frmData1.subtotal1.value) +  parseInt(document.frmData1.estragos1.value)) /2;
+
+document.frmData1.subtotal1.value = Math.round(subtotal1);
+
+document.frmData1.total1.value = Math.round(total1);
+}
+
+</script>
+<h6>Determina&ccedil;&atilde;o do n&ordm; folhas a aviar por obra</h6>
+<table id="the-table-producao" cellspacing="0">
+	<tr>
+		<td>
+		<p><b>Fto M&aacute;quina</b></p>
+		<form name="frmData" method="POST">
+		<p>Tiragem:<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath()"
+			onkeypress="return onlyNumbers();" name="tiragem" size="20"></p>
+		<p>%Toler&acirc;ncia entrega:<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath()"
+			onkeypress="return onlyNumbers();" name="tolerancia" size="20"></p>
+		<p>Aproveitamento Imp:<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath()"
+			onkeypress="return onlyNumbers();" name="aproveitamento" size="20"></p>
+		<p>SubTotal:<br />
+		<input type="text" name="subtotal" size="20" class="totals"><br />
+		</p>
+		<p>N&ordm; Cores:<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath()"
+			onkeypress="return onlyNumbers();" name="cores" size="20"></p>
+		<p>Planos (estragos):<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath()"
+			onkeypress="return onlyNumbers();" name="estragos" size="20"></p>
+		<p>N&ordm; Folhas a Aviar:<br />
+		<input type="text" name="total" size="20" class="totals" /><br />
+		</p>
+		</form>
+		</td>
+		<td>
+		<p><b>Ftos M&aacute;quina (1/2 formato)</b></p>
+		<form name="frmData1" method="POST">
+		<p>Tiragem:<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath1()"
+			onkeypress="return onlyNumbers();" name="tiragem1" size="20"></p>
+		<p>%Toler&acirc;ncia entrega:<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath1()"
+			onkeypress="return onlyNumbers();" name="tolerancia1" size="20"></p>
+		<p>Aproveitamento Imp:<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath1()"
+			onkeypress="return onlyNumbers();" name="aproveitamento1" size="20"></p>
+		<p>SubTotal:<br />
+		<input type="text" name="subtotal1" size="20" class="totals"><br />
+		</p>
+		<p>N&ordm; Cores:<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath1()"
+			onkeypress="return onlyNumbers();" name="cores1" size="20"></p>
+		<p>Planos (estragos):<br />
+		<input type="text" onchange="DoMath()" onkeyup="DoMath1()"
+			onkeypress="return onlyNumbers();" name="estragos1" size="20"></p>
+		<p>N&ordm; Folhas a Aviar:<br />
+		<input type="text" name="total1" size="20" class="totals" /><br />
+		</p>
+		</form>
+      </td>
+	</tr>
+  </table>
+</div>
+
+</div>
+<div style="clear:both;"></div>
+<div style="padding-top: 20px; margin-bottom: 20px;">
+<table id="the-table-producao" cellspacing="0"
+	summary="The technical specifications of the Apple PowerMac G5 series">
+	<caption class="caption1">Par&acirc;metros de Produ&ccedil;&atilde;o para %
+	TOLER&Acirc;NCIAS_hist&oacute;rico 2009</caption>
+
+	<tr>
+		<th scope="col" abbr="Configurations" class="nobg">Cliente</th>
+		<th scope="col" abbr="Dual 1.8" class="right"></th>
+		<th scope="col" abbr="Dual 2" class="left">0-5.000cxs</th>
+		<th scope="col" abbr="Dual 2.5">5.500 - 10.000cxs</th>
+		<th scope="col" abbr="Dual 2.5">10.500-50.000cxs</th>
+		<th scope="col" abbr="Dual 2.5">50.500-100.000cxs</th>
+		<th scope="col" abbr="Dual 2.5">&gt;100.500cxs</th>
+	</tr>
+
+	<tr>
+		<th rowspan="2" class="spec">Lusomedicamenta:</th>
+		<td>% n&atilde;o entregue (face &agrave; tol.)</td>
+		<td>1.8%</td>
+		<td>4.0%</td>
+		<td>1.7%</td>
+		<td>3.0%</td>
+		<td>3.8%</td>
+	</tr>
+	<tr>
+		<td>toler&acirc;ncia acordada (%)</td>
+		<td>10%</td>
+		<td>10%</td>
+		<td>5.0%</td>
+		<td>5.0%</td>
+		<td>5.0%</td>
+	</tr>
+	
+	<tr>
+		<th rowspan="2" class="specalt">Sofarimex:</th>
+		<td class="alt">% n&atilde;o entregue (face &agrave; tol.)</td>
+		<td class="alt">0.3%</td>
+		<td class="alt">0.9%</td>
+		<td class="alt">1.9%</td>
+		<td class="alt">3.6%</td>
+		<td class="alt">4.6%</td>
+	</tr>
+	<tr>
+		<td class="alt">toler&acirc;ncia acordada (%)</td>
+		<td class="alt">5.0%</td>
+		<td class="alt">5.0%</td>
+		<td class="alt">5.0%</td>
+		<td class="alt">5.0%</td>
+		<td class="alt">5.0%</td>
+	</tr>
+	
+	
+	<tr>
+		<th rowspan="2" class="spec">Atlantic:</th>
+		<td>% n&atilde;o entregue (face &agrave; tol.)</td>
+		<td>1.5%</td>
+		<td>0.8%</td>
+		<td>0.9%</td>
+		<td>2.1%</td>
+		<td>1.7%</td>
+	</tr>
+	<tr>
+		<td>toler&acirc;ncia acordada (%)</td>
+		<td>3.0%</td>
+		<td>3.0%</td>
+		<td>3.0%</td>
+		<td>3.0%</td>
+		<td>3.0%</td>
+	</tr>
+	
+	<tr>
+		<th rowspan="2" class="specalt">Schering:</th>
+		<td class="alt">% n&atilde;o entregue (face &agrave; tol.)</td>
+		<td class="alt">--</td>
+		<td class="alt">--</td>
+		<td class="alt">2.9%</td>
+		<td class="alt">8.1%</td>
+		<td class="alt">10.0%</td>
+	</tr>
+	<tr>
+		<td class="alt">toler&acirc;ncia acordada (%)</td>
+		<td class="alt">10.0%</td>
+		<td class="alt">10.0%</td>
+		<td class="alt">10.0%</td>
+		<td class="alt">10.0%</td>
+		<td class="alt">10.0%</td>
+	</tr>
+	
+	<tr>
+		<th rowspan="2" class="spec">Edol:</th>
+		<td>% n&atilde;o entregue (face &agrave; tol.)</td>
+		<td>3.3%</td>
+		<td>0.0%</td>
+		<td>3.9%</td>
+		<td>7.7%</td>
+		<td>--</td>
+	</tr>
+	<tr>
+		<td>toler&acirc;ncia acordada (%)</td>
+		<td>3.0%</td>
+		<td>3.0%</td>
+		<td>3.0%</td>
+		<td>3.0%</td>
+		<td>3.0%</td>
+	</tr>
+	
+	<tr>
+		<th rowspan="2" class="specalt">Farmalabor:</th>
+		<td class="alt">% n&atilde;o entregue (face &agrave; tol.)</td>
+		<td class="alt">2.0%</td>
+		<td class="alt">1.1%</td>
+		<td class="alt">5.8%</td>
+		<td class="alt">7.2%</td>
+		<td class="alt">--</td>
+	</tr>
+	<tr>
+		<td class="alt">toler&acirc;ncia acordada (%)</td>
+		<td class="alt">10.0%</td>
+		<td class="alt">10.0%</td>
+		<td class="alt">10.0%</td>
+		<td class="alt">10.0%</td>
+		<td class="alt">10.0%</td>
+	</tr>
+</table>
+</div>
+
+
+

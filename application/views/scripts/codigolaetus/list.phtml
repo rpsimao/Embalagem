@@ -1,0 +1,60 @@
+<?php if ($this->errors) : ?>
+
+	<div class="page-header">
+		<h1>
+			Listar Código Laetus
+
+		</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<?=$this->form->render()?>
+		</div>
+	</div>
+
+<?php else: ?>
+
+
+	<div class="page-header">
+		<h1>
+			<i class="ace-icon fa fa-filter"></i> C&oacute;digo Laetus Cortante N&ordm;<?=$this->cortante;?>
+
+		</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+				<thead>
+					<tr>
+						<th>Cort. N&ordm;</th>
+						<th>Fto.</th>
+						<th>C&oacute;d. Laetus</th>
+						<th>Laborat&oacute;rio</th>
+						<th>Produto</th>
+						<th>C&oacute;d. F3</th>
+						<th>Editar</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php foreach ($this->laetus as $name) : ?>
+					<tr id="lt_tr-<?=$name['id'];?>">
+						<td class=""><?=$name['cortante'];?></td>
+						<td><?=$name['formato'];?></td>
+						<td><?=$name['codigolaetus'];?></td>
+						<td><?=$name['laboratorio'];?></td>
+						<td><?=$name['produto'];?></td>
+						<td><?=$name['codf3'];?></td>
+						<td id="lt_edit_row-<?=$name['id'];?>">
+							<a class="btn btn-xs btn-info" href="/codigolaetus/item/<?=$name['id'];?>"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+							<button class="btn btn-xs btn-danger" onclick="deleteLaetusCortante('<?=$name['id']?>','<?=$name['cortante']?>','<?=$name['codigolaetus']?>')"><i class="ace-icon fa fa-trash-o bigger-120"></i></button>
+						</td>
+					</tr>
+					<?php endforeach;?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<?php endif; ?>

@@ -1,0 +1,80 @@
+<div align="center">
+    <table id="the-table-100">
+        <tr>
+            <th>Formato</th>
+            <th>Cartolina</th>
+            <th>Laetus</th>
+        </tr>
+        <tr>
+            <td><?=$this->obraInfo['formato']?></td>
+            <td><?=$this->obraInfo['cartolina']?></td>
+            <td><?=$this->obraInfo['codlaetus']?></td>
+        </tr>
+    </table>
+    <br />
+    <table id="the-table-100">
+        <tr>
+            <th>Qtd.</th>
+            <th>Data Entrada</th>
+            <th>Data Pedida</th>
+        </tr>
+        <tr>
+            <td><?=$this->job['j_qty_ordered']?></td>
+            <td><?=$this->job['j_datein']?></td>
+            <td><?=$this->job['j_deldate']?></td>
+        </tr>
+    </table>
+    <?php foreach ($this->del as $del):?>
+    <br />
+    <table id="the-table-100">
+        <tr>
+            <th>Qtd. Entregue</th>
+            <th>Data Entrega</th>
+        </tr>
+        <tr>
+            <td><?=$del['del_quantity']?></td>
+            <td><?=$del['del_actual']?></td>
+        </tr>
+    </table>
+    <?php endforeach;?>
+    <br />
+    <table id="the-table-100">
+        <tr>
+            <th>Cores</th>
+            <th>Verniz Máq.</th>
+            <th>Verniz UV</th>
+        </tr>
+        <tr>
+            <td><?=$this->obraInfo['numcores']?></td>
+            <td><?=str_replace("Nao", "Não", $this->obraInfo['vernizmaq'])?></td>
+            <td><?=str_replace("Nao", "Não", $this->obraInfo['vernizuv'])?></td>
+        </tr>
+    </table>
+    <br />
+    <table id="the-table-100">
+        <tr>
+            <th>Verniz Água</th>
+            <th>Plastificação</th>
+            <th>Picote</th>
+        </tr>
+        <tr>
+            <td><?=str_replace("Nao", "Não", $this->obraInfo['vernizagua'])?></td>
+            <td><?=str_replace("Nao", "Não", $this->obraInfo['plastificacao'])?></td>
+            <td><?=str_replace("Nao", "Não", $this->obraInfo['picote'])?></td>
+        </tr>
+    </table>
+    <br />
+    <table id="the-table-100">
+        <tr>
+            <th>Relevo</th>
+            <th>Prova</th>
+            <th>Edição</th>
+        </tr>
+        <tr>
+            <td><?=str_replace("Nao", "Não", $this->obraInfo['relevo'])?></td>
+            <td><?=$this->obraInfo['prova']?></td>
+            <td><?=$this->obraInfo['edicao']?></td>
+        </tr>
+    </table>
+    
+</div>

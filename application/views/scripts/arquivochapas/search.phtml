@@ -1,0 +1,66 @@
+<div class="row">
+	<div class="col-xs-4 col-xs-2 widget-container-col ui-sortable">
+		<div class="widget-box ui-sortable-handle">
+			<div class="widget-header">
+				<h5 class="widget-title smaller"><i class="ace-icon fa fa-folder-o"></i>&nbsp;Arquivo</h5>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main padding-6">
+					<p class="text-info fa-2x" style="text-align: center">
+						<?=$this->results['arquivo']?>
+					</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+			<thead>
+			<tr>
+				<th>C&oacute;digo F3</th>
+				<th>Cortante</th>
+				<th>Vers&atilde;o</th>
+				<th>Produto</th>
+				<?=(empty($this->results['700_1000']) ? "": "<th>700x1000</th>" )?>
+				<?=(empty($this->results['1000_700']) ? "": "<th>1000x700</th>" )?>
+				<?=(empty($this->results['800_700']) ? "": "<th>800x700</th>" )?>
+				<?=(empty($this->results['700_800']) ? "": "<th>700x800</th>" )?>
+				<?=(empty($this->results['000_000']) ? "": "<th>000x000</th>" )?>
+				<?=(empty($this->results['550_800']) ? "": "<th>550x800</th>" )?>
+				<?=(empty($this->results['698_498']) ? "": "<th>698x498</th>" )?>
+				<?=(empty($this->results['698_398']) ? "": "<th>698x398</th>" )?>
+				<?=(empty($this->results['698_332']) ? "": "<th>698x332</th>" )?>
+				<th>Editar</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr class="text-info">
+				<td><?=$this->results['codf3']?></td>
+				<td><?=$this->results['cortante']?></td>
+				<td><?=$this->results['versao']?></td>
+				<td><?=$this->results['produto']?></td>
+				<?=(empty($this->results['700_1000']) ? "": "<td>".$this->results['700_1000'] . "</td>" )?>
+				<?=(empty($this->results['1000_700']) ? "": "<td>".$this->results['1000_700'] . "</td>" )?>
+				<?=(empty($this->results['800_700']) ? "": "<td>".$this->results['800_700'] . "</td>" )?>
+				<?=(empty($this->results['700_800']) ? "": "<td>".$this->results['700_800'] . "</td>" )?>
+				<?=(empty($this->results['000_000']) ? "": "<td>".$this->results['000_000'] . "</td>" )?>
+				<?=(empty($this->results['550_800']) ? "": "<td>".$this->results['550_800'] . "</td>" )?>
+				<?=(empty($this->results['698_498']) ? "": "<td>".$this->results['698_498'] . "</td>" )?>
+				<?=(empty($this->results['698_398']) ? "": "<td>".$this->results['698_398'] . "</td>" )?>
+				<?=(empty($this->results['698_332']) ? "": "<td>".$this->results['698_332'] . "</td>" )?>
+				<td>
+					<a href="/arquivochapas/editrecord/<?=$this->results['codf3']?>" class="btn btn-xs btn-info">
+						<i class="ace-icon fa fa-pencil bigger-120"></i>
+					</a>
+					<a href="#" on onclick="deleteArqChapasRecord(<?=$this->results['id']?>)" class="btn btn-xs btn-danger">
+						<i class="ace-icon fa fa-trash-o bigger-120"></i>
+					</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+

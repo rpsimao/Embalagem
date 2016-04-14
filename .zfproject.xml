@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<projectProfile>
+  <projectDirectory>
+    <projectProfileFile filesystemName=".zfproject.xml"/>
+    <applicationDirectory classNamePrefix="Application_">
+      <apisDirectory enabled="false"/>
+      <configsDirectory>
+        <applicationConfigFile type="ini"/>
+      </configsDirectory>
+      <controllersDirectory>
+        <controllerFile controllerName="index">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="error"/>
+        <controllerFile controllerName="braille">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="ajax">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="cockpit">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="registo">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="search">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Cortantes">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="display"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="new"/>
+          <actionMethod actionName="create"/>
+          <actionMethod actionName="search"/>
+          <actionMethod actionName="update"/>
+          <actionMethod actionName="delete"/>
+          <actionMethod actionName="view"/>
+          <actionMethod actionName="execucao"/>
+          <actionMethod actionName="execinsert"/>
+          <actionMethod actionName="execedit"/>
+        </controllerFile>
+        <controllerFile controllerName="chapas">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Tolerancias">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Laetus">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="create"/>
+          <actionMethod actionName="regenerate"/>
+          <actionMethod actionName="recreatelaetus"/>
+          <actionMethod actionName="checklaetus"/>
+          <actionMethod actionName="seach"/>
+        </controllerFile>
+        <controllerFile controllerName="Producao">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="search"/>
+          <actionMethod actionName="today"/>
+          <actionMethod actionName="tomorrow"/>
+        </controllerFile>
+        <controllerFile controllerName="Cartolina">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Caixas">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="cartelas"/>
+        </controllerFile>
+        <controllerFile controllerName="Mapacartolina">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Arqbraille">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="create"/>
+          <actionMethod actionName="delete"/>
+          <actionMethod actionName="new"/>
+          <actionMethod actionName="ajax"/>
+          <actionMethod actionName="searchobra"/>
+          <actionMethod actionName="searchbraille"/>
+          <actionMethod actionName="searchtxt"/>
+          <actionMethod actionName="searchlab"/>
+          <actionMethod actionName="searchcodigocliente"/>
+          <actionMethod actionName="searchcodif3"/>
+          <actionMethod actionName="editobra"/>
+          <actionMethod actionName="createlab"/>
+          <actionMethod actionName="labs"/>
+          <actionMethod actionName="selo"/>
+          <actionMethod actionName="renderpdf"/>
+          <actionMethod actionName="rep"/>
+          <actionMethod actionName="repinsert"/>
+          <actionMethod actionName="repcreate"/>
+          <actionMethod actionName="replist"/>
+        </controllerFile>
+        <controllerFile controllerName="Webservices">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="edicao"/>
+        </controllerFile>
+        <controllerFile controllerName="Diecuts">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Config">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+      </controllersDirectory>
+      <layoutsDirectory enabled="false"/>
+      <modelsDirectory>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="SOH"/>
+          <dbTableFile dbTableName="ISS"/>
+          <dbTableFile dbTableName="REQ"/>
+          <dbTableFile dbTableName="POL"/>
+          <dbTableFile dbTableName="POH"/>
+          <dbTableFile dbTableName="JOB"/>
+          <dbTableFile dbTableName="ITM"/>
+          <dbTableFile dbTableName="Arqbrailles"/>
+          <dbTableFile dbTableName="ArqbraillesLabs"/>
+          <dbTableFile dbTableName="CU"/>
+          <dbTableFile dbTableName="PhurlSettings"/>
+          <dbTableFile dbTableName="PhurlUrl"/>
+          <dbTableFile dbTableName="BrailleMalePrice"/>
+        </dbTableDirectory>
+        <modelFile modelName="PhUrl"/>
+      </modelsDirectory>
+      <modulesDirectory enabled="false"/>
+      <viewsDirectory>
+        <viewScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="index">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="error">
+            <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="braille">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="ajax">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="cockpit">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="registo">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="search">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="cortantes">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="chapas">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Tolerancias">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Laetus">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Laetus">
+            <viewScriptFile forActionName="create"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Laetus">
+            <viewScriptFile forActionName="regenerate"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Laetus">
+            <viewScriptFile forActionName="recreatelaetus"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Laetus">
+            <viewScriptFile forActionName="checklaetus"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Cortantes">
+            <viewScriptFile forActionName="execucao"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Cortantes">
+            <viewScriptFile forActionName="execinsert"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Cortantes">
+            <viewScriptFile forActionName="execedit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Laetus">
+            <viewScriptFile forActionName="seach"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Cartolina">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Caixas">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Caixas">
+            <viewScriptFile forActionName="cartelas"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Mapacartolina">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="create"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="new"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="ajax"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="searchobra"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="searchbraille"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="searchtxt"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="searchlab"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="searchcodigocliente"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="searchcodif3"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="editobra"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="createlab"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="labs"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="selo"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="renderpdf"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="rep"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="repinsert"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="repcreate"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Arqbraille">
+            <viewScriptFile forActionName="replist"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Webservices">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Webservices">
+            <viewScriptFile forActionName="edicao"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Diecuts">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Config">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+        </viewScriptsDirectory>
+        <viewHelpersDirectory/>
+        <viewFiltersDirectory enabled="false"/>
+      </viewsDirectory>
+      <bootstrapFile filesystemName="Bootstrap.php"/>
+    </applicationDirectory>
+    <dataDirectory enabled="false">
+      <cacheDirectory enabled="false"/>
+      <searchIndexesDirectory enabled="false"/>
+      <localesDirectory enabled="false"/>
+      <logsDirectory enabled="false"/>
+      <sessionsDirectory enabled="false"/>
+      <uploadsDirectory enabled="false"/>
+    </dataDirectory>
+    <libraryDirectory>
+      <zfStandardLibraryDirectory enabled="false"/>
+    </libraryDirectory>
+    <publicDirectory>
+      <publicStylesheetsDirectory enabled="false"/>
+      <publicScriptsDirectory enabled="false"/>
+      <publicImagesDirectory enabled="false"/>
+      <publicIndexFile filesystemName="index.php"/>
+      <htaccessFile filesystemName=".htaccess"/>
+    </publicDirectory>
+    <projectProvidersDirectory enabled="false"/>
+    <temporaryDirectory enabled="false"/>
+    <testsDirectory>
+      <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
+      <testApplicationDirectory>
+        <testApplicationBootstrapFile filesystemName="bootstrap.php"/>
+        <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile forControllerName="Caixas">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="cartelas"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Mapacartolina">
+            <testApplicationActionMethod forActionName="index"/>
+          </testApplicationControllerFile>
+        </testApplicationControllerDirectory>
+      </testApplicationDirectory>
+      <testLibraryDirectory>
+        <testLibraryBootstrapFile filesystemName="bootstrap.php"/>
+      </testLibraryDirectory>
+    </testsDirectory>
+  </projectDirectory>
+</projectProfile>

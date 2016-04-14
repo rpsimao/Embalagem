@@ -1,0 +1,39 @@
+<script language="JavaScript">
+<!--
+function confirm_entry()
+{
+input_box=confirm("Tem a certeza que deseja apagar o Código F3 <?=$this->record['codinterno']?>?");
+if (input_box==true)
+{ 
+window.location = "/arqchapas/deleterecord/" + <?=$this->record['id']?>;
+} else {
+	return false; 
+}
+
+}
+//-->
+</script>
+<div id="dameespacoemcima">
+<table id="the-table">
+	<tr>
+		<th>C&oacute;d. Interno</th>
+		<th>Produto</th>
+		<th>C&oacute;d. Cliente</th>
+		<th>Arq.</th>
+		<th>N&ordm; Cortante</th>
+		<th>Adicionar</th>
+	</tr>
+  
+<?php
+echo '<tr>';
+echo '<td align="center"><b>' . $this->record['codinterno'] . '</b></td>';
+echo '<td>' . $this->record['produto'] . '</td>';
+echo '<td>' . $this->record['codcliente'] . '</td>';
+echo '<td>' . $this->record['arq'] . '</td>';
+echo '<td>' . $this->record['numcortante'] . '</td>';
+echo '<td><a href="/arqchapas/editrecord/' . $this->record['codf3'] . '">Editar</a></td>';
+echo '<td><a href="JavaScript:confirm_entry();" style="color: #d91213;">Apagar</a></td>';
+echo '</tr>';
+?>
+</table>
+</div>

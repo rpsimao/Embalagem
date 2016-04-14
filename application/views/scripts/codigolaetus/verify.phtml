@@ -1,0 +1,21 @@
+<?php if ($this->errors) : ?>
+
+	<div class="page-header">
+		<h1>
+			Verificar Código Laetus
+
+		</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<?=$this->form->render()?>
+		</div>
+	</div>
+
+<?php else:
+
+		header('Content-type: application/pdf');
+		echo $this->pdf->render();
+
+endif; ?>

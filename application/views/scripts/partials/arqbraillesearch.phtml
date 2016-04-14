@@ -1,0 +1,74 @@
+<?php $title = new App_View_Helper_ArqBrailleTitleSearch(); ?>
+<?php $counter = count($this->data); ?>
+<div style="margin-top: 30px">&nbsp;</div>
+<div class="widget-box widget-color-blue">
+	<!-- #section:custom/widget-box.options -->
+	<div class="widget-header">
+		<h5 class="widget-title bigger lighter">
+			<i class="fa fa-search"></i>&nbsp;  Resultados da pesquisa - <?=$title->ArqBrailleTitleSearch($this->postvalue);?>
+		</h5>
+
+		<div class="widget-toolbar no-border" >
+
+		</div>
+	</div>
+
+	<!-- /section:custom/widget-box.options -->
+	<div class="widget-body">
+		<div class="widget-main no-padding">
+
+			<?php if ($counter > 0): ?>
+
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Nº Braille</th>
+							<th>O. C.</th>
+							<th>Obra</th>
+							<th>Cód. F3</th>
+							<th>Cód. Cliente</th>
+							<th>Produto</th>
+							<th>Qtd</th>
+							<th>B1</th>
+							<th>B2</th>
+							<th>B3</th>
+							<th>B4</th>
+							<th>Obs.</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php foreach ($this->data as $value) : ?>
+						<tr>
+							<td><a href="/arqbraille/edit/<?=$value['nbraille_num'];?>"><?=$value['nbraille_lab'];?>-<?=App_Auxiliar_AddZero::num($value['nbraille_num']);?>-<?=App_Auxiliar_AddZero::month($value['nbraille_mes']);?>-<?=App_Auxiliar_AddZero::month($value['nbraille_ano']);?></a></td>
+							<td><?=$value['oc'];?></td>
+							<td><?=str_replace(",", ", ", $value['obras']);?></td>
+							<td><?=str_replace(",", ", ", $value['codf3']);?></td>
+							<td><?=str_replace(",", ", ", $value['codcli']);?></td>
+							<td><?=$value['produto'];?></td>
+							<td><?=$value['qtd'];?></td>
+							<td><?=$value['b1'];?></td>
+							<td><?=$value['b2'];?></td>
+							<td><?=$value['b3'];?></td>
+							<td><?=$value['b4'];?></td>
+							<td><?=$value['obs'];?></td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php else: ?>
+				<div class="alert alert-warning">
+
+					<strong><i class="fa fa-thumbs-o-down"></i></strong>
+
+					Não foram encontrados registos...
+					<br>
+				</div>
+			<?php endif;?>
+		</div>
+	</div>
+</div>
+
+<?php if ($counter > 1): ?>
+	<br>
+	<?=$this->paginationControl($this->data, 'Sliding', 'pagination2.phtml');?>
+<?php endif; ?>

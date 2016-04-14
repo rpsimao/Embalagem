@@ -1,0 +1,11 @@
+.highlight_diecut{
+    background-color: #cae9ff;
+    color: #479ef2;
+}
+
+.diecut_remove {
+
+    text-decoration: line-through;
+    color: red;
+
+}

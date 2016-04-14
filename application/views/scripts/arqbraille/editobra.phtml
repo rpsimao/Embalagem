@@ -1,0 +1,20 @@
+<div id="dameespaco"></div>
+<div class="barra-brailles">
+<table>
+<tr>
+    <td class="sessao dir-sp-10"><a href="#">Listagem</a></td>
+</tr>
+</table>
+</div>
+<div id="cont"><fieldset><legend>Braille</legend><?=$this->form;?></fieldset></div>
+
+<script type="text/javascript" src="/js/arqbrailles/script.js"></script>
+
+<script type="text/javascript">
+$(function() {
+    $("input:button, input:submit, a", ".sessao").button();
+    $("a", ".sessao").click(function() { window.location="/arqbraille/"; return false; });	
+
+   
+});
+</script>

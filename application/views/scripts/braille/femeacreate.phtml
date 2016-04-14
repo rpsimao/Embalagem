@@ -1,0 +1,83 @@
+<?php if ($this->errors) : ?>
+
+	<div class="page-header">
+		<h1>
+			Criar Braille Fêmea
+		</h1>
+	</div>
+
+<?php echo $this->form->render();
+
+
+  else :
+    for ($index = 0; $index < $this->values[0]; $index ++) {
+        $numberOfLines[] = $index;
+    }
+    $numberOfPara = count($numberOfLines);
+    $numberOfChars = str_repeat('é', $this->values[1]);
+    $image = new App_Auxiliar_CreateImage();
+    $image->setChars($this->values[1]);
+    $image->setArrayOfText($numberOfLines);
+    $image->setText(str_repeat($numberOfChars . "\r\n", $numberOfPara));
+    $image->setBrailleFlag(TRUE);
+   
+?>
+
+<div class="page-header">
+		  <h1>
+			   Braille Fêmea
+		  </h1>
+</div>
+
+	  <div class="col-sm-6">
+		  <div class="widget-box">
+			  <div class="widget-header widget-header-flat">
+				  <h4 class="widget-title">Especificações</h4>
+			  </div>
+
+			  <div class="widget-body">
+				  <div class="widget-main">
+					  <ul class="list-unstyled spaced list-inline">
+						  <li>
+							  <i class="ace-icon fa fa-cubes bigger-110 purple"></i>
+							  <strong>Quantidade:</strong> <?=$this->values[3];?>
+						  </li>
+
+						  <li>
+							  <i class="ace-icon fa fa-language bigger-110 purple"></i>
+							  <strong>Caracteres:</strong> <?=$this->values[1];?>
+						  </li>
+
+						  <li>
+							  <i class="ace-icon fa fa-navicon bigger-110 purple"></i>
+							  <strong>Linhas:</strong> <?=$this->values[0];?>
+						  </li>
+						  <li>
+							  <i class="ace-icon fa fa-money bigger-110 purple"></i>
+							  <?php if ($this->values[0] < 7):?>
+								  <?php if ($this->values[1] <= 20):?>
+							  <strong>Pre&ccedil;o:</strong> &euro;<?=$this->values[2];?>
+								  <?php else:?>
+								  <strong>Pre&ccedil;o:</strong> &euro;<?=$this->values[2] * 1.5;?>
+								  <?php endif;?>
+							  <?php endif;?>
+						  </li>
+					  </ul>
+				</div>
+
+				  <h3 class="header smaller lighter purple" style="margin-left: 20px;width: 82%"><i class="fa fa-image"></i>&nbsp;Representação Gráfica <small>(Não precisa)</small></h3>
+					<div style="margin-bottom: 15px;">
+				        <?=$image->render(null);?></td>
+					</div>
+				  </div>
+		 </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<?php  endif;?>

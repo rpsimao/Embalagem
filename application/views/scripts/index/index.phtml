@@ -1,0 +1,96 @@
+<?php $config = Zend_Registry::get('home_links'); ?>
+<div align="center">
+	<table id="home-table">
+		<tr>
+			<td align="center"><a href="<?=$config->home;?>"> <img src="/images/icons/home.png" height="72px"
+			                                                       width="76px" alt="Home" style="border: none" /> <br />
+					Home </a></td>
+			<td align="center"><a href="/<?=$config->selo;?>"> <img src="/images/icons/selo.png" height="72px"
+			                                                        width="76px" alt="Selo" style="border: none" /> <br />
+					Selo </a></td>
+			<td align="center"><a href="/<?=$config->emprova;?>"> <img src="/images/icons/emprova.png" height="72px"
+			                                                           width="76px" alt="Provas" style="border: none" /> <br />
+					Em Prova </a></td>
+			<td align="center"><a href="/<?=$config->braille;?>"> <img src="/images/icons/braille.png"
+			                                                           height="72px" width="76px" alt="Braille" style="border: none" /> <br />
+					Braille </a></td>
+		</tr>
+		<tr>
+			<td align="center"><a href="/<?=$config->laetus;?>"> <img src="/images/icons/laetus.png"
+			                                                          height="72px" width="76px" alt="Braille" style="border: none" /> <br />
+					Laetus </a></td>
+			<td align="center"><a href="/<?=$config->obras;?>"> <img src="/images/icons/obras.png"
+			                                                         height="72px" width="76px" alt="Cockpit" style="border: none" /> <br />
+					Obras </a></td>
+			<td align="center"><a href="/<?=$config->tolerancias;?>"> <img src="/images/icons/tolerancias.png" height="72px"
+			                                                               width="76px" alt="Toler&acirc;ncias" style="border: none" /> <br />
+					Toler&acirc;ncias </a></td>
+			<td align="center"><a href="/<?=$config->registos;?>"> <img src="/images/icons/registos.png" height="72px"
+			                                                            width="76px" alt="Laboratorios" style="border: none" /> <br />
+					Registos </a></td>
+		</tr>
+		<tr>
+			<td align="center"><a href="/<?=$config->arqchapas;?>"> <img src="/images/icons/arq-chapas.png" height="72px"
+			                                                             width="76px" alt="Arquivo Chapas" style="border: none" /> <br />
+					Arq. Chapas</a></td>
+			<td align="center"><a href="/<?=$config->chapasrec;?>"> <img src="/images/icons/chapas-rec.png" height="72px"
+			                                                             width="76px" alt="Chapas " style="border: none" /> <br />
+					Chapas Rec.</a></td>
+			<td align="center"><a href="/<?=$config->labs;?>"> <img src="/images/icons/labs.png" height="72px"
+			                                                        width="76px" alt="Labs Home" style="border: none" /> <br />
+					Labs </a></td>
+			<td align="center"><a href="/<?=$config->cliches;?>"> <img src="/images/icons/cliches.png"
+			                                                           height="72px" width="76px" alt="Cliches" style="border: none" /> <br />
+					Cliches </a></td>
+		</tr>
+		<tr>
+			<td align="center"><a href="/<?=$config->cortantes;?>"> <img src="/images/icons/cortantes.png"
+			                                                             height="72px" width="76px" alt="Cortantes" style="border: none" /> <br />
+					Cortantes </a></td>
+			<td align="center"><a href="/<?=$config->producao;?>"> <img src="/images/icons/producao.png"
+			                                                            height="72px" width="76px" alt="Produ&ccedil;&atilde;o" style="border: none" /> <br />
+					Produ&ccedil;&atilde;o </a></td>
+			<td align="center"><a href="/<?=$config->entregas;?>"> <img src="/images/icons/entregas.png"
+			                                                            height="72px" width="76px" alt="Entregas" style="border: none" /> <br />
+					Entregas </a></td>
+			<td align="center"><a href="/<?=$config->caixas;?>"> <img src="/images/icons/caixas.png"
+			                                                          height="72px" width="76px" alt="Caixas" style="border: none" /> <br />
+					Caixas </a></td>
+		</tr>
+</table>
+</div>
+
+
+
+<?php
+
+
+
+$rootPage = $this->navigation()->getContainer()->getPages();
+
+
+
+var_dump($rootPage);
+
+
+echo '<ul id="nav1">';
+// loop root level (only has Home, but later may have an Admin root page?)
+foreach ($rootPage as $page) {
+	// check if it is active (not recursive)
+	$isActive = $page->isActive(false);
+	//$liClass = $isActive ? ' class="active"' : "false";
+	//echo '<li ' . $liClass . '>' . $this->menu()->htmlify($page) . '</li>', PHP_EOL;
+	echo "0";
+	// loop next level
+	foreach ($page as $page) {
+		// check if it is active (recursive)
+		$isActive = $page->isActive(true);
+		//$liClass = $isActive ? ' class="active"' : 'true';
+		//echo '<li ' . $liClass . '>' . $this->menu()->htmlify($page) . '</li>', PHP_EOL;
+		echo "1";
+	}
+}
+echo '</ul>';
+
+
+?>

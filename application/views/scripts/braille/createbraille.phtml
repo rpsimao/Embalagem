@@ -1,0 +1,60 @@
+<?php if ($this->errors) : ?>
+
+	</div>
+	<span id="errors"></span>
+	<?= $this->form;?>
+<?php else :
+	if ($this->msg) :
+
+		$error = new App_Messages();
+		$error->setMessageType('error');
+		$error->setMessage($this->msg);
+		echo $error->displayMessageBootstrap();
+
+	 else :
+		$image = new App_Auxiliar_CreateImage();
+		$image->setChars($this->calculateMaleLenght);
+		$image->setArrayOfText($this->formatTextforCount);
+		$image->setText(utf8_decode($this->texto));
+		$image->setBrailleFlag(TRUE);
+	 ?>
+
+		<table id="the-table4" class="table table-striped table-bordered">
+			<tr>
+				<th>Pre&ccedil;o(s)</th>
+				<th>Texto exemplo</th>
+			</tr>
+			<tr>
+				<td>
+					<ul class="list-unstyled spaced">
+						<li><i class="ace-icon fa fa-tag blue"></i> Pre&ccedil;o cortante (macho) &eacute;: &euro;<?=$this->priceMale?></li>
+						<li><i class="ace-icon fa fa-tag blue"></i> Pre&ccedil;o cortante (f&ecirc;mea) &eacute;: &euro;<?=$this->priceFemale?></li>
+						<li><i class="ace-icon fa fa-tag blue"></i> Pre&ccedil;o total Braille &eacute;: &euro;<?=($this->priceMale + $this->priceFemale)?></li>
+					</ul>
+					<div class="well col-xs-8" id="create-pdf-createbraille">
+						<span id="confirma">
+							<h4 class="green smaller lighter">Confirma dados do Braille?</h4>
+							<button value="Sim" class="btn btn-xs btn-success" onclick="showPDFLink('<?=$this->pdfLink?>');"><i class="ace-icon fa fa-check"></i> Sim</button>&nbsp;
+							<button class="btn btn-xs btn-danger" value="N&atilde;o" onclick="javascript:history.back();"><i class="ace-icon fa fa-times"></i> Não</button>
+						</span>
+					</div>
+				</td>
+				<td>
+					<ul class="list-unstyled spaced well">
+						<h4 class="blue smaller lighter"><i class="ace-icon fa fa-paragraph"></i> Texto </h4>
+						<li><b>A aplica&ccedil;&atilde;o retornou <?=$this->calculateMaleHeight?> linha(s).</b></li>
+						<li class="img-thumbnail" style="padding: 10px;"><?=utf8_decode($this->texto)?></li>
+						<li></li>
+						<li>
+							<h4 class="blue smaller lighter"><i class="ace-icon fa fa-picture-o"></i> Representação Gráfica</h4>
+							<?=$image->render("img-thumbnail rps_pad_top_15")?>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+<?php
+	endif;
+endif;
+?>

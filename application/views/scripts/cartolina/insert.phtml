@@ -1,0 +1,15 @@
+<?php $this->headScript()->appendScript('$(function() {$("input:submit").button();});');?>
+<div id="cont">
+<fieldset><legend>Cartolina</legend>
+<?php if ($this->errors) : ?>
+<?php
+	$error = new App_Messages();
+    $error->setMessageType('error');
+    $error->setMessage('Ocorreu um erro! Os campos não estão correctamente preenchidos.');
+    echo $error->displayMessage();
+    ?>
+<br />
+<?=$this->form->render();?>
+</fieldset>
+</div>
+<?php endif;?>

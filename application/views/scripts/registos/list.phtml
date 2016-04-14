@@ -1,0 +1,80 @@
+<?php
+$this->placeholder('js')->set('<script type="text/javascript" src="/js/ajax.js"></script><script type="text/javascript" src="/js/custom.js"></script>');
+?>
+<script type="text/javascript">
+<!--
+function search(){
+	var myTextField = document.getElementById('codf3');
+	getCodInterno(myTextField.value);
+	}
+function confirm_delete_product(codf3, id) {
+input_box=confirm("Tem a certeza que deseja apagar o Código F3 " + codf3 + "?");
+if (input_box==true)
+ { 
+	window.location = "/registos/deleteproduct/" + id;
+ } else {
+	return false; 
+ }
+}
+//-->
+<?php
+$lab = new App_User_Service_LabsName();
+if (! empty($_SESSION['lab'])) {
+    $labName = $lab->getLabName($this->lab);
+} else {
+    $labName = $lab->getLabName($this->lab1);
+}
+?>
+</script>
+<h1 class="labs">Laboratório <?=$labName['nome']?></h1>
+<div id="dameespaco">
+<table>
+	<tr>
+		<td><a href="/registos/new">+ criar novo registo</a></td>
+		<td class="esp"></td>
+		<td>Insira o Código F3:&nbsp; <input type="text" size="15" id="codf3"
+			name="codf3" /> <input type='button' onclick='search()'
+			value='Procurar' /></td>
+	</tr>
+</table>
+</div>
+<div id="registos_esq">
+<table id="the-table">
+	<tr>
+		<th>C&oacute;d.<br />
+		Interno</th>
+		<th>Produto</th>
+		<th>C&oacute;d.<br />
+		Cliente</th>
+		<th>Arq.</th>
+		<th>N&ordm;<br />
+		Cortante</th>
+		<th>Editar</th>
+		<th>Apagar</th>
+	</tr>
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', '#eff9fe');
+foreach ($this->paginator as $record) {
+    echo '<tr bgcolor="' . $color->display($i) . '"><td align="center"><button value="' . $record['codinterno'] . '" onclick="getCodInterno(' . $record['codinterno'] . ')">' . $record['codinterno'] . '</button> </td>';
+    echo '<td>' . $record['produto'] . '</td>';
+    echo '<td>' . $record['codcliente'] . '</td>';
+    echo '<td>' . $record['arq'] . '</td>';
+    echo '<td align="right">' . $record['numcortante'] . '</td>';
+    echo '<td align="center"><form action="/registos/add/' . $record['codinterno'] . '" method="post"><input type="hidden" id="codigo" value="' . $record['codinterno'] . '">';
+    echo '<input type="submit" value=" + "></form></td>';
+    echo '<td align="center"><input type="button" value=" - " onclick="confirm_delete_product(' . $record['codinterno'] . ',' . $record['id'] . ')" /></td>';
+    echo '</tr>';
+    $i ++;
+}
+;
+?>
+</table>
+</div>
+<div id="registos_dir"></div>
+<br />
+<br />
+<?php
+echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml');
+?>

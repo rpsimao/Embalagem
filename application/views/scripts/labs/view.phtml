@@ -1,0 +1,94 @@
+<?php
+$lab = new App_User_Service_LabsName();
+$labName = $lab->getLabName($this->labNumber);
+
+
+?>
+
+
+<h1 class="labs">Laborat&oacute;rio <?=$labName['nome']?></h1>
+<?=$this->partial('partials/searchlabs.phtml');?>
+<div id="dameespaco1">
+<?php 
+if ($this->id == "") :?>
+
+N&atilde;o existe nenhum registo com esse c&oacute;digo!
+    
+<?php else: ?>
+
+<br />
+<?php 
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+?>
+<table id="the-table-producao">
+        		<tr>
+        			<th>C&oacute;d. Interno</th>
+        			<th>N&ordm; Vers&atilde;o</th>
+        			<th>N&ordm; Edi&ccedil;&atilde;o</th>
+					<th>Produto</th>
+					<th>C&oacute;d. Cliente</th>
+					<th>Dimens&otilde;es</th>
+					<th>Cores</th>
+					<th>Verniz M&aacute;q.</th>
+					<th>Verniz UV</th>
+					<th>Plastif.</th>
+					<th>Estamp.</th>
+					<th>Braille</th>
+					<th>Cort. N&ordm;</th>
+        			<th>Data</th>
+        			<th>N&ordm; Obra</th>
+        			<th>Editar</th>
+        			<th>Apagar</th>
+        		</tr>
+<?php foreach ($this->paginator as $data) : 
+$cortante = $this->optimus->getJobComments($data['obra']);
+$linhaOptimus = $cortante['subject'];
+$codCortanteOptimus = substr($linhaOptimus, 2, 6);
+$codCortante = (int) $codCortanteOptimus;
+$resultsCortantes = $this->cortantes->searchByCode($codCortante);
+
+?>
+
+
+
+    <tr class="<?=$color->display($i);?>">
+    <td align="center" class="spec"><?=$this->Escape($data['cod_interno']);?></td>
+    <td align="center"><?=$this->Escape($data['versao']);?></td>
+    <td align="center"><?=$this->Escape($data['edicao']);?></td>
+	<td align="left"><?=$this->Escape($data['produto']);?></td>
+	<td align="center"><?=$this->Escape($data['cod_cliente']);?></td>
+	<td align="center"><?=$this->Escape($data['dimensoes']);?></td>
+	<td align="left"><?=$this->Escape($data['cores']);?></td>
+	<td align="center"><?=$this->Escape(App_Auxiliar_Checkboxes::reverseTranslateCheckboxes($data['verniz_maquina']));?></td>
+	<td align="center"><?=$this->Escape(App_Auxiliar_Checkboxes::reverseTranslateCheckboxes($data['verniz_uv']));?></td>
+	<td align="center"><?=$this->Escape(App_Auxiliar_Checkboxes::reverseTranslateCheckboxes($data['plastificacao']));?></td>
+	<td align="center"><?=$this->Escape(App_Auxiliar_Checkboxes::reverseTranslateCheckboxes($data['estampagem']));?></td>
+	<td align="center"><?=$this->Escape(App_Auxiliar_Checkboxes::reverseTranslateCheckboxes($data['braille']));?></td>
+	<td align="center">
+	<?php foreach ($resultsCortantes as $value):?>
+	<a href="/cortantes/view/<?=$value['id'];?>"><?=str_replace(" ", "", $value['codigo']);?></a>
+	<?php endforeach;?>
+	</td>
+    <td align="center"><?=$this->Escape($data['data_entrega']);?></td>
+    <?php $registos = $this->obras->getValues($data['obra']);
+        if (count($registos) > 0):
+    ?>
+    <td align="center"><a href="/cockpit/preview/<?=$this->Escape($data['obra']);?>"><?=$this->Escape($data['obra']);?></a></td>
+    <?php else:?>
+    <td align="center"><?=$this->Escape($data['obra']);?></td>
+    <?php endif;?>
+    <td align="center"><a href="/labs/editrecord/<?=$this->Escape($data['id']);?>" style="color: green">Editar</a></td>
+    <td align="center"><a href="JavaScript:confirm_delete_record(<?=$this->Escape($data['cod_interno']);?> ,<?=$this->Escape($data['edicao']);?>,<?=$this->Escape($data['id']);?>);" style="color: #d91213;">Apagar</a></td>
+    </tr>
+    <?php 
+    $i ++;
+    endforeach;?>
+</table>
+
+</div>
+<?php endif;?>       
+
+<br /><br />
+<?=$this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml');?>

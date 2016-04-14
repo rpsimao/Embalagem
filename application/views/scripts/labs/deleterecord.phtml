@@ -1,0 +1,17 @@
+<div id="primarycontainer">
+<div id="primarycontent">
+<?php
+if (!$this->msg) {
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('success');
+    $newmsg->setMessage('O registo foi apagado com sucesso');
+    echo $newmsg->displayMessage();
+} else {
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('erro');
+    $newmsg->setMessage('Ocorreu um erro ao apgar o registo.<br />Por favor tente de novo.');
+    echo $newmsg->displayMessage();
+}
+?>
+</div>
+</div>

@@ -1,0 +1,66 @@
+<?php 
+$this->placeholder('js')->set('
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+$("button, input:submit, a", ".check").button();
+});
+function confirm_delete_product(id, cort, laetus) {
+input_box=confirm("Tem a certeza que deseja apagar o Laetus. Nº " + laetus + " do Cortante Nº " + cort +"?");
+if (input_box==true)
+ { 
+	window.location = "/laetus/delete/" + id;
+ } else {
+	return false; 
+ }
+}
+</script>');
+?>
+<?php
+$n = count($this->laetus);
+if ($n > 0) :
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+
+?>
+<div align="center">
+<?=$this->partial('partials/laetusbotoes.phtml');?>
+<h3>Listagem C&oacute;digo Laetus Cortante N&ordm;<?=$this->cortante;?></h3>
+<table class="bordered">
+	<tr>
+		<th>Cort. N&ordm;</th>
+		<th>Fto.</th>
+		<th>C&oacute;d. Laetus</th>
+		<th>Laborat&oacute;rio</th>
+		<th>Produto</th>
+		<th>C&oacute;d. F3</th>
+		<th>Editar</th>
+		<th>Apagar</th>
+	</tr>
+<?php foreach ($this->laetus as $name) : ?>
+
+
+<tr class="<?=$color->display($i);?>">
+		<td class="spec" align="center" ><?=$name['cortante'];?></td>
+		<td align="center"><?=$name['formato'];?></td>
+		<td align="center"><?=$name['codigolaetus'];?></td>
+		<td align="center"><?=$name['laboratorio'];?></td>
+		<td align="center"><?=$name['produto'];?></td>
+		<td align="center"><?=$name['codf3'];?></td>
+		<td><a href="/laetus/editlaetussingleitem/<?=$name['id'];?>" style="color: green;">Editar</a></td>
+		<td><a href="Javascript:confirm_delete_product('<?=$name['id']?>','<?=$name['cortante']?>','<?=$name['codigolaetus']?>')" style="color: red">Apagar</a></td>
+
+
+</tr>
+<?php $i++; endforeach;?>
+
+
+</table>
+<br /><br /><br />
+</div>
+<?php else :?>
+<div id="cont">
+<?=$this->partial('partials/laetusbotoes.phtml');?>
+<h3>N&atilde;o existe cortante com o N&ordm;<?=$this->cortante;?> </h3>
+</div>
+<?php endif;?>

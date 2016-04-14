@@ -1,0 +1,31 @@
+<?php if (count($this->messages) > 0): ?>
+	<div id="diecuts_msg-flash" class="alert alert-block alert-success">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="ace-icon fa fa-times"></i>
+		</button>
+		<p>
+			<strong><i class="ace-icon fa fa-check"></i></strong>
+			<?=$this->messages[0]?>
+		</p>
+	</div>
+
+	<script type="text/javascript">
+
+		$(function(){ $("#diecuts_msg-flash").fadeOut(5000);});
+
+	</script>
+
+
+<?php endif;?>
+<div class="page-header">
+	<h1>
+		Criar Código Laetus
+
+	</h1>
+</div>
+
+<div class="row">
+	<div class="col-sm-6">
+		<?=$this->form->render()?>
+	</div>
+</div>

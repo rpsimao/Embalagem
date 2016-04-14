@@ -1,0 +1,26 @@
+<div id="cont"><fieldset><legend>Em Prova</legend>
+<a href="/emprova/new"> + Criar Novo Registo</a>
+<br /><br />
+
+<?php
+if ($this->errors) :
+    $newmsg = new App_Messages();
+    $newmsg->setMessageType('error');
+    $newmsg->setMessage('Ocorreu um erro. O formul&aacute;rio n&atilde;o est&aacute; bem preenchido.');
+    ?>    
+    <?=$newmsg->displayMessage();?>
+    <br />
+
+	<?=$this->form;?>
+	</fieldset></div>
+<?php else :
+    $newmsg = new App_Messages;
+    $newmsg->setMessageType('success');
+    $newmsg->setMessage('Foi criado um novo registo.');
+    ?>    
+    
+	<?=$newmsg->displayMessage();?>
+	
+	
+<?php endif;?>
+

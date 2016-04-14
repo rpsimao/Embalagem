@@ -1,0 +1,25 @@
+<?php $this->headScript()->appendFile('/js/jquery.validate.js');?>
+<?php $this->headScript()->appendScript('$(function() {$("input:submit").button();});');?>
+<?php $this->headScript()->appendScript('$(document).ready(function() {
+      $("#numobra").focus(); 
+        $("#loginform").validate({
+        rules: {
+          numobra: "required",
+        },
+        messages: {
+          numobra: "Este campo n&atilde;o pode estar vazio."
+        }
+      });
+});');
+?>
+<div id="primarycontainer">
+	<div id="primarycontent">
+	<div class="box">
+<h3>Selo Provas</h3>
+<span class="form"><span id="errors"></span>
+                <?=$this->form;?></span>
+</div>
+		
+		
+	</div>
+</div>

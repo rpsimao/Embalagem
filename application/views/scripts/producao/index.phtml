@@ -1,0 +1,128 @@
+<?php $start_time = microtime(true);?>
+<?=$this->partial('partials/searchproducao.phtml');?>
+<?=$this->placeholder('scripts')->set('<script type="text/javascript">
+	$(function() {
+	    $("a", ".obrasentregas").button();
+		$("a", ".obrasentregas").click(function() { window.location="/producao/today"; return false; });
+		
+		$("a", ".obrasentregasamanha").button();
+		$("a", ".obrasentregasamanha").click(function() { window.location="/producao/tomorrow"; return false; });
+	});
+	</script>')?>
+
+
+<br />
+<?php
+echo "<br /><b>Obra(s) para entregar hoje: </b>";
+$numberOfJobs = count($this->today);
+if ($numberOfJobs > 0) :
+    foreach ($this->today as $variable) {
+        echo $variable['j_number'] . " / ";
+    }
+    ?>
+  
+<span class="obrasentregas"><a href="#">Ver Obras</a></span>
+<br />
+<br />
+<?php  else :
+    echo "N&atilde;o existem obras para entrega hoje.";
+endif;
+?>
+
+<?php
+if (date('l') != "Friday") {
+echo "<br /><b>Obra(s) para entregar amanh&atilde;: </b>";
+} else {
+    echo "<br /><b>Obra(s) para entregar Segunda-Feira: </b>";
+}
+
+$numberOfJobs = count($this->tomorrow);
+if ($numberOfJobs > 0) :
+    foreach ($this->tomorrow as $variable) {
+        echo $variable['j_number'] . " / ";
+    }
+?>
+<span class="obrasentregasamanha"><a href="/#">Ver Obras</a></span>
+<?php
+ else :
+    echo "N&atilde;o existem obras para entrega amanh&atilde;.";
+endif;
+?>
+
+<div align="center" style="padding-top: 20px"><br />
+
+<h4 style="color:#54779f;font-size:18px">Obras em Produ&ccedil;&atilde;o - (<?=count($this->allJobsProducao);?>)</h4>
+
+<table class="bordered">
+	<tr>
+		<th>Reg</th>
+		<th>Situa&ccedil;&atilde;o</th>
+		<th>Tipo<br />Obra</th>
+		<th>Cliente</th>
+		<th>Descri&ccedil;&atilde;o</th>
+		<th>C&oacute;digo</th>
+		<th>OC</th>
+		<th>Data<br />
+		In&iacute;cio</th>
+		<th>Data<br />
+		Pedida</th>
+		<th>Qtd<br />
+		Pedida</th>
+	</tr>
+<?php
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+$todayPHP = date('Y-m-d');
+
+foreach ($this->jobProducao as $name) :
+    if (date('l') == "Friday") {
+        $today = new Zend_Date();
+        $dayT = $today->add('3', Zend_Date::DAY);
+        $tomorrow = date('Y') . '-' . App_Auxiliar_ChangeMonth::changeMonth($dayT) . '-' . $dayT;
+    } else {
+        $today = new Zend_Date();
+        $dayT = $today->add('1', Zend_Date::DAY);
+        $tomorrow = date('Y') . '-' . App_Auxiliar_ChangeMonth::changeMonth($dayT) . '-' . $dayT;
+    }
+    if ($name['j_deldate'] == $todayPHP) {
+        $rowColor = 'orange';
+    } else 
+        if ($name['j_deldate'] == $tomorrow) {
+            $rowColor = 'green';
+        } else 
+            if ($name['j_deldate'] < $todayPHP) {
+                $rowColor = 'red';
+            } else {
+                $rowColor = $color->display($i);
+            }
+    ?>
+    
+    
+<tr class="<?=$rowColor?>">
+		<?php if (count($this->obras->getValues($name['j_number'])) > 0 ) : ?>
+		<td class="spec"><a href="/cockpit/preview/<?=$name['j_number'];?>"><?=$name['j_number'];?></a></td>
+        <?php else: ?>
+		<td class="specalt"><?=$name['j_number'];?></td>
+        <?php endif;?>
+		<td><i><?=App_JobState::getState($name['j_number']);?></i><br /><small><?=App_Auxiliar_MachineToHumanCostCenter::translate(App_JobState::getState($name['j_number']));?></small></td>
+		<td><?=App_Change::fundo($name['j_type']);?></td>
+		<td><?=$name['j_customer'];?></td>
+		<td><?=$name['j_title1'];?></td>
+		<td><?=$name['j_title2'];?></td>
+		<td><?=$name['j_ordnum'];?></td>
+		<td><?=App_Change::date($name['j_datein']);?></td>
+		<td><?=App_Change::date($name['j_deldate']);?></td>
+		<td><?=$name['j_qty_ordered'];?></td>
+</tr>
+<?php
+    $i ++;
+endforeach;
+?>
+
+</table>
+<p>
+<?=$this->paginationControl($this->jobProducao, 'Sliding', 'pagination.phtml');?>
+</p>
+<p class="query">Query: <?=sprintf('%01.4f', microtime(true) - $start_time) . " seg";?></p>
+</div>

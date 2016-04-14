@@ -1,0 +1,70 @@
+<?=$this->partial('partials/searchemprova.phtml');?>
+<?php
+
+
+if (count($this->results) > 0 ) : ?>
+
+<br />
+<a href="/emprova/new">+ criar novo registo</a>
+<div align="center" style="padding-top: 20px"><br />
+<h4>Provas em Produ&ccedil;&atilde;o</h4>
+<table id="the-table-producao">
+	<tr>
+		<th>Reg.</th>
+		<th>Laborat&oacute;rio</th>
+		<th>Descri&ccedil;&atilde;o</th>
+		<th>C&oacute;d. Produto</th>
+		<th>In&iacute;cio</th>
+		<th>PrePress</th>
+		<th>Dep. Tec.</th>
+	</tr>
+<?php
+
+$i = 1;
+$color = new App_Styles_RowColor();
+$color->setColors('white', 'alt');
+
+foreach ($this->results as $name) :
+$obras = $this->obras->getValues($name['obra']);
+$optimus = $this->optimus->getJobData($name['obra']);
+
+
+?>
+
+<tr class="<?=$color->display($i);?>">
+		<?php if (count($obras) > 0 ) : ?>
+		<td class="spec"><a href="/cockpit/preview/<?=$name['obra'];?>"><?=$name['obra'];?></a></td>
+        <?php else: ?>
+		<td class="specalt"><?=$name['obra'];?></td>
+        <?php endif;?>
+		<td><?=$optimus['j_customer'];?></td>
+		<td><?=$optimus['j_title1'];?></td>
+		<td><?=$optimus['j_title2'];?></td>
+		<td><?=$name['dia'] ." " . $name['hora'];?></td>
+		<?php if ($name['estado'] == 0):?>
+		<td><a href="#" onClick="provaPrepress(<?=$name['id'];?>,<?=$name['obra'];?> );">Concluir</a></td>
+		<?php else:?>
+		<td class="tdgreen">Concluido</td>
+		<?php endif;?>
+		<td><a href="#" onClick="provaDepTec(<?=$name['id'];?>,<?=$name['obra'];?> );">Concluir</a></td>
+		
+		
+
+<?php
+    $i ++;
+endforeach;
+?>
+</tr>
+</table>
+<p>
+<?=$this->paginationControl($this->results, 'Sliding', 'pagination.phtml');?>
+</p>	
+</div>
+<?php else:?>
+<a href="/emprova/new">+ criar novo registo</a>
+<div align="center" style="padding-top: 20px"><br />
+<h4>N&atilde;o existem Provas</h4>
+</div>
+<?php endif;?>
+
+	
