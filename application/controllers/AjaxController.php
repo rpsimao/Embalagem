@@ -138,11 +138,8 @@ class AjaxController extends Zend_Controller_Action
 
 
 
-			$txt = $values['b1']." machos para leitura braille" ."\r\n
-	BRAILLE: ".$values['nbraille_lab']."-".App_Auxiliar_AddZero::num($values['nbraille_num'])."-".App_Auxiliar_AddZero::month($values['nbraille_mes'])."-".App_Auxiliar_AddZero::month($values['nbraille_ano'])."
-	NUMERO A INSERIR NA PLACA DE BRAILLE: ".App_Auxiliar_AddZero::num($values['nbraille_num'])."\r\n"
-		.$finalF3code."
-	R.:".$finalJob . "\r\n". "\r\n". "Condições de Pagamento: crédito a 120 dias (ao final do mês.)";
+			$txt = $values['b1']." machos para leitura braille" ."\r\n\r\nBRAILLE: ".$values['nbraille_lab']."-".App_Auxiliar_AddZero::num($values['nbraille_num'])."-".App_Auxiliar_AddZero::month($values['nbraille_mes'])."-".App_Auxiliar_AddZero::month($values['nbraille_ano'])."\r\nNUMERO A INSERIR NA PLACA DE BRAILLE: ".App_Auxiliar_AddZero::num($values['nbraille_num'])."\r\n"
+		.$finalF3code."\r\nR.:".$finalJob . "\r\n\r\n". "Condições de Pagamento: crédito a 120 dias (ao final do mês.)";
 
 
 
@@ -153,7 +150,9 @@ class AjaxController extends Zend_Controller_Action
 		$numberOfLines = preg_split('/\n/', $text, - 1, PREG_SPLIT_NO_EMPTY);
 
 
-		foreach ($numberOfLines as $chars)
+		$final = array();
+
+        foreach ($numberOfLines as $chars)
 		{
 			$numberoschars = strlen($chars);
 
@@ -173,13 +172,13 @@ class AjaxController extends Zend_Controller_Action
 
 				'pecas'          => $values['b1'],
 				'numobra'        => $finalJob,
-				'texto'          => utf8_encode($values['txtbraille']),
+				'textobraille'   => utf8_encode($values['txtbraille']),
 				'femeaLrg'       => str_replace(" ", "", $medidas[2]),
 				'femeaAlt'       => str_replace(" ", "", $medidas[0]),
 				'textoOptimus'   => $txt,
 				'preco'          => number_format($precoFinal['preco_macho'],2),
 				'linhas'         => $male->calculateMaleHeight(),
-				"imagem"         => $image->renderbase64()
+				'imagem'         => $image->renderbase64()
 			);
 
 		$this->getResponse()->appendBody(Zend_Json_Encoder::encode($values));
